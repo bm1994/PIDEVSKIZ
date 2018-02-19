@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="711.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.AccueilController">
+   <children>
+      <Button fx:id="profilButton" layoutX="617.0" layoutY="29.0" mnemonicParsing="false" onAction="#afficherProfil" prefHeight="43.0" prefWidth="71.0" text="Profil" />
+      <Button fx:id="adoptionButton" layoutX="15.0" layoutY="17.0" mnemonicParsing="false" onAction="#Adopter" prefHeight="50.0" prefWidth="121.0" text="Adoption" />
+      <Button fx:id="accouplementButton" layoutX="17.0" layoutY="82.0" mnemonicParsing="false" onAction="#Accoupler" prefHeight="50.0" prefWidth="121.0" text="Accouplement" />
+      <Button fx:id="venteButton" layoutX="15.0" layoutY="151.0" mnemonicParsing="false" onAction="#vendre" prefHeight="50.0" prefWidth="121.0" text="Vente" />
+      <Button fx:id="evenementButton" layoutX="15.0" layoutY="216.0" mnemonicParsing="false" onAction="#Evenement" prefHeight="50.0" prefWidth="121.0" text="Evenements" />
+      <Button fx:id="associationButton" layoutX="15.0" layoutY="283.0" mnemonicParsing="false" onAction="#Association" prefHeight="43.0" prefWidth="121.0" text="Associations" />
+      <Button fx:id="ForumButton" layoutX="19.0" layoutY="351.0" mnemonicParsing="false" onAction="#Forums" prefHeight="50.0" prefWidth="121.0" text="Forum" />
+      <Button fx:id="deconnexionButton" layoutX="610.0" layoutY="491.0" mnemonicParsing="false" onAction="#deconnecter" text="Deconnextion" />
+   </children>
+</AnchorPane>
