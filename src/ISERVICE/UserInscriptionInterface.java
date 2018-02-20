@@ -15,6 +15,7 @@ public interface UserInscriptionInterface {
     public void AjouterUser(User u);
     public String getelemntbylogin(String m);
     public int getelemntbyrole(String m);
+    public void UpdateUser(User u);
 
 
     

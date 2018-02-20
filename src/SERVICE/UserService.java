@@ -100,15 +100,7 @@ User user = null;
         }
         return user;    }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     @Override
     public String getelemntbylogin(String m) {
@@ -153,6 +145,30 @@ while(res.next()){
             ex.printStackTrace();
         }
     return a;
+    }
+
+    @Override
+    public void UpdateUser(User u) {
+        String req = "update utilisateur set prenom=?,nom=?,adresse=?,telephone=?,email=?,login=?,motdepasse=? where id_utilisateur=?";
+        PreparedStatement preparedStatement;
+        try {
+            
+            preparedStatement = connection.prepareStatement(req);
+          
+            preparedStatement.setString(1,u.getPrenom());
+            preparedStatement.setString(2,u.getNom());
+            preparedStatement.setString(3,u.getAdresse());
+            preparedStatement.setInt(4,u.getTelephone());
+            preparedStatement.setString(5,u.getEmail());
+            preparedStatement.setString(6,u.getLogin());
+            preparedStatement.setString(7,u.getMotDePasse());
+            preparedStatement.setInt(8,u.getId_utilisateur());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    
     }
     }
    
