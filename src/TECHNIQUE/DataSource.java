@@ -15,6 +15,10 @@ import java.sql.SQLException;
  */
 public class DataSource {
 
+    public static Object getInstance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     String url = "jdbc:mysql://localhost:3306/skiizanimaux";
     String login = "root";
     String password = "";

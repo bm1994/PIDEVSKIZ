@@ -159,11 +159,46 @@ list.setItems(tab);
 
     @FXML
     private void Ajouter_sujet(ActionEvent event) {
+       try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutSujet.fxml"));
+        Parent root =loader.load();
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
 
     @FXML
     private void delete(ActionEvent event) {
+           SujetService sv= new  SujetService();
+		    sv.Supprimer_Sujet(list.getSelectionModel().getSelectedItem());  
+        
+        
+        
+    }
+    
+
+    @FXML
+    private void Commentaire(ActionEvent event) {
+        try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire_Sujet.fxml"));
+        Parent root =loader.load();
+   CommentaireController sec =  loader.getController();
+    
+    sec.affiche(list.getSelectionModel().getSelectedItem());
+    sec.ajouter(list.getSelectionModel().getSelectedItem());
+
+    Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+}
     }
 
     
-    }
+    

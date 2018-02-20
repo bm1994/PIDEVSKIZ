@@ -37,7 +37,7 @@ public class SujetService {
 
 	public void Ajouter_Sujet(Sujet s) {
 		try {
-            String req = "insert into sujet  values ("+null+",'" + s.getContenu() + "','" + s.getObjet() + "','" + s.getTitre() + "','"+s.getDate()+"'"+s.getId_user()+")";
+            String req = "insert into sujet  values ("+null+",'" + s.getContenu() + "','" + s.getObjet() + "','" + s.getTitre() + "','"+s.getDate()+"',"+s.getId_user()+")";
             ste.executeUpdate(req);
         } catch (SQLException ex) {
             Logger.getLogger( SujetService.class.getName()).log(Level.SEVERE, null, ex);
@@ -58,7 +58,7 @@ public class SujetService {
 	public void Supprimer_Sujet(Sujet s ) {
 		try {
 			
-			String req = "delete from sujet where id='"+s.getId_sujet()+"'";
+			String req = "delete from sujet where id_sujet='"+s.getId_sujet()+"'";
             ste.executeUpdate(req);
         } catch (SQLException ex) {
             Logger.getLogger( SujetService.class.getName()).log(Level.SEVERE, null, ex);

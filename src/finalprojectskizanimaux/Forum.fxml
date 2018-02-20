@@ -9,11 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
 <AnchorPane id="AnchorPane" onKeyReleased="#Search" prefHeight="574.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ForumController">
    <children>
-      <Text layoutX="660.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="forum" />
       <TableView fx:id="list" layoutX="231.0" layoutY="120.0" prefHeight="306.0" prefWidth="488.0">
         <columns>
           <TableColumn fx:id="col_titre" prefWidth="75.0" text="Titre" />
@@ -30,26 +28,54 @@
                   <Font name="Comic Sans MS Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="afficher_sujet" layoutX="9.0" layoutY="262.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Afficher les Sujet" textFill="#f5f3f3" />
-            <Button fx:id="add_sujet" layoutX="9.0" layoutY="346.0" mnemonicParsing="false" onAction="#Ajouter_sujet" prefHeight="25.0" prefWidth="182.0" style="-fx-background-color: #262438;" text="Ajouter un Sujet" textFill="#f8f8f8" />
-            <Button fx:id="acceuil" layoutY="182.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Acceuil" textFill="#eeeaea" />
+            <Button fx:id="afficher_sujet" layoutX="59.0" layoutY="275.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #262438;" text="Afficher les Sujet" textFill="#f5f3f3" />
+            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Profile" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="31.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="563.0" prefHeight="78.0" prefWidth="747.0" style="-fx-background-color: #262438;">
          <children>
-            <Button fx:id="del" layoutX="229.0" layoutY="7.0" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="137.0" style="-fx-background-color: #9C2727;" text="Delete" textFill="WHITE" />
-            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="335.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="del" layoutX="390.0" layoutY="23.0" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #9C2727;" text="Delete" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="502.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/erro.png" />
                </image>
             </ImageView>
-            <Button layoutX="514.0" layoutY="7.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #8AB7D4;" text="Commenter" textFill="#fffdfd" />
-            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="613.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+            <Button layoutX="570.0" layoutY="22.0" mnemonicParsing="false" onAction="#Commentaire" prefHeight="34.0" prefWidth="131.0" style="-fx-background-color: #8AB7D4;" text="Commenter" textFill="#fffdfd" />
+            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="669.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/dialog.png" />
                </image>
             </ImageView>
+            <Button fx:id="add_sujet" layoutX="192.0" layoutY="22.0" mnemonicParsing="false" onAction="#Ajouter_sujet" prefHeight="34.0" prefWidth="169.0" style="-fx-background-color: #259F5E;" text="Ajouter un Sujet" textFill="#f8f8f8" />
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="325.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/confirmar.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="acceuil" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Acceuil" textFill="#eeeaea" />
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="32.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/bouton_accueil.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="459.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/loupe-icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
