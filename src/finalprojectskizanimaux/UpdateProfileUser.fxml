@@ -9,65 +9,68 @@
 
 <AnchorPane id="AnchorPane" prefHeight="558.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.UpdateProfileUserController">
    <children>
-      <AnchorPane layoutX="682.0" prefHeight="558.0" prefWidth="65.0" style="-fx-background-color: #0A2229;" />
-      <AnchorPane layoutY="438.0" prefHeight="64.0" prefWidth="770.0" style="-fx-background-color: #0A2229;" />
-      <Text layoutX="14.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
+      <Text layoutX="237.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="updateProfilebmnom" layoutX="151.0" layoutY="108.0" />
-      <Text layoutX="14.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom">
+      <TextField fx:id="updateProfilebmnom" layoutX="474.0" layoutY="104.0" />
+      <Text layoutX="236.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="updateProfilebmPrenom" layoutX="151.0" layoutY="148.0" />
-      <Text layoutX="14.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse">
+      <TextField fx:id="updateProfilebmPrenom" layoutX="474.0" layoutY="157.0" />
+      <Text layoutX="236.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="updateProflebmAdresse" layoutX="151.0" layoutY="192.0" />
-      <Text layoutX="12.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone">
+      <TextField fx:id="updateProflebmAdresse" layoutX="474.0" layoutY="203.0" />
+      <Text layoutX="234.0" layoutY="271.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="updateProfilebmTelephone" layoutX="151.0" layoutY="241.0" />
-      <Text layoutX="12.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail">
+      <TextField fx:id="updateProfilebmTelephone" layoutX="474.0" layoutY="250.0" />
+      <Text layoutX="240.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mail">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="updateProfilebmMail" layoutX="151.0" layoutY="283.0" />
-      <Text layoutX="345.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
+      <TextField fx:id="updateProfilebmMail" layoutX="474.0" layoutY="295.0" />
+      <Text layoutX="235.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <TextField fx:id="updateProfilebmLogin" layoutX="512.0" layoutY="107.0" />
-      <Text layoutX="345.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot De Passe">
+      <TextField fx:id="updateProfilebmLogin" layoutX="474.0" layoutY="338.0" />
+      <Text layoutX="235.0" layoutY="419.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot De Passe">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <PasswordField fx:id="updateProfilebmMotDePasse" layoutX="512.0" layoutY="148.0" />
-      <Text layoutX="342.0" layoutY="211.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmer Mot De Passe" wrappingWidth="169.7265625">
+      <PasswordField fx:id="updateProfilebmMotDePasse" layoutX="474.0" layoutY="397.0" />
+      <Text layoutX="238.0" layoutY="463.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Confirmer Mot De Passe" wrappingWidth="169.7265625">
          <font>
             <Font size="22.0" />
          </font>
       </Text>
-      <PasswordField fx:id="UpdateprofilebmConfirmMotDePasse" layoutX="512.0" layoutY="217.0" />
-      <Button fx:id="SauvegardeUpdateProfileUser" layoutX="345.0" layoutY="335.0" mnemonicParsing="false" onAction="#SuveguarderUpdateProfilUser" prefHeight="51.0" prefWidth="133.0" text="Sauvegarder">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
-      <Button fx:id="AnnulerUpdateProfileUserButton" layoutX="526.0" layoutY="335.0" mnemonicParsing="false" onAction="#AnnulerUpdateProfileUser" prefHeight="51.0" prefWidth="121.0" text="Annuler">
-         <font>
-            <Font size="19.0" />
-         </font>
-      </Button>
+      <PasswordField fx:id="UpdateprofilebmConfirmMotDePasse" layoutX="474.0" layoutY="469.0" />
+      <AnchorPane prefHeight="558.0" prefWidth="218.0" style="-fx-background-color: #212221;">
+         <children>
+            <Button fx:id="SauvegardeUpdateProfileUser" layoutX="36.0" layoutY="254.0" mnemonicParsing="false" onAction="#SuveguarderUpdateProfilUser" prefHeight="51.0" prefWidth="133.0" style="-fx-background-color: #212221;" text="Sauvegarder" textFill="#f8f8f8">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Button>
+            <Button fx:id="AnnulerUpdateProfileUserButton" layoutX="103.0" layoutY="509.0" mnemonicParsing="false" onAction="#AnnulerUpdateProfileUser" prefHeight="29.0" prefWidth="102.0" style="-fx-background-color: #B40404;" text="Annuler" textFill="WHITE" />
+            <Text fill="#c7dc2a" layoutX="50.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SkiizAnimaux">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

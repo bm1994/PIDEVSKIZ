@@ -170,6 +170,20 @@ while(res.next()){
         }
     
     }
+
+    @Override
+    public void DeleteUser(int id) {
+         String req = "delete from utilisateur where id_utilisateur=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(req);
+            ps.setInt(1, id);
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.println("erreur lors de la supression " + ex.getMessage());
+    }
+
+    }
     }
    
     

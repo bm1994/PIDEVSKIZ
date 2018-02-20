@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="655.0" prefWidth="832.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.SinscrireController">
    <children>
-      <ImageView fitHeight="264.0" fitWidth="838.0" layoutX="-6.0" pickOnBounds="true">
+      <ImageView fitHeight="272.0" fitWidth="838.0" layoutX="-6.0" pickOnBounds="true">
          <image>
             <Image url="@../Images/pattes-chien_miniature.jpeg" />
          </image>
@@ -57,20 +57,20 @@
          </font></Text>
       <PasswordField fx:id="utlisateurmdp" layoutX="617.0" layoutY="355.0" />
       <PasswordField fx:id="utilisateurconfirmmdp" layoutX="617.0" layoutY="415.0" />
-      <Button fx:id="sinscrireButton12" layoutX="421.0" layoutY="507.0" mnemonicParsing="false" onAction="#Sinscrireuser" prefHeight="50.0" prefWidth="131.0" stylesheets="@Style.css" text="S'inscrire" />
+      <Button fx:id="sinscrireButton12" layoutX="421.0" layoutY="514.0" mnemonicParsing="false" onAction="#Sinscrireuser" prefHeight="43.0" prefWidth="131.0" stylesheets="@Style.css" text="S'inscrire" />
       <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="125.0" layoutY="349.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/images%20(1).png" />
+            <Image url="@../Images/visitas-m.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="27.0" fitWidth="35.0" layoutX="129.0" layoutY="297.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/man-human-person-login-128.png" />
+            <Image url="@../Images/visitas-m.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="124.0" layoutY="398.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/adresse-icon.png" />
+            <Image url="@../Images/localizar-h.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="35.0" fitWidth="43.0" layoutX="125.0" layoutY="463.0" pickOnBounds="true" preserveRatio="true">
@@ -85,22 +85,22 @@
       </ImageView>
       <ImageView fitHeight="43.0" fitWidth="35.0" layoutX="573.0" layoutY="293.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/images.png" />
+            <Image url="@../Images/visitas-h.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="43.0" fitWidth="48.0" layoutX="569.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="573.0" layoutY="357.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/téléchargement%20(1).png" />
+            <Image url="@../Images/key.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="64.0" fitWidth="43.0" layoutX="573.0" layoutY="407.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="32.0" fitWidth="27.0" layoutX="573.0" layoutY="414.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/téléchargement%20(1).png" />
+            <Image url="@../Images/key.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="27.0" fitWidth="18.0" layoutX="520.0" layoutY="523.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="18.0" layoutX="520.0" layoutY="527.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../Images/add-2-icon.png" />
+            <Image url="@../Images/add.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="43.0" fitWidth="18.0" layoutX="720.0" layoutY="615.0" pickOnBounds="true" preserveRatio="true">

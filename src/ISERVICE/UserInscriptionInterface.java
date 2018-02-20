@@ -16,6 +16,7 @@ public interface UserInscriptionInterface {
     public String getelemntbylogin(String m);
     public int getelemntbyrole(String m);
     public void UpdateUser(User u);
+    public void DeleteUser(int id);
 
 
     

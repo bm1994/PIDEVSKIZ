@@ -5,6 +5,7 @@
  */
 package finalprojectskizanimaux;
 
+import SERVICE.UserService;
 import TECHNIQUE.Session;
 import java.io.IOException;
 import java.net.URL;
@@ -38,6 +39,8 @@ public class ProfilController implements Initializable {
     private Label labelprofilbmmail;
     @FXML
     private Label labelprofilbmusername;
+    @FXML
+    private Button DeleteProfilUserButton;
 
     /**
      * Initializes the controller class.
@@ -88,6 +91,26 @@ labelprofilbmusername.setText(Session.LoggedUser.getLogin());
     }
 
         
+    }
+
+    @FXML
+    private void DeleteProfileuserbm(ActionEvent event) {
+        
+        
+        try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("VerificationSuppritionCompteUser.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) DeleteProfilUserButton.getScene().getWindow();
+        stage.close();
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
 
   
