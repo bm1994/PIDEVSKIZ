@@ -5,6 +5,7 @@
  */
 package finalprojectskizanimaux;
 
+import SERVICE.UserService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -50,15 +52,32 @@ public class LoginController implements Initializable {
     @FXML
     private void Authentifier(ActionEvent event) {
         try {
+            UserService userrser = new UserService();
+        String b = userrser.getelemntbylogin(loginid.getText());
+        int arole=userrser.getelemntbyrole(loginid.getText());
+        if ((b!=null)&&b.equals(passwordid.getText())&& arole==2) { 
+            
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
         Parent root =loader.load();
-        
         Stage stage=(Stage) loginButton.getScene().getWindow();
         stage.close();
-        
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
-    s.show();
+    s.show(); 
+   
+        } else { 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention ! ");
+            alert.setHeaderText(null);
+            alert.setContentText("id et/ou mot de passe incorrecte ");
+            alert.showAndWait();
+
+        }
+
+            
+            
+            
+          
     
     
     } catch (IOException ex) {
