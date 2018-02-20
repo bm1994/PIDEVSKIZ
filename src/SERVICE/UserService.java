@@ -10,6 +10,7 @@ import MODEL.User;
 import TECHNIQUE.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -44,6 +45,32 @@ Connection connection;
             ex.printStackTrace();
         }
     }
+
+    public User findById(int id_utilisateur) {
+User user = null;
+        String req = "select * from users where id =?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            preparedStatement.setInt(1, id_utilisateur);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user = new User(resultSet.getInt("id_utilisateur"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom"),
+                        resultSet.getString("adresse"),
+                        resultSet.getInt("telephone"),
+                        resultSet.getString("adresse"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("role"),
+                        resultSet.getString("login"),
+                        resultSet.getString("motdepasse")
+                );
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return user;    }
    
     }
     

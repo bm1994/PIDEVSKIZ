@@ -37,6 +37,10 @@ public class User {
         this.motDePasse = motDePasse;
     }
 
+    public User(int aInt, String string, String string0, String string1, int aInt0, String string2, String string3, int aInt1, String string4, String string5) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public int getId_utilisateur() {
         return id_utilisateur;
     }

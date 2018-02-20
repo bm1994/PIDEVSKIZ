@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 /**
@@ -40,6 +41,8 @@ public class AccueilController implements Initializable {
     private Button ForumButton;
     @FXML
     private Button deconnexionButton;
+    @FXML
+    private Label ii;
 
     /**
      * Initializes the controller class.
