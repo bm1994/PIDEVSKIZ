@@ -47,7 +47,7 @@ Connection connection;
     }
     public User findById(int id_utilisateur) {
 User user = null;
-        String req = "select * from users where id =?";
+        String req = "select * from utilisateur where id =?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(req);
@@ -59,7 +59,6 @@ User user = null;
                         resultSet.getString("prenom"),
                         resultSet.getString("adresse"),
                         resultSet.getInt("telephone"),
-                        resultSet.getString("adresse"),
                         resultSet.getString("email"),
                         resultSet.getInt("role"),
                         resultSet.getString("login"),
@@ -72,6 +71,45 @@ User user = null;
         return user;    }
     
 
+    
+    
+    
+    
+     public User findByLogin(String login) {
+User user = null;
+        String req = "select * from utilisateur where login =?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            preparedStatement.setString(1, login);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                user = new User(resultSet.getInt("id_utilisateur"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom"),
+                        resultSet.getString("adresse"),
+                        resultSet.getInt("telephone"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("role"),
+                        resultSet.getString("login"),
+                        resultSet.getString("motdepasse")
+                );
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return user;    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     @Override
     public String getelemntbylogin(String m) {
         

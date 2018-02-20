@@ -6,6 +6,7 @@
 package finalprojectskizanimaux;
 
 import SERVICE.UserService;
+import TECHNIQUE.Session;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,7 +57,7 @@ public class LoginController implements Initializable {
         String b = userrser.getelemntbylogin(loginid.getText());
         int arole=userrser.getelemntbyrole(loginid.getText());
         if ((b!=null)&&b.equals(passwordid.getText())&& arole==2) { 
-            
+            Session.LoggedUser= userrser.findByLogin(loginid.getText());
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
         Parent root =loader.load();
         Stage stage=(Stage) loginButton.getScene().getWindow();
