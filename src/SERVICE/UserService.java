@@ -45,7 +45,6 @@ Connection connection;
             ex.printStackTrace();
         }
     }
-
     public User findById(int id_utilisateur) {
 User user = null;
         String req = "select * from users where id =?";
@@ -71,8 +70,55 @@ User user = null;
             ex.printStackTrace();
         }
         return user;    }
-   
+    
+
+    @Override
+    public String getelemntbylogin(String m) {
+        
+         String a=null;
+         String req = "select * from utilisateur where login=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+                        preparedStatement.setString(1,m);
+                                ResultSet res= preparedStatement.executeQuery();
+
+while(res.next()){       
+             a = res.getString("motdepasse");
+             
+}     
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    return a;
     }
+
+    @Override
+    public int getelemntbyrole(String m) {
+        int a=0;
+         String req = "select * from utilisateur where login=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+                        preparedStatement.setString(1,m);
+                                ResultSet res= preparedStatement.executeQuery();
+
+while(res.next()){
+            
+            
+             a = res.getInt("role");
+             
+}
+          
+          
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    return a;
+    }
+    }
+   
+    
     
     
 

@@ -13,5 +13,9 @@ import MODEL.User;
  */
 public interface UserInscriptionInterface {
     public void AjouterUser(User u);
+    public String getelemntbylogin(String m);
+    public int getelemntbyrole(String m);
+
+
     
 }

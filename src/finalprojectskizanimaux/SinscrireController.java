@@ -47,6 +47,8 @@ public class SinscrireController implements Initializable {
     private PasswordField utlisateurmdp;
     @FXML
     private PasswordField utilisateurconfirmmdp;
+    @FXML
+    private Button sinscrireButton12;
 
     /**
      * Initializes the controller class.
@@ -59,7 +61,7 @@ public class SinscrireController implements Initializable {
     @FXML
     private void sinscrireRetour(ActionEvent event) {
           try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
         Parent root =loader.load();
         
         Stage stage=(Stage) sinscrireRetourButton.getScene().getWindow();
