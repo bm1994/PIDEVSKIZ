@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementCRUDController">
+   <children>
+      <TextField fx:id="tftitre" layoutX="206.0" layoutY="91.0" prefHeight="25.0" prefWidth="211.0" />
+      <TextField fx:id="tflieu" layoutX="206.0" layoutY="152.0" prefHeight="25.0" prefWidth="211.0" />
+      <DatePicker fx:id="tfdate" layoutX="210.0" layoutY="211.0" prefHeight="25.0" prefWidth="211.0" />
+      <TextArea fx:id="tfsujet" layoutX="212.0" layoutY="277.0" prefHeight="200.0" prefWidth="211.0" />
+      <Button fx:id="buttonRetourr" layoutX="14.0" layoutY="429.0" mnemonicParsing="false" onAction="#actionRetourr" prefHeight="36.0" prefWidth="114.0" text="Retour" />
+      <Label layoutX="108.0" layoutY="95.0" text="Titre :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="154.0" text="Lieu :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="213.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="277.0" text="Sujet :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonEnvoyer" layoutX="187.0" layoutY="511.0" mnemonicParsing="false" onAction="#actionEnvoi" prefHeight="25.0" prefWidth="125.0" text="Envoyer" />
+      <Button fx:id="buttonAnnuler" layoutX="335.0" layoutY="511.0" mnemonicParsing="false" onAction="#actionAnnulation" prefHeight="25.0" prefWidth="125.0" text="Annuler" />
+   </children>
+</AnchorPane>

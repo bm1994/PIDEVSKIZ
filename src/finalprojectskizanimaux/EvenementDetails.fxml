@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="612.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementDetailsController">
+   <children>
+      <Label fx:id="lbltitre" alignment="CENTER" contentDisplay="CENTER" layoutX="175.0" layoutY="35.0" prefHeight="73.0" prefWidth="428.0" textAlignment="CENTER">
+         <font>
+            <Font size="30.0" />
+         </font></Label>
+      <Label fx:id="lblsujet" layoutX="197.0" layoutY="272.0" prefHeight="150.0" prefWidth="334.0" text="Label">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Label>
+      <Label fx:id="lbldate" layoutX="200.0" layoutY="131.0" prefHeight="47.0" prefWidth="327.0" text="Label">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Label fx:id="lbllieu" layoutX="200.0" layoutY="204.0" prefHeight="47.0" prefWidth="327.0" text="Label">
+         <font>
+            <Font size="20.0" />
+         </font></Label>
+      <Button fx:id="buttonParticiper" layoutX="21.0" layoutY="131.0" mnemonicParsing="false" onAction="#actionParticiper" prefHeight="38.0" prefWidth="148.0" text="Button" />
+      <Button fx:id="retourButton" layoutX="6.0" layoutY="491.0" mnemonicParsing="false" onAction="#evenementRetour" prefHeight="38.0" prefWidth="148.0" text="Retour" />
+      <Button fx:id="buttonCommentaire" layoutX="21.0" layoutY="228.0" mnemonicParsing="false" onAction="#actionCommentaires" prefHeight="38.0" prefWidth="148.0" text="Commentaires" />
+      <Label fx:id="lblparticipants" layoutX="511.0" layoutY="146.0" prefHeight="38.0" prefWidth="207.0" text="Label">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

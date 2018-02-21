@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="637.0" prefWidth="810.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.40" fx:controller="finalprojectskizanimaux.EvenementModificationController">
+   <children>
+      <Label layoutX="199.0" layoutY="132.0" text="Titre :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="199.0" layoutY="201.0" text="Lieu :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="199.0" layoutY="276.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="199.0" layoutY="359.0" text="Sujet :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tftitree" layoutX="289.0" layoutY="128.0" />
+      <TextField fx:id="tflieuu" layoutX="289.0" layoutY="197.0" />
+      <DatePicker fx:id="tfdatee" layoutX="282.0" layoutY="272.0" />
+      <TextArea fx:id="tfsujett" layoutX="269.0" layoutY="346.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="buttonModifier" layoutX="263.0" layoutY="570.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="35.0" prefWidth="100.0" text="Modifier" />
+      <Button fx:id="buttonAnnuler" layoutX="379.0" layoutY="570.0" mnemonicParsing="false" onAction="#actionAnnuler" prefHeight="35.0" prefWidth="100.0" text="Annuler" />
+      <Button fx:id="buttonRetour" layoutX="38.0" layoutY="492.0" mnemonicParsing="false" onAction="#actionRetour" prefHeight="35.0" prefWidth="115.0" text="Retour" />
+   </children>
+</AnchorPane>
