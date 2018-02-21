@@ -52,7 +52,7 @@ public class Service_Commentaire_sujet {
 
 	public void Modifier_commentaire(Commentaire_sujet c) {
 		try {
-            String req = "update commentairesujet  set(contenu_commentaire= '" + c.getContenu_commentaire()+ "',DateCommentaireSujet = '" + c.getDateCommentaireSujet()+"')";
+            String req = "update commentairesujet  set contenu_commentaire='"+ c.getContenu_commentaire()+"'where id_commentaire_sujet="+c.getId_commentaire_sujet();
             ste.executeUpdate(req);
         } catch (SQLException ex) {
             Logger.getLogger( Service_Commentaire_sujet.class.getName()).log(Level.SEVERE, null, ex);

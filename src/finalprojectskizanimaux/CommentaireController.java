@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -28,6 +29,10 @@ import javafx.scene.control.TextField;
  */
 public class CommentaireController implements Initializable {
 	Sujet sujet ;
+    @FXML
+    private Button modif;
+    @FXML
+    private Button modif1;
 	   public Sujet getSujet() {
 			return sujet;
 		}
@@ -54,10 +59,11 @@ public class CommentaireController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+                  
+                   
+                   }  
     public void affiche (Sujet s) {
-		
+		  
 		titre.setText(s.getTitre());
 		contenu.setText(s.getContenu());
 		   Service_Commentaire_sujet sv= new  Service_Commentaire_sujet();
@@ -65,6 +71,7 @@ public class CommentaireController implements Initializable {
 		 	    		sv.Afficher_commentaire(s)
 		 	    		);
 		   list_commentaire.setItems(list);
+                
 	}
 
     @FXML
@@ -82,6 +89,32 @@ public void ajouter(Sujet s) {
    	Commentaire_sujet c = new Commentaire_sujet (Session.LoggedUser.getId_utilisateur(),sujet.getId_sujet(),contenu_commentaire.getText(),"12/1/7");
    	
    	sv.Ajouter_commentaire(c);
+    }
+
+    @FXML
+    private void Modifier_commentaire(ActionEvent event) {
+    contenu_commentaire.setText(list_commentaire.getSelectionModel().getSelectedItem().getContenu_commentaire());
+    Commenter.setVisible(false);
+    }
+
+    @FXML
+    private void test(MouseEvent event) {
+          if (list_commentaire.getSelectionModel().getSelectedItem().getId_utilisateur()!=Session.LoggedUser.getId_utilisateur())
+                   {modif.setVisible(false);
+                   modif1.setVisible(false);
+                   
+                   
+                   }  
+          else {modif.setVisible(true);
+          modif1.setVisible(true);}
+    }
+
+    @FXML
+    private void Suavegarder(ActionEvent event) {
+           Service_Commentaire_sujet sv = new Service_Commentaire_sujet();
+   	Commentaire_sujet c = new Commentaire_sujet (list_commentaire.getSelectionModel().getSelectedItem().getId_commentaire_sujet(),contenu_commentaire.getText());
+   	
+   	sv.Modifier_commentaire(c);
     }
     
 }

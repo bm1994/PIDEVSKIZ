@@ -66,6 +66,43 @@ public class SujetService {
 				
 	}
 
+                public int  Afficher_list(int id) {
+int c = 0 ;
+        try {
+            
+            String req = "select * from sujet where id_utilisateur =" + id;
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                c++;
+            }
+
+        } 
+     catch (SQLException ex) {
+        Logger.getLogger(SujetService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return c;
+
+}
+        public int  Afficher_list_allsujet() {
+int c = 0 ;
+        try {
+            
+            String req = "select * from sujet ";
+            rs = ste.executeQuery(req);
+            while (rs.next()) {
+                c++;
+            }
+
+        } 
+     catch (SQLException ex) {
+        Logger.getLogger(SujetService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    return c;
+
+}
+        
+        
+        
 
 	public List<Sujet> Afficher_Sujet() {
 

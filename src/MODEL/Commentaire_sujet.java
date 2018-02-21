@@ -25,6 +25,15 @@ private String DateCommentaireSujet;
         this.DateCommentaireSujet = DateCommentaireSujet;
     }
 
+    public Commentaire_sujet(int id_commentaire_sujet, String contenu_commentaire) {
+        this.id_commentaire_sujet = id_commentaire_sujet;
+        this.contenu_commentaire = contenu_commentaire;
+    }
+    
+
+    public Commentaire_sujet(String text) {
+    }
+
 
 
     public int getId_commentaire_sujet() {
