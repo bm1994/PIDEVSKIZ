@@ -35,7 +35,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -44,34 +43,10 @@ import javafx.stage.Stage;
  *
  * @author Admin
  */
-public class Propre_annonce_AdoptionController implements Initializable {
+public class Propre_annonce_venteController implements Initializable {
 
     @FXML
     private Button acceuil;
-    @FXML
-    private TableView<Annonce> tblAdoption;
-    @FXML
-    private TableColumn<?, ?> tblclmTitre;
-    @FXML
-    private TableColumn<?, ?> tblclmDesc;
-    @FXML
-    private TableColumn<?, ?> tblclmDate;
-    @FXML
-    private TableColumn<?, ?> tblclmPhoto;
-    @FXML
-    private TableColumn<?, ?> tblclmTypead;
-    @FXML
-    private TableColumn<?, ?> tblclmNomA;
-    @FXML
-    private TableColumn<?, ?> tblclmAge;
-    @FXML
-    private TableColumn<?, ?> tblclmTypeAnimal;
-    @FXML
-    private TableColumn<?, ?> tblclmRace;
-    @FXML
-    private TableColumn<?, ?> tblclmPoids;
-    @FXML
-    private TableColumn<?, ?> tblclmSexe;
     @FXML
     private TextField TitreA_txt;
     @FXML
@@ -94,13 +69,36 @@ public class Propre_annonce_AdoptionController implements Initializable {
     private TextField poids_animal_txt;
     @FXML
     private TextField sexe_animal_txt;
-    
     @FXML
-    private Button Modifier_adoption;
+    private TableView<Annonce> tblVente;
     @FXML
-    private Button delete;
+    private TableColumn<?, ?> tblclmTitre2;
     @FXML
-    private AnchorPane rootpane;
+    private TableColumn<?, ?> tblclmDesc2;
+    @FXML
+    private TableColumn<?, ?> tblclmDate2;
+    @FXML
+    private TableColumn<?, ?> tblclmPhoto2;
+    @FXML
+    private TableColumn<?, ?> tblclmTypead2;
+    @FXML
+    private TableColumn<?, ?> tblclmNomA2;
+    @FXML
+    private TableColumn<?, ?> tblclmAge2;
+    @FXML
+    private TableColumn<?, ?> tblclmTypeAnimal2;
+    @FXML
+    private TableColumn<?, ?> tblclmRace2;
+    @FXML
+    private TableColumn<?, ?> tblclmPoids2;
+    @FXML
+    private TableColumn<?, ?> tblclmSexe2;
+    @FXML
+    private Button Modifier_vente;
+    @FXML
+    private Button deletevente;
+    @FXML
+    private AnchorPane rootpane2;
 
     /**
      * Initializes the controller class.
@@ -108,8 +106,8 @@ public class Propre_annonce_AdoptionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        AfficherA();
-         tblAdoption.getSelectionModel().selectedItemProperty().
+         AfficherA();
+         tblVente.getSelectionModel().selectedItemProperty().
                 addListener((observable, oldValue, newValue) -> {
                     try {
                         showAccpDetails(newValue);
@@ -117,13 +115,11 @@ public class Propre_annonce_AdoptionController implements Initializable {
                         Logger.getLogger(Propre_annonce_AdoptionController.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 });
-        
     }    
 
     @FXML
     private void forumRetour(ActionEvent event) {
-        
-           try {
+            try {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
         Parent root =loader.load();
         
@@ -139,82 +135,31 @@ public class Propre_annonce_AdoptionController implements Initializable {
         System.out.println(ex.getMessage());
     }
     }
+
     
-    private void AfficherA() {
+     private void AfficherA() {
         AnnonceService a= new AnnonceService();
-        tblclmTitre.setCellValueFactory(new PropertyValueFactory<>("titre_annonce"));
-        tblclmDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        tblclmDate.setCellValueFactory(new PropertyValueFactory<>("date_annonce"));
-        tblclmPhoto.setCellValueFactory(new PropertyValueFactory<>("photo_annonce"));
-        tblclmTypead.setCellValueFactory(new PropertyValueFactory<>("type_annonce"));
-        tblclmNomA.setCellValueFactory(new PropertyValueFactory<>("nom_animal"));
-        tblclmAge.setCellValueFactory(new PropertyValueFactory<>("age_animal"));
-        tblclmTypeAnimal.setCellValueFactory(new PropertyValueFactory<>("type_animal"));
-        tblclmRace.setCellValueFactory(new PropertyValueFactory<>("race_animal"));
-        tblclmPoids.setCellValueFactory(new PropertyValueFactory<>("poids_animal"));
-        tblclmSexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
+        tblclmTitre2.setCellValueFactory(new PropertyValueFactory<>("titre_annonce"));
+        tblclmDesc2.setCellValueFactory(new PropertyValueFactory<>("description"));
+        tblclmDate2.setCellValueFactory(new PropertyValueFactory<>("date_annonce"));
+        tblclmPhoto2.setCellValueFactory(new PropertyValueFactory<>("photo_annonce"));
+        tblclmTypead2.setCellValueFactory(new PropertyValueFactory<>("type_annonce"));
+        tblclmNomA2.setCellValueFactory(new PropertyValueFactory<>("nom_animal"));
+        tblclmAge2.setCellValueFactory(new PropertyValueFactory<>("age_animal"));
+        tblclmTypeAnimal2.setCellValueFactory(new PropertyValueFactory<>("type_animal"));
+        tblclmRace2.setCellValueFactory(new PropertyValueFactory<>("race_animal"));
+        tblclmPoids2.setCellValueFactory(new PropertyValueFactory<>("poids_animal"));
+        tblclmSexe2.setCellValueFactory(new PropertyValueFactory<>("sexe"));
         //flag.setCellValueFactory(new PropertyValueFactory<>("TEAM_FLAG"));
         //logo.setCellValueFactory(new PropertyValueFactory<>("TEAM_LOGO"));
         
         //table.setItems(null);
-        tblAdoption.setItems(a.getAnnoncebyIdType(Session.LoggedUser.getId_utilisateur(),"Adoption"));
+        tblVente.setItems(a.getAnnoncebyIdType(Session.LoggedUser.getId_utilisateur(),"Vente"));
         //String imageFile = (s.findById(table.getSelectionModel().getSelectedItem().getTEAM_ID()).getPath());
            // System.out.println(imageFile);
     }
 
-    @FXML
-    private void Modifier_annonce_ad(ActionEvent event) throws ParseException {
-         AnchorPane pane=new AnchorPane();
-        if (!tblAdoption.getSelectionModel().isEmpty()) {
-           IAnnonceService ias=new AnnonceService();
-            String date_annonce = dateA_txt.getEditor().getText();
-            SimpleDateFormat inFmt = new SimpleDateFormat("dd/MM/yyyy");
-            SimpleDateFormat outFmt = new SimpleDateFormat("dd/MM/yyyy");
-
-            String dateN = outFmt.format(inFmt.parse(date_annonce));
-
-            LocalDate db = dateA_txt.getValue();
-
-            Annonce a=new Annonce();
-            a.setId_annonce(Integer.valueOf(idAnew));
-            a.setDate_annonce(date_annonce);
-            a.setPhoto_annonce(photo_annonce_txt.getText());
-            a.setTitre_annonce(TitreA_txt.getText());
-            a.setAge_animal(Integer.parseInt(age_animal_txt.getText()));
-            a.setDescription(DescriptionA_txt.getText());
-            a.setNom_animal(nomA_txt.getText());
-            a.setRace_animal(race_animal_txt.getText());
-            a.setType_animal(type_animal_txt.getText());
-            a.setType_annonce(type_annonce_txt.getText());
-            a.setPoids_animal(Integer.parseInt(poids_animal_txt.getText()));
-            a.setSexe(sexe_animal_txt.getText());
-            ias.updateAnnonce(a);
-             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-                                            alert.setTitle("Modifier Annonce ");
-                                            alert.setHeaderText("Modification de l'Adoption"
-                                                    + tblAdoption.getSelectionModel().getSelectedItem().getId_annonce() + " est effectué avec succé");
-                                            Optional<ButtonType> result = alert.showAndWait();
-                                           //AfficherA();
-                                             try {
-                     pane = FXMLLoader.load(getClass().getResource("Propre_annonce_Adoption.fxml"));
-                } catch (IOException ex) {
-                    Logger.getLogger(Propre_annonce_AdoptionController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                rootpane.getChildren().setAll(pane);
-            
-        } else {
-            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
-            alert1.setTitle("Erreur de selection");
-            alert1.setHeaderText("Vous etes obligé de selectioner un Adoption  ");
-
-            Optional<ButtonType> result = alert1.showAndWait();
-             AfficherA();
-        }
-
-        
-    }
-
-     String idAnew;
+       String idAnew;
     void showAccpDetails(Annonce a) throws ParseException {
  
 idAnew = String.valueOf(a.getId_annonce());
@@ -255,23 +200,74 @@ idAnew = String.valueOf(a.getId_annonce());
     }
 
     @FXML
-    private void Supprimer_adoption(ActionEvent event) {
-        AnchorPane pane=new AnchorPane();
-         if (!tblAdoption.getSelectionModel().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Supprimer Votre Annonce");
-            alert.setHeaderText("Etes vous sur de vouloir supprimer Votre Annonce : " + tblAdoption.getSelectionModel().getSelectedItem().getId_annonce()+ " ?");
-            Optional<ButtonType> result = alert.showAndWait();
-            if (result.get() == ButtonType.OK) {
-                AnnonceService a=new AnnonceService();
-        a.deleteAnnonce(tblAdoption.getSelectionModel().getSelectedItem().getId_annonce());
-               //AfficherA();
-               try {
-                     pane = FXMLLoader.load(getClass().getResource("Propre_annonce_Adoption.fxml"));
+    private void Modifier_annonce_vente(ActionEvent event) throws ParseException {
+          AnchorPane pane=new AnchorPane();
+        if (!tblVente.getSelectionModel().isEmpty()) {
+           IAnnonceService ias=new AnnonceService();
+            String date_annonce = dateA_txt.getEditor().getText();
+            SimpleDateFormat inFmt = new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat outFmt = new SimpleDateFormat("dd/MM/yyyy");
+
+            String dateN = outFmt.format(inFmt.parse(date_annonce));
+
+            LocalDate db = dateA_txt.getValue();
+
+            Annonce a=new Annonce();
+            a.setId_annonce(Integer.valueOf(idAnew));
+            a.setDate_annonce(date_annonce);
+            a.setPhoto_annonce(photo_annonce_txt.getText());
+            a.setTitre_annonce(TitreA_txt.getText());
+            a.setAge_animal(Integer.parseInt(age_animal_txt.getText()));
+            a.setDescription(DescriptionA_txt.getText());
+            a.setNom_animal(nomA_txt.getText());
+            a.setRace_animal(race_animal_txt.getText());
+            a.setType_animal(type_animal_txt.getText());
+            a.setType_annonce(type_annonce_txt.getText());
+            a.setPoids_animal(Float.valueOf(poids_animal_txt.getText()));
+            a.setSexe(sexe_animal_txt.getText());
+            ias.updateAnnonce(a);
+             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Modifier Annonce ");
+                                            alert.setHeaderText("Modification de vente"
+                                                    + tblVente.getSelectionModel().getSelectedItem().getId_annonce() + " est effectué avec succé");
+                                            Optional<ButtonType> result = alert.showAndWait();
+                                           //AfficherA();
+                                             try {
+                     pane = FXMLLoader.load(getClass().getResource("Propre_annonce_vente.fxml"));
                 } catch (IOException ex) {
                     Logger.getLogger(Propre_annonce_AdoptionController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                rootpane.getChildren().setAll(pane);
+                rootpane2.getChildren().setAll(pane);
+            
+        } else {
+            Alert alert1 = new Alert(Alert.AlertType.CONFIRMATION);
+            alert1.setTitle("Erreur de selection");
+            alert1.setHeaderText("Vous etes obligé de selectioner un vente  ");
+
+            Optional<ButtonType> result = alert1.showAndWait();
+             AfficherA();
+        }
+
+    }
+
+    @FXML
+    private void Supprimer_vente(ActionEvent event) {
+         AnchorPane pane=new AnchorPane();
+         if (!tblVente.getSelectionModel().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Supprimer Votre Annonce");
+            alert.setHeaderText("Etes vous sur de vouloir supprimer Votre Annonce : " + tblVente.getSelectionModel().getSelectedItem().getId_annonce()+ " ?");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                AnnonceService a=new AnnonceService();
+        a.deleteAnnonce(tblVente.getSelectionModel().getSelectedItem().getId_annonce());
+               //AfficherA();
+               try {
+                     pane = FXMLLoader.load(getClass().getResource("Propre_annonce_vente.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(Propre_annonce_AdoptionController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                rootpane2.getChildren().setAll(pane);
                  
             }
         }else {
@@ -281,4 +277,5 @@ idAnew = String.valueOf(a.getId_annonce());
              Optional<ButtonType> result = alert.showAndWait();
         }
     }
+    
 }

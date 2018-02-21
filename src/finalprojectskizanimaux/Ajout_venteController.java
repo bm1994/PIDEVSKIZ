@@ -28,7 +28,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 /**
@@ -36,8 +35,10 @@ import javafx.stage.Stage;
  *
  * @author Admin
  */
-public class Ajout_adoptionController implements Initializable {
+public class Ajout_venteController implements Initializable {
 
+    @FXML
+    private Button Retour;
     @FXML
     private Button acceuil;
     @FXML
@@ -51,8 +52,6 @@ public class Ajout_adoptionController implements Initializable {
     @FXML
     private TextField type_annonce_txt;
     @FXML
-    private ImageView imageAdoption;
-    @FXML
     private TextField nomA_txt;
     @FXML
     private TextField age_animal_txt;
@@ -64,12 +63,9 @@ public class Ajout_adoptionController implements Initializable {
     private TextField poids_animal_txt;
     @FXML
     private ComboBox<String> sexe_animal_txt;
-    
+    @FXML
+    private Button ajouter2;
     ObservableList<String> comboListsexe = FXCollections.observableArrayList("Male", "Femelle");
-    @FXML
-    private Button ajouter;
-    @FXML
-    private Button Retour;
 
     /**
      * Initializes the controller class.
@@ -77,14 +73,33 @@ public class Ajout_adoptionController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        type_annonce_txt.setText("Adoption");
+         type_annonce_txt.setText("Vente");
         sexe_animal_txt.setValue("Male");
         sexe_animal_txt.setItems(comboListsexe);
     }    
 
     @FXML
+    private void RetourAcc(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Vente.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) Retour.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
     private void forumRetour(ActionEvent event) {
-           try {
+          try {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
         Parent root =loader.load();
         
@@ -102,39 +117,18 @@ public class Ajout_adoptionController implements Initializable {
     }
 
     @FXML
-    private void submitClick(ActionEvent event) {
-        
-        IAnnonceService ias = new AnnonceService();
+    private void submitClick12(ActionEvent event) {
+         IAnnonceService ias = new AnnonceService();
        
-                                            Annonce a = new Annonce(TitreA_txt.getText(),DescriptionA_txt.getText(),dateA_txt.getEditor().getText(),photo_annonce_txt.getText(),type_annonce_txt.getText(),nomA_txt.getText(),Integer.parseInt(age_animal_txt.getText()),type_animal_txt.getText(),race_animal_txt.getText(),Integer.parseInt(poids_animal_txt.getText()),sexe_animal_txt.getValue());
+                                            Annonce a = new Annonce(TitreA_txt.getText(),DescriptionA_txt.getText(),dateA_txt.getEditor().getText(),photo_annonce_txt.getText(),type_annonce_txt.getText(),nomA_txt.getText(),Integer.parseInt(age_animal_txt.getText()),type_animal_txt.getText(),race_animal_txt.getText(),Float.valueOf(poids_animal_txt.getText()),sexe_animal_txt.getValue());
                                            a.setId_user( Session.LoggedUser.getId_utilisateur());
                                             
                                             ias.create(a);
                                             
                                             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                             alert.setTitle("Succés d'ajout ");
-                                            alert.setHeaderText("Annonce adoption ajouté avec succé");
+                                            alert.setHeaderText("Annonce accouplement ajouté avec succé");
                                             Optional<ButtonType> result = alert.showAndWait();
-         
-    }
-
-    @FXML
-    private void RetourAd(ActionEvent event) {
-          try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Adoption.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) Retour.getScene().getWindow();
-        stage.close();
-        
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
     }
     
 }

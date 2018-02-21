@@ -39,6 +39,12 @@
                   <Image url="@../Images/bouton_accueil.png" />
                </image>
             </ImageView>
+            <Button fx:id="Retour" layoutX="14.0" layoutY="524.0" mnemonicParsing="false" onAction="#RetourAd" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: #212221;" text="Retourner" textFill="#f5f3f3" />
+            <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="22.0" layoutY="535.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/téléchargement.jpg" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
       <TextField fx:id="TitreA_txt" layoutX="361.0" layoutY="51.0" />
@@ -50,7 +56,7 @@
       <TextField fx:id="photo_annonce_txt" layoutX="361.0" layoutY="280.0" />
       <Label layoutX="238.0" layoutY="284.0" text="Photo_adoption :" />
       <TextField fx:id="type_annonce_txt" layoutX="361.0" layoutY="333.0" />
-      <Label layoutX="238.0" layoutY="337.0" text="Type_adoption :" />
+      <Label layoutX="238.0" layoutY="337.0" text="Type_annonce :" />
       <ImageView fx:id="imageAdoption" fitHeight="118.0" fitWidth="174.0" layoutX="535.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true" />
       <TextField fx:id="nomA_txt" layoutX="903.0" layoutY="64.0" />
       <TextField fx:id="age_animal_txt" layoutX="903.0" layoutY="109.0" />
