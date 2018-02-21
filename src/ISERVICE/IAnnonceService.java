@@ -22,4 +22,6 @@ public interface IAnnonceService {
     public void updateAnnonce(Annonce a);
     public ObservableList<Annonce> getAnnoncebyType(String type);
      public ObservableList<Annonce> getAnnoncebyIdType(int id_user,String type);
+          public List<Annonce> getAnnoncebyIdUser(int id_user);
+
 }

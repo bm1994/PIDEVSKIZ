@@ -45,3 +45,29 @@
 
 
 }
+
+
+.list-view {
+    -fx-background-color:  #c7dc2a;
+}
+
+.list-view .list-cell:hover {
+    -fx-background-color: #434343;
+}
+
+.list-view .list-cell:selected {
+    -fx-background-color:  #212221;
+}
+
+.list-view .list-cell {
+    -fx-background-color: #c7dc2a;
+    -fx-text-fill: white;
+}
+
+.list-view .label {
+    -fx-text-fill: white;
+}
+
+.jfx-rippler {
+    -jfx-rippler-fill: red;
+}

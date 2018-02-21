@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -195,6 +196,30 @@ Connection connection;
         return ListeAnnonce;
     }
 
+    @Override
+    public List<Annonce> getAnnoncebyIdUser(int id_user) {
+        List<Annonce> ListeAnnonce = new ArrayList<>();
+            Annonce annonce = null;
+        String req = "select * from annonce where id_utilisateur=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            preparedStatement.setInt(1, id_user);
+            
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+           annonce = new Annonce(resultSet.getInt(1), resultSet.getString(2),resultSet.getString(3),resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),resultSet.getString(7),resultSet.getInt(8),resultSet.getString(9),resultSet.getString(10),resultSet.getFloat(11),resultSet.getString(12),resultSet.getInt(13));
+           ListeAnnonce.add(annonce);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ListeAnnonce;
     }
+
+    }
+
     
+
+
 

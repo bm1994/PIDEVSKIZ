@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -46,7 +47,15 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="192.0" layoutY="146.0" prefHeight="452.0" prefWidth="529.0" style="-fx-background-color: #FFFFFF;" />
+      <AnchorPane layoutX="192.0" layoutY="146.0" prefHeight="452.0" prefWidth="529.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ListView fx:id="List" layoutY="74.0" prefHeight="377.0" prefWidth="536.0" stylesheets="@Style.css" />
+            <Text layoutX="25.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mes Annoces :">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
       <Text fill="#c7dc2a" layoutX="28.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SkiizAnimaux">
          <font>
             <Font size="18.0" />
