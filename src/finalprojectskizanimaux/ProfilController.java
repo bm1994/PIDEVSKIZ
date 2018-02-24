@@ -1,4 +1,3 @@
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +12,9 @@ import TECHNIQUE.Session;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -63,6 +65,8 @@ public class ProfilController implements Initializable {
     private ListView<Annonce> List;
     AnnonceService as=new AnnonceService();
     List<Annonce> annonces= as.getAnnoncebyIdUser(Session.LoggedUser.getId_utilisateur());
+    @FXML
+    private Label labeltime;
 
     /**
      * Initializes the controller class.
@@ -72,7 +76,10 @@ public class ProfilController implements Initializable {
 labelprofilbmnom.setText(Session.LoggedUser.getNom()); 
  labelprofilbmmail.setText(Session.LoggedUser.getEmail());  
 labelprofilbmusername.setText(Session.LoggedUser.getLogin());  
- 
+  DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+Calendar cal = Calendar.getInstance();
+labeltime.setText(dateFormat.format(cal.getTime()));
+
         ObservableList<Annonce> items = FXCollections.observableArrayList(annonces);
 
         List.setCellFactory((ListView<Annonce> arg0) -> {
@@ -129,7 +136,9 @@ labelprofilbmusername.setText(Session.LoggedUser.getLogin());
             return cell;
         });
         List.setItems(items);
+        
     }    
+   
 
     @FXML
     private void retourAcc(ActionEvent event) {
@@ -191,6 +200,21 @@ labelprofilbmusername.setText(Session.LoggedUser.getLogin());
     }
     }
 
+    @FXML
+    private void actualisettime(MouseEvent event) {
+        
+         
+    }
+
+    @FXML
+    private void changetime(MouseEvent event) {
+         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+Calendar cal = Calendar.getInstance();
+       
+      
+labeltime.setText(dateFormat.format(cal.getTime()));
+    }
+    
   
 
     
