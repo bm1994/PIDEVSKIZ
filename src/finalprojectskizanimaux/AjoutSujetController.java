@@ -8,14 +8,19 @@ package finalprojectskizanimaux;
 import MODEL.Sujet;
 import SERVICE.SujetService;
 import TECHNIQUE.Session;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -38,6 +43,8 @@ public class AjoutSujetController implements Initializable {
     private TextArea contenu;
     @FXML
     private Button ajouter;
+    @FXML
+    private Button profile;
 
     /**
      * Initializes the controller class.
@@ -58,6 +65,44 @@ Sujet s = new Sujet(titre.getText(),objet.getText(),contenu.getText(),date.getTe
 SujetService sv = new SujetService();
 sv.Ajouter_Sujet(s);
 System.out.println("Ajouter");
+    }
+
+    @FXML
+    private void afficher_sujet(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Forum.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) afficher_sujet.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void profil(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Profil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) profile.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
     
 }

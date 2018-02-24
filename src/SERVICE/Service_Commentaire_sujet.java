@@ -70,6 +70,7 @@ public class Service_Commentaire_sujet {
         }		
 	}
 
+         
 	public List<Commentaire_sujet> Afficher_commentaire(Sujet s ) {
 		  List<Commentaire_sujet> listP = new ArrayList<Commentaire_sujet>();
 	        try {
@@ -78,6 +79,27 @@ public class Service_Commentaire_sujet {
 	            while (rs.next()) {
 	            	Commentaire_sujet c = new Commentaire_sujet(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5));
 	                listP.add(c);
+	            }
+
+	        } 
+	     catch (SQLException ex) {
+	        Logger.getLogger(Service_Commentaire_sujet.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	    return listP;
+	}
+
+        
+        
+        
+        
+	public List<String> Afficher(Sujet s ) {
+		  List<String> listP = new ArrayList<String>();
+	        try {
+	            String req = "select * from commentairesujet where id_sujet ="+s.getId_sujet();
+	            rs = ste.executeQuery(req);
+	            while (rs.next()) {
+	            	Commentaire_sujet c = new Commentaire_sujet(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getString(4),rs.getString(5));
+	                listP.add(c.getContenu_commentaire());
 	            }
 
 	        } 

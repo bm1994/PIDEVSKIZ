@@ -12,7 +12,7 @@
 
 <AnchorPane id="AnchorPane" onKeyReleased="#Search" prefHeight="574.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ForumController">
    <children>
-      <TableView fx:id="list" layoutX="231.0" layoutY="120.0" prefHeight="306.0" prefWidth="488.0">
+      <TableView fx:id="list" layoutX="273.0" layoutY="117.0" prefHeight="306.0" prefWidth="436.0">
         <columns>
           <TableColumn fx:id="col_titre" prefWidth="75.0" text="Titre" />
           <TableColumn fx:id="cal_objet" prefWidth="75.0" text="Objet" />
@@ -21,16 +21,16 @@
         </columns>
       </TableView>
       <TextField fx:id="Search" layoutX="305.0" layoutY="53.0" />
-      <AnchorPane prefHeight="574.0" prefWidth="200.0" style="-fx-background-color: #262438;">
+      <AnchorPane prefHeight="574.0" prefWidth="200.0" style="-fx-background-color: #212221;">
          <children>
             <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
                <font>
                   <Font name="Comic Sans MS Bold" size="18.0" />
                </font>
             </Label>
-            <Button fx:id="afficher_sujet" layoutX="59.0" layoutY="275.0" mnemonicParsing="false" onAction="#afficher_sujet" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #262438;" text="Afficher les Sujet" textFill="#f5f3f3" />
+            <Button fx:id="afficher_sujet" layoutX="59.0" layoutY="275.0" mnemonicParsing="false" onAction="#afficher_sujet" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #212221;" text="Afficher les Sujet" textFill="#f5f3f3" />
             <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
-            <Button fx:id="profile" layoutX="9.0" layoutY="191.0" mnemonicParsing="false" onAction="#profile" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Profile" textFill="WHITE" />
+            <Button fx:id="profile" layoutX="9.0" layoutY="191.0" mnemonicParsing="false" onAction="#profile" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/images.png" />
@@ -41,7 +41,7 @@
                   <Image url="@../Images/images.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="stat_btn" layoutX="-2.0" layoutY="372.0" mnemonicParsing="false" onAction="#Statistique" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #262438;" text="Statistique" textFill="WHITE" />
+            <Button fx:id="stat_btn" layoutX="-2.0" layoutY="372.0" mnemonicParsing="false" onAction="#Statistique" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #212221;" text="Statistique" textFill="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="35.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/relatorio-contente.png" />
@@ -49,7 +49,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="563.0" prefHeight="78.0" prefWidth="747.0" style="-fx-background-color: #262438;">
+      <AnchorPane layoutY="563.0" prefHeight="78.0" prefWidth="747.0" style="-fx-background-color: #212221;">
          <children>
             <Button fx:id="del" layoutX="390.0" layoutY="23.0" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #9C2727;" text="Delete" textFill="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="502.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
@@ -72,7 +72,7 @@
          </children>
       </AnchorPane>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-      <Button fx:id="acceuil" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Acceuil" textFill="#eeeaea" />
+      <Button fx:id="acceuil" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
       <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="32.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../Images/bouton_accueil.png" />

@@ -73,5 +73,11 @@
             <Image url="@../Images/images81.jpg" />
          </image>
       </ImageView>
+      <Button fx:id="afficher_suite" layoutX="544.0" layoutY="520.0" mnemonicParsing="false" onAction="#afficher_suite" prefHeight="32.0" prefWidth="139.0" style="-fx-background-color: #212221;" text="Afficher Suite" textFill="WHITE" />
+      <ImageView fitHeight="53.0" fitWidth="43.0" layoutX="670.0" layoutY="512.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/images81.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

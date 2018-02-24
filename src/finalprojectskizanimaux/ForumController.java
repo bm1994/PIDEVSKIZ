@@ -166,8 +166,12 @@ list.setItems(tab);
        try {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("AjoutSujet.fxml"));
         Parent root =loader.load();
+        
+        Stage stage=(Stage) acceuil.getScene().getWindow();
+        stage.close();
         Stage s = new Stage ();
-    s.setScene(new Scene (root));    
+    
+        s.setScene(new Scene (root));    
     s.show();
     
     } catch (IOException ex) {
@@ -191,11 +195,14 @@ list.setItems(tab);
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire_Sujet.fxml"));
         Parent root =loader.load();
    CommentaireController sec =  loader.getController();
-    
+      sec.get( list.getSelectionModel().getSelectedItem());
     sec.affiche(list.getSelectionModel().getSelectedItem());
     sec.ajouter(list.getSelectionModel().getSelectedItem());
-
-    Stage s = new Stage ();
+            System.out.println(list.getSelectionModel().getSelectedItem());
+    
+        Stage stage=(Stage) acceuil.getScene().getWindow();
+        stage.close();
+            Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
     } catch (IOException ex) {
