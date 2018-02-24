@@ -92,18 +92,17 @@ public class UpdateProfileUserController implements Initializable {
             
         }
         else{
-        User usera =new User();
-        usera.setNom(updateProfilebmnom.getText());
-        usera.setPrenom(updateProfilebmPrenom.getText());
-        usera.setAdresse(updateProflebmAdresse.getText());
-        usera.setTelephone(Integer.parseInt(updateProfilebmTelephone.getText()));
-        usera.setEmail(updateProfilebmMail.getText());
-        usera.setLogin(updateProfilebmLogin.getText());
-        usera.setMotDePasse(updateProfilebmMotDePasse.getText());
-        usera.setId_utilisateur(Session.LoggedUser.getId_utilisateur());
+        Session.LoggedUser.setNom(updateProfilebmnom.getText());
+        Session.LoggedUser.setPrenom(updateProfilebmPrenom.getText());
+        Session.LoggedUser.setAdresse(updateProflebmAdresse.getText());
+        Session.LoggedUser.setTelephone(Integer.parseInt(updateProfilebmTelephone.getText()));
+        Session.LoggedUser.setEmail(updateProfilebmMail.getText());
+        Session.LoggedUser.setLogin(updateProfilebmLogin.getText());
+        Session.LoggedUser.setMotDePasse(updateProfilebmMotDePasse.getText());
+        Session.LoggedUser.setId_utilisateur(Session.LoggedUser.getId_utilisateur());
         
         UserService userservicee=new UserService();
-        userservicee.UpdateUser(usera);
+        userservicee.UpdateUser(Session.LoggedUser);
         
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Felicitation");

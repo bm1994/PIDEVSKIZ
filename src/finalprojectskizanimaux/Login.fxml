@@ -9,44 +9,40 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="506.0" prefWidth="390.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="577.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.LoginController">
    <children>
-      <ImageView fitHeight="506.0" fitWidth="403.0" layoutX="-11.0" opacity="0.72" pickOnBounds="true">
+      <ImageView fitHeight="584.0" fitWidth="419.0" layoutX="-11.0" layoutY="-7.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/importer-vos-animaux-de-compagnie-en-Tunisie.jpg" />
+            <Image url="@../Images/1d7def1de8185020a4318ea84ba8cd14--rottweiler-love-rottweiler-puppies.jpg" />
          </image>
       </ImageView>
-      <Text fill="#119974" layoutX="20.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="login" wrappingWidth="66.60157132148743">
+      <Text fill="#119974" layoutX="20.0" layoutY="315.0" strokeType="OUTSIDE" strokeWidth="0.0" text="login" wrappingWidth="66.60157132148743">
          <font>
-            <Font size="26.0" />
+            <Font size="17.0" />
          </font></Text>
-      <TextField fx:id="loginid" layoutX="204.0" layoutY="134.0" />
-      <Text fill="#119974" layoutX="20.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+      <TextField fx:id="loginid" layoutX="128.0" layoutY="296.0" opacity="0.87" />
+      <Text fill="#119974" layoutX="18.0" layoutY="352.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
          <font>
-            <Font size="26.0" />
+            <Font size="17.0" />
          </font></Text>
-      <PasswordField fx:id="passwordid" layoutX="204.0" layoutY="173.0" />
-      <Button fx:id="loginButton" layoutX="279.0" layoutY="218.0" mnemonicParsing="false" onAction="#Authentifier" prefHeight="35.0" prefWidth="87.0" stylesheets="@Style.css" text="Login" />
-      <Button fx:id="sinscrireButton" layoutX="20.0" layoutY="435.0" mnemonicParsing="false" onAction="#Sinscrire" opacity="0.76" prefHeight="57.0" prefWidth="158.0" stylesheets="@Style.css" text="Sinscrire" />
-      <ImageView fitHeight="38.0" fitWidth="45.0" layoutX="159.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/human-icon-png-1901.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="166.0" layoutY="173.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Images/29628.png" />
-         </image>
-      </ImageView>
-      <Text fill="#494a46" layoutX="8.0" layoutY="379.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not a Member ? Join now For Free" wrappingWidth="182.607421875">
+      <PasswordField fx:id="passwordid" layoutX="128.0" layoutY="333.0" opacity="0.87" />
+      <Button fx:id="loginButton" layoutX="173.0" layoutY="373.0" mnemonicParsing="false" onAction="#Authentifier" prefHeight="25.0" prefWidth="52.0" style="-fx-background-color: #119974; -fx-background-radius: 20;" stylesheets="@Style.css" text="Login" textFill="#fcfcfc" />
+      <Button fx:id="sinscrireButton" layoutX="14.0" layoutY="506.0" mnemonicParsing="false" onAction="#Sinscrire" opacity="0.47" prefHeight="37.0" prefWidth="107.0" stylesheets="@Style.css" text="Sinscrire" />
+      <Text fill="#535e26" layoutX="14.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="vous n'avez pas de compte rejoins nous" wrappingWidth="149.00000230967999">
          <font>
-            <Font size="21.0" />
+            <Font size="14.0" />
          </font>
       </Text>
-      <Text fill="#565753" layoutX="64.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skiizanimaux" wrappingWidth="276.05078125">
+      <Text fill="#6f6f6a" layoutX="8.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skiizanimaux" wrappingWidth="276.05078125">
          <font>
             <Font name="Berlin Sans FB" size="40.0" />
          </font>
       </Text>
+      <Button fx:id="CntFb" layoutX="221.0" layoutY="524.0" mnemonicParsing="false" onAction="#LoginFb" opacity="0.59" prefHeight="25.0" prefWidth="157.0" style="-fx-background-color: #3b5998;" stylesheets="@Style.css" text="Continuer Aver Facebook" textFill="WHITE" />
+      <ImageView fitHeight="38.0" fitWidth="80.0" layoutX="356.0" layoutY="44.0" onMouseClicked="#MusicPlayerr" opacity="0.15" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/159142-200.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

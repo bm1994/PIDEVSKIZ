@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 
 /**
@@ -44,6 +45,7 @@ public class AccueilController implements Initializable {
     private Button deconnexionButton;
     @FXML
     private Label ii;
+
 
     /**
      * Initializes the controller class.
@@ -162,11 +164,12 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+  
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
+         
     }
 
     @FXML

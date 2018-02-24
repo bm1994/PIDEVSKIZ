@@ -22,6 +22,11 @@ public class User {
     private String login;
     private String motDePasse;
 
+    @Override
+    public String toString() {
+        return "User{" + "id_utilisateur=" + id_utilisateur + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", telephone=" + telephone + ", email=" + email + ", role=" + role + ", login=" + login + ", motDePasse=" + motDePasse + '}';
+    }
+
     public User() {
     }
 

@@ -7,10 +7,12 @@ package TECHNIQUE;
 
 import MODEL.User;
 import SERVICE.UserService;
+import finalprojectskizanimaux.LoginController;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javafx.scene.media.AudioClip;
 
 /**
  *
@@ -20,7 +22,7 @@ public class Session {
     
     public static UserService iuserService =new UserService();
     public  static User LoggedUser ;
-    
+
     
  
     public Session() {

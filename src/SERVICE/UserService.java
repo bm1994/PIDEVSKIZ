@@ -47,7 +47,7 @@ Connection connection;
     }
     public User findById(int id_utilisateur) {
 User user = null;
-        String req = "select * from utilisateur where id =?";
+        String req = "select * from utilisateur where id_utilisateur =?";
         PreparedStatement preparedStatement;
         try {
             preparedStatement = connection.prepareStatement(req);
@@ -134,8 +134,6 @@ while(res.next()){
                                 ResultSet res= preparedStatement.executeQuery();
 
 while(res.next()){
-            
-            
              a = res.getInt("role");
              
 }
