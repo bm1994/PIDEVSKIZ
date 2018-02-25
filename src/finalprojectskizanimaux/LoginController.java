@@ -110,6 +110,7 @@ public class LoginController implements Initializable {
             UserService userrser = new UserService();
             String b = userrser.getelemntbylogin(loginid.getText());
             int arole = userrser.getelemntbyrole(loginid.getText());
+            
             if ((b != null) && b.equals(passwordid.getText()) && arole == 3) {
                 Session.LoggedUser = userrser.findByLogin(loginid.getText());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
@@ -132,7 +133,16 @@ public class LoginController implements Initializable {
                 s.setScene(new Scene(root));
                 s.show();
                         }
-            
+            else if ((b != null) && b.equals(passwordid.getText()) && arole == 5){
+                        Session.LoggedUser = userrser.findByLogin(loginid.getText());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("VeterinaireUser.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.close();
+                Stage s = new Stage();
+                s.setScene(new Scene(root));
+                s.show();
+                        }
             
             else {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);

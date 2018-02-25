@@ -181,7 +181,7 @@ public class SinscrireController implements Initializable {
             alert.setContentText("votre compte a été cree avec succes . Redirection vers page d'acceuil ");
             alert.showAndWait();
             Mail ma = new Mail();
-        ma.send(usera.getEmail(),"Votre à été crée avec succée","bye","SkiizAnimaux@gmail.com","hammouda1994");
+        ma.send(usera.getEmail(),"Votre Compte SkiizAnimaux à été crée avec succée","Bienvenue \n  coordonnées de Votre Compte Skiizanimaux \n Nom:"+usera.getNom()+"\n Prenom:"+usera.getPrenom()+"\n Adresse :"+usera.getAdresse()+"\n Telephone :"+usera.getTelephone()+"\n Login :"+usera.getLogin(),"SkiizAnimaux@gmail.com","hammouda1994");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
                 Parent root = loader.load();
@@ -223,7 +223,7 @@ public class SinscrireController implements Initializable {
             alert.setContentText("votre compte a été cree avec succes . Redirection vers page d'acceuil ");
             alert.showAndWait();
             Mail ma = new Mail();
-        ma.send(vetoa.getEmail(),"Votre à été crée avec succée","Veterinaire","SkiizAnimaux@gmail.com","hammouda1994");
+        ma.send(vetoa.getEmail(),"Votre compte SkiizANIMAUX à été crée avec succée ","Bienvenue \n Coordonnées de Votre Compte Skiizanimaux \n Type De Compte : Veterinaire \n Nom:"+vetoa.getNom()+"\n Prenom:"+vetoa.getPrenom()+"\n Adresse:"+vetoa.getAdresse()+"\n Login:"+vetoa.getLogin()+"\n Nom du Cabinet:"+vetoa.getNom_cabinet()+"\n Adresse de Cabinet :"+vetoa.getAdresse_cabinet()+"\n Numero de Cabinet :"+vetoa.getNumero_cabinet(),"SkiizAnimaux@gmail.com","hammouda1994");
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
                 Parent root = loader.load();
