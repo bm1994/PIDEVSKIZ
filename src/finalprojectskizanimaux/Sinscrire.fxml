@@ -79,7 +79,7 @@
             <Font name="Segoe UI Light" size="28.0" />
          </font>
       </Text>
-      <RadioButton layoutX="799.0" layoutY="51.0" mnemonicParsing="false" onMouseClicked="#Boutiqueon" opacity="0.83" prefHeight="44.0" prefWidth="82.0" text="Boutique">
+      <RadioButton layoutX="799.0" layoutY="73.0" mnemonicParsing="false" onMouseClicked="#Boutiqueon" opacity="0.83" prefHeight="18.0" prefWidth="82.0" text="Boutique">
          <font>
             <Font name="Goudy Old Style Bold" size="12.0" />
          </font>
@@ -87,7 +87,7 @@
             <ToggleGroup fx:id="aaz" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton layoutX="799.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#utilisateuron" opacity="0.83" prefHeight="44.0" prefWidth="82.0" selected="true" text="Utilisateur" toggleGroup="$aaz">
+      <RadioButton fx:id="usersinscrire11" layoutX="799.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#utilisateuron" opacity="0.83" prefHeight="18.0" prefWidth="82.0" selected="true" text="Utilisateur" toggleGroup="$aaz">
          <font>
             <Font name="Goudy Old Style Bold" size="12.0" />
          </font>
@@ -110,5 +110,28 @@
       <TextField fx:id="NomdeBoutiquesinscrire" layoutX="313.0" layoutY="368.0" opacity="0.7" />
       <TextField fx:id="adresseboutiquesinscrire" layoutX="313.0" layoutY="412.0" opacity="0.7" />
       <TextField fx:id="numeroboutiquesinscrire" layoutX="313.0" layoutY="457.0" opacity="0.7" />
+      <RadioButton fx:id="usersinscrire12" layoutX="799.0" layoutY="95.0" mnemonicParsing="false" onMouseClicked="#Cabineton" opacity="0.83" prefHeight="18.0" prefWidth="82.0" text="Veterinaire" toggleGroup="$aaz">
+         <font>
+            <Font name="Goudy Old Style Bold" size="12.0" />
+         </font>
+      </RadioButton>
+      <Text fx:id="nomdecabinettext1" layoutX="190.0" layoutY="385.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de Cabinet:">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="adressecabinettext1" layoutX="191.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Adresse cabinet :">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Text>
+      <Text fx:id="numerocabinettext1" layoutX="190.0" layoutY="473.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero cabinet :">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="Nomdecabinetsinscrire1" layoutX="313.0" layoutY="368.0" opacity="0.7" />
+      <TextField fx:id="adressecabinetsinscrire1" layoutX="313.0" layoutY="411.0" opacity="0.7" />
+      <TextField fx:id="numerocabinetsinscrire1" layoutX="313.0" layoutY="457.0" opacity="0.7" />
    </children>
 </AnchorPane>

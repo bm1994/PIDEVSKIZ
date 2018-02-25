@@ -7,7 +7,9 @@ package finalprojectskizanimaux;
 
 import MODEL.Mail;
 import MODEL.User;
+import MODEL.Veterinaire;
 import SERVICE.UserService;
+import SERVICE.VeterinaireService;
 import TECHNIQUE.Session;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
@@ -71,6 +74,22 @@ public class SinscrireController implements Initializable {
     private TextField numeroboutiquesinscrire;
     @FXML
     private ToggleGroup aaz;
+    @FXML
+    private Text nomdecabinettext1;
+    @FXML
+    private Text adressecabinettext1;
+    @FXML
+    private Text numerocabinettext1;
+    @FXML
+    private TextField Nomdecabinetsinscrire1;
+    @FXML
+    private TextField adressecabinetsinscrire1;
+    @FXML
+    private TextField numerocabinetsinscrire1;
+    @FXML
+    private RadioButton usersinscrire11;
+    @FXML
+    private RadioButton usersinscrire12;
 
     /**
      * Initializes the controller class.
@@ -99,6 +118,17 @@ public class SinscrireController implements Initializable {
             numeroboutiquesinscrire.setVisible(false);
             numeroboutiquetext.setVisible(false);
             paneboutiquesinscrire.setVisible(false);
+            Nomdecabinetsinscrire1.setVisible(false);
+            nomdecabinettext1.setVisible(false);
+            adressecabinettext1.setVisible(false);
+            adressecabinetsinscrire1.setVisible(false);
+            numerocabinettext1.setVisible(false);
+            numerocabinetsinscrire1.setVisible(false);
+
+
+
+
+
         // TODO
     }
 
@@ -141,7 +171,7 @@ public class SinscrireController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("mot de passe n'est pas identique");
             alert.showAndWait();
-        } else {
+        } else if(usersinscrire11.isSelected()) {
             User usera = new User(utulisateurnom.getText(), utilisateurprenom.getText(), utilisateuradresse.getText(), Integer.parseInt(utilisateurtelephone.getText()), utilisateurmail.getText(), 3, utilisateurlogin.getText(), utlisateurmdp.getText());
             UserService userservice = new UserService();
             userservice.AjouterUser(usera);
@@ -168,6 +198,49 @@ public class SinscrireController implements Initializable {
             }
 
         }
+        else if(usersinscrire12.isSelected()){
+            if(Nomdecabinetsinscrire1.getText().equals("")||adressecabinetsinscrire1.equals("")||numerocabinetsinscrire1.getText().equals("")){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention !");
+            alert.setHeaderText(null);
+            alert.setContentText("verifier les données ");
+            alert.showAndWait();
+            }
+            else if(numerocabinetsinscrire1.getText().length()!=8){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention !");
+            alert.setHeaderText(null);
+            alert.setContentText("le numero de telephone de Cabinet est incorrecte ");
+            alert.showAndWait();
+            }
+            else{
+            Veterinaire vetoa=new Veterinaire(Nomdecabinetsinscrire1.getText(),adressecabinetsinscrire1.getText(),Integer.parseInt(numerocabinetsinscrire1.getText()),utulisateurnom.getText(), utilisateurprenom.getText(), utilisateuradresse.getText(), Integer.parseInt(utilisateurtelephone.getText()), utilisateurmail.getText(), 5, utilisateurlogin.getText(), utlisateurmdp.getText());
+            VeterinaireService vvv=new VeterinaireService();
+            vvv.AjouterVeterinaire(vetoa);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Felicitation");
+            alert.setHeaderText(null);
+            alert.setContentText("votre compte a été cree avec succes . Redirection vers page d'acceuil ");
+            alert.showAndWait();
+            Mail ma = new Mail();
+        ma.send(vetoa.getEmail(),"Votre à été crée avec succée","Veterinaire","SkiizAnimaux@gmail.com","hammouda1994");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = (Stage) sinscrireRetourButton.getScene().getWindow();
+                stage.close();
+
+                Stage s = new Stage();
+                s.setScene(new Scene(root));
+                s.show();
+
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            }
+        }
 
     }
 
@@ -180,6 +253,12 @@ public class SinscrireController implements Initializable {
             numeroboutiquesinscrire.setVisible(true);
             numeroboutiquetext.setVisible(true);
             paneboutiquesinscrire.setVisible(true);
+             Nomdecabinetsinscrire1.setVisible(false);
+            nomdecabinettext1.setVisible(false);
+            adressecabinettext1.setVisible(false);
+            adressecabinetsinscrire1.setVisible(false);
+            numerocabinettext1.setVisible(false);
+            numerocabinetsinscrire1.setVisible(false);
     }
 
     @FXML
@@ -191,6 +270,30 @@ public class SinscrireController implements Initializable {
             numeroboutiquesinscrire.setVisible(false);
             numeroboutiquetext.setVisible(false);
             paneboutiquesinscrire.setVisible(false);
+             Nomdecabinetsinscrire1.setVisible(false);
+            nomdecabinettext1.setVisible(false);
+            adressecabinettext1.setVisible(false);
+            adressecabinetsinscrire1.setVisible(false);
+            numerocabinettext1.setVisible(false);
+            numerocabinetsinscrire1.setVisible(false);
+    }
+
+    @FXML
+    private void Cabineton(MouseEvent event) {
+        paneboutiquesinscrire.setVisible(true);
+            Nomdecabinetsinscrire1.setVisible(true);
+            nomdecabinettext1.setVisible(true);
+            adressecabinettext1.setVisible(true);
+            adressecabinetsinscrire1.setVisible(true);
+            numerocabinettext1.setVisible(true);
+            numerocabinetsinscrire1.setVisible(true);
+            
+            nomdeboutiquetext.setVisible(false);
+            NomdeBoutiquesinscrire.setVisible(false);
+            adresseboutiquesinscrire.setVisible(false);
+            adresseboutiquetext.setVisible(false);
+            numeroboutiquesinscrire.setVisible(false);
+            numeroboutiquetext.setVisible(false);
     }
 
 }

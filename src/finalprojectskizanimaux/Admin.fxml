@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -34,7 +35,7 @@
       <Text fx:id="adminLogin" layoutX="483.0" layoutY="101.0" onMouseClicked="#ActiverModifierLoginAdmin" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="110.13671875" />
       <Button fx:id="ModifierButtonAdminn" layoutX="713.0" layoutY="62.0" mnemonicParsing="false" onAction="#ModifierAdmin" opacity="0.84" prefHeight="32.0" prefWidth="86.0" style="-fx-background-color: #1e7ca4; -fx-background-radius: 40;" text="Modifier " textFill="WHITE" />
       <Pane layoutX="383.0" layoutY="-1.0" prefHeight="173.0" prefWidth="12.0" style="-fx-background-color: #212221; -fx-background-radius: 100;" />
-      <Pane fx:id="PaneAdminModifier" layoutX="77.0" layoutY="452.0" prefHeight="110.0" prefWidth="599.0" />
+      <Pane fx:id="PaneAdminModifier" layoutX="225.0" layoutY="569.0" prefHeight="13.0" prefWidth="489.0" />
       <TextField fx:id="AdminNomModifier" layoutX="219.0" layoutY="23.0" prefHeight="25.0" prefWidth="134.0" />
       <TextField fx:id="AdminPrenomModifier" layoutX="219.0" layoutY="50.0" prefHeight="25.0" prefWidth="134.0" />
       <TextField fx:id="AdminModifierNumero" layoutX="219.0" layoutY="84.0" prefHeight="25.0" prefWidth="134.0" />
@@ -81,11 +82,12 @@
             <Image url="@../Images/159142-200.png" />
          </image>
       </ImageView>
-      <Button layoutX="81.0" layoutY="274.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-border-radius: 50;" text="G.Admin" textFill="WHITE" />
-      <Button layoutX="81.0" layoutY="299.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-background-radius: 0;" text="G.Utilisateur" textFill="WHITE" />
-      <Button layoutX="81.0" layoutY="324.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-background-radius: 0;" text="G.Utilisateur" textFill="WHITE" />
+      <Button layoutX="81.0" layoutY="261.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-border-radius: 50;" text="G.Admin" textFill="WHITE" />
+      <Button layoutX="81.0" layoutY="299.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-background-radius: 0;" text="G.Utilisateur" textFill="WHITE" />
       <Pane layoutX="791.0" layoutY="575.0" prefHeight="17.0" prefWidth="17.0" style="-fx-background-color: #212221; -fx-background-radius: 40;" />
       <Pane layoutX="739.0" layoutY="575.0" prefHeight="17.0" prefWidth="17.0" style="-fx-background-color: #212221; -fx-background-radius: 40;" />
       <Pane layoutX="765.0" layoutY="575.0" prefHeight="17.0" prefWidth="17.0" style="-fx-background-color: #c7dc2a; -fx-background-radius: 40;" />
+      <Button fx:id="DeconnexionAdminbm" layoutX="81.0" layoutY="537.0" mnemonicParsing="false" onAction="#deconnexionAdmin" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #B40404; -fx-background-radius: 0;" text="Deconnexion" textFill="WHITE" />
+      <ListView fx:id="List1" layoutX="315.0" layoutY="218.0" prefHeight="348.0" prefWidth="481.0" />
    </children>
 </AnchorPane>

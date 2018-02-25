@@ -6,27 +6,42 @@
 package finalprojectskizanimaux;
 
 import MODEL.Admin;
+import MODEL.Annonce;
+import MODEL.User;
 import SERVICE.UserService;
 import TECHNIQUE.Session;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -96,6 +111,12 @@ public class AdminController implements Initializable {
      * Initializes the controller class.
      */
                 AudioClip note = new AudioClip(this.getClass().getResource("sound.mp3").toString());
+    @FXML
+    private Button DeconnexionAdminbm;
+    @FXML
+    private ListView<?> List1;
+    
+    
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -128,17 +149,8 @@ public class AdminController implements Initializable {
         annulerimage4.setVisible(false);
         annulerimage5.setVisible(false);
         annulerimage6.setVisible(false);
-
-
-
-
-
-
-
-
         ModifierButtonAdminn.setVisible(false);
-
-
+       
 
   
 
@@ -410,6 +422,24 @@ ModifierButtonAdminn.setVisible(true);
         } else {
            note.play();
            
+        }
+    }
+
+    @FXML
+    private void deconnexionAdmin(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) DeconnexionAdminbm.getScene().getWindow();
+            stage.close();
+
+            Stage s = new Stage();
+            s.setScene(new Scene(root));
+            s.show();
+
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
 }
