@@ -8,6 +8,8 @@ package finalprojectskizanimaux;
 import MODEL.Admin;
 import MODEL.Annonce;
 import MODEL.User;
+import SERVICE.AdminService;
+import SERVICE.AnnonceService;
 import SERVICE.UserService;
 import TECHNIQUE.Session;
 import java.io.File;
@@ -15,9 +17,12 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,6 +40,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -51,6 +57,15 @@ import javafx.stage.Stage;
  * @author asus
  */
 public class AdminController implements Initializable {
+    private int idbm;
+
+    public int getIdbm() {
+        return idbm;
+    }
+
+    public void setIdbm(int idbm) {
+        this.idbm = idbm;
+    }
 
     private TextArea AdminField;
     @FXML
@@ -114,7 +129,15 @@ public class AdminController implements Initializable {
     @FXML
     private Button DeconnexionAdminbm;
     @FXML
-    private ListView<?> List1;
+    private ListView<User> List;
+    AdminService aas=new AdminService();
+    List<User> listuser= aas.getAllUSER();
+    @FXML
+    private Pane Guseraffich;
+    @FXML
+    private ImageView annulerGuserimage;
+    @FXML
+    private Button supp112;
     
     
 
@@ -150,8 +173,90 @@ public class AdminController implements Initializable {
         annulerimage5.setVisible(false);
         annulerimage6.setVisible(false);
         ModifierButtonAdminn.setVisible(false);
+       // Guseraffich.setVisible(false);
+       List.setVisible(false);
+       annulerGuserimage.setVisible(false);
+       supp112.setVisible(false);
        
+        ObservableList<User> items = FXCollections.observableArrayList(listuser);
 
+        List.setCellFactory((ListView<User> arg0) -> {
+            ListCell<User> cell = new ListCell<User>() {
+                @Override
+                protected void updateItem(User e, boolean btl) {
+                    super.updateItem(e, btl);
+
+                    if (e != null) {
+                        File file = new File("src\\images\\aaz.png");
+                        file.getParentFile().mkdirs();
+                        Image IMAGE_RUBY = new Image(file.toURI().toString());
+                        //   Image IMAGE_RUBY = new Image(ps.findById(e.getPassager().getId()).getAvatar());
+
+                        ImageView imgview = new ImageView(IMAGE_RUBY);
+
+                        setGraphic(imgview);
+
+                        imgview.setFitHeight(100);
+                        imgview.setFitWidth(100);
+                        Rectangle clip = new Rectangle(
+                                imgview.getFitWidth(), imgview.getFitHeight()
+                        );
+
+                        clip.setArcWidth(20);
+                        clip.setArcHeight(20);
+                        imgview.setClip(clip);
+
+                        // snapshot the rounded image.
+                        SnapshotParameters parameters = new SnapshotParameters();
+                        parameters.setFill(Color.TRANSPARENT);
+                        WritableImage image = imgview.snapshot(parameters, null);
+
+                        // remove the rounding clip so that our effect can show through.
+                        imgview.setClip(null);
+
+                        // apply a shadow effect.
+                        imgview.setEffect(new DropShadow(20, Color.BLACK));
+
+                        // store the rounded image in the imageView.
+                        imgview.setImage(image);
+                        
+                        List.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                            
+
+                            @Override
+                            public void handle(MouseEvent event) {
+                                 supp112.setVisible(false);
+                                if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
+                                   supp112.setVisible(true);
+                                    User cov = List.getItems().get(List.getSelectionModel().getSelectedIndex());
+                                    setIdbm(cov.getId_utilisateur());
+                                    
+                                
+                            
+                                    
+
+
+                                    //System.out.println(e.getId_utilisateur());
+                                    
+                                }
+                            }
+
+                        });
+                                   // System.out.println(e.getId_utilisateur());
+                        setText("Nom:    "+e.getNom()+ "\n" + "Prenom      :" + e.getPrenom() + "\n" + "Adresse     :" + e.getAdresse() + "\n" + "Numero        :" + e.getTelephone()+ "\n" + "Mail      :"+e.getEmail()+"\n"+"Login             :"+e.getLogin());
+
+                        setFont(Font.font("Berlin Sans FB Demi Bold", 12));
+
+                        // setAlignment(Pos.CENTER);
+                    }
+
+                }
+
+            };
+            return cell;
+        });
+        List.setItems(items);
+        
   
 
        
@@ -441,5 +546,31 @@ ModifierButtonAdminn.setVisible(true);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    private void GutilsiateurAdmin(MouseEvent event) {
+        List.setVisible(true);
+        annulerGuserimage.setVisible(true);
+    }
+
+    @FXML
+    private void annulerGuseradmin(MouseEvent event) {
+         List.setVisible(false);
+        annulerGuserimage.setVisible(false);
+    }
+
+    @FXML
+    private void suppuser12(MouseEvent event) {
+        UserService usss=new UserService();
+        usss.DeleteUser(idbm);
+        AnchorPane pane = new AnchorPane();
+                                    try {
+                                        pane = FXMLLoader.load(getClass().getResource("Admin.fxml"));
+
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
+                                    PaneIdAdminn.getChildren().setAll(pane);
     }
 }

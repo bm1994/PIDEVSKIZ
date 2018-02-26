@@ -182,6 +182,25 @@ public class User {
         this.login = login;
         this.motDePasse = motDePasse;
     }
+
+    public User(String nom, String prenom, String adresse, int telephone, String email, String login) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.login = login;
+    }
+
+    public User(int id_utilisateur, String nom, String prenom, String adresse, int telephone, String email, String login) {
+        this.id_utilisateur = id_utilisateur;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.login = login;
+    }
     
     
     

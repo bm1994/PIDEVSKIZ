@@ -83,11 +83,18 @@
          </image>
       </ImageView>
       <Button layoutX="81.0" layoutY="261.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-border-radius: 50;" text="G.Admin" textFill="WHITE" />
-      <Button layoutX="81.0" layoutY="299.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-background-radius: 0;" text="G.Utilisateur" textFill="WHITE" />
+      <Button layoutX="81.0" layoutY="299.0" mnemonicParsing="false" onMouseClicked="#GutilsiateurAdmin" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #212221; -fx-background-radius: 0;" text="G.Utilisateur" textFill="WHITE" />
       <Pane layoutX="791.0" layoutY="575.0" prefHeight="17.0" prefWidth="17.0" style="-fx-background-color: #212221; -fx-background-radius: 40;" />
       <Pane layoutX="739.0" layoutY="575.0" prefHeight="17.0" prefWidth="17.0" style="-fx-background-color: #212221; -fx-background-radius: 40;" />
       <Pane layoutX="765.0" layoutY="575.0" prefHeight="17.0" prefWidth="17.0" style="-fx-background-color: #c7dc2a; -fx-background-radius: 40;" />
       <Button fx:id="DeconnexionAdminbm" layoutX="81.0" layoutY="537.0" mnemonicParsing="false" onAction="#deconnexionAdmin" prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #B40404; -fx-background-radius: 0;" text="Deconnexion" textFill="WHITE" />
-      <ListView fx:id="List1" layoutX="315.0" layoutY="218.0" prefHeight="348.0" prefWidth="481.0" />
+      <Pane fx:id="Guseraffich" layoutX="770.0" layoutY="541.0" prefHeight="13.0" prefWidth="29.0" />
+      <ImageView fx:id="annulerGuserimage" fitHeight="17.0" fitWidth="19.0" layoutX="193.0" layoutY="310.0" onMouseClicked="#annulerGuseradmin" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/wrong-295502_960_720.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="List" layoutX="330.0" layoutY="233.0" prefHeight="336.0" prefWidth="449.0" />
+      <Button fx:id="supp112" layoutX="215.0" layoutY="184.0" mnemonicParsing="false" onMouseClicked="#suppuser12" opacity="0.73" prefHeight="59.0" prefWidth="78.0" style="-fx-background-color: #1e7ca4; -fx-border-radius: 50px; -fx-background-radius: 50px;" text="Supprimer" textFill="WHITE" />
    </children>
 </AnchorPane>

@@ -5,10 +5,15 @@
  */
 package ISERVICE;
 
+import MODEL.Annonce;
+import MODEL.User;
+import java.util.List;
+
 /**
  *
  * @author asus
  */
 public interface IAdmin {
+    public List<User> getAllUSER();
     
 }
