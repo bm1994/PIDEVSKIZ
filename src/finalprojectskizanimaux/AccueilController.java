@@ -45,6 +45,10 @@ public class AccueilController implements Initializable {
     private Button deconnexionButton;
     @FXML
     private Label ii;
+    @FXML
+    private Button PropreAnnoncebutton;
+    @FXML
+    private Button PropreAnimaux1;
 
 
     /**
@@ -58,7 +62,7 @@ public class AccueilController implements Initializable {
     @FXML
     private void Adopter(ActionEvent event) {
          try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Adoption.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("AdoptionCC.fxml"));
         Parent root =loader.load();
         
         Stage stage=(Stage) adoptionButton.getScene().getWindow();
@@ -78,7 +82,7 @@ public class AccueilController implements Initializable {
     @FXML
     private void Accoupler(ActionEvent event) {
          try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accouplement.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("AccouplementCC.fxml"));
         Parent root =loader.load();
         
         Stage stage=(Stage) accouplementButton.getScene().getWindow();
@@ -209,6 +213,47 @@ public class AccueilController implements Initializable {
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
+    }
+
+    @FXML
+    private void GestionAnnonces(ActionEvent event) {
+          try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Propre_annoncesCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage)  PropreAnnoncebutton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+
+        
+    }
+
+    @FXML
+    private void GestionAnimaux(ActionEvent event) {
+     try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("MesAnimauxCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) PropreAnimaux1.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
     }
     
 }

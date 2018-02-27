@@ -6,14 +6,20 @@
 package finalprojectskizanimaux;
 
 import ISERVICE.IAnnonceService;
+import MODEL.Animal;
 import MODEL.Annonce;
+import SERVICE.AnimalService;
 import SERVICE.AnnonceService;
+import TECHNIQUE.Session;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -24,12 +30,28 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Cell;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 /**
  * FXML Controller class
@@ -37,43 +59,26 @@ import javafx.stage.Stage;
  * @author asus
  */
 public class VenteController implements Initializable {
-
-    private Button venteRetourButton;
-    @FXML
-    private Button afficher_mesannonce_vente;
+   public static Animal LoggedUser;
+ 
     @FXML
     private Button acceuil;
+    @FXML
+    private ListView<Annonce> liste2;
+    @FXML
+    private Button Ajouter_annonce_button1;
+    @FXML
+    private TextField Recherche_vente_txt;
+    @FXML
+    private AnchorPane anchor1;
+    @FXML
+    private ChoiceBox<String> combochoix;
+    ObservableList<String> comboList = FXCollections.observableArrayList("RaceAnimal", "SexeAnimal", "AgeAnimal");
+    @FXML
+    private ComboBox<String> comboSexe;
+    ObservableList<String> comboListsexe = FXCollections.observableArrayList("Male","Femelle");
     
-    @FXML
-    private TableColumn<?, ?> tblclmTitre;
-    @FXML
-    private TableColumn<?, ?> tblclmDesc;
-    @FXML
-    private TableColumn<?, ?> tblclmDate;
-    @FXML
-    private TableColumn<?, ?> tblclmPhoto;
-    @FXML
-    private TableColumn<?, ?> tblclmTypead;
-    @FXML
-    private TableColumn<?, ?> tblclmNomA;
-    @FXML
-    private TableColumn<?, ?> tblclmAge;
-    @FXML
-    private TableColumn<?, ?> tblclmTypeAnimal;
-    @FXML
-    private TableColumn<?, ?> tblclmRace;
-    @FXML
-    private TableColumn<?, ?> tblclmPoids;
-    @FXML
-    private TableColumn<?, ?> tblclmSexe;
-    @FXML
-    private TextField Recherche_Vente_txt;
-    @FXML
-    private Button Ajouter_annonce_button2;
-    @FXML
-    private TableView<Annonce> tblVente;
-    private Button consulter;
-    private Button aaaa;
+   
 
     /**
      * Initializes the controller class.
@@ -81,172 +86,92 @@ public class VenteController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        AfficherA();
-        Recherche_Vente_txt.textProperty().addListener(new ChangeListener() {
-
+        
+        
+        
+      AfficherA();
+      combochoix.setItems(comboList);
+      comboSexe.setItems(comboListsexe);
+      Recherche_vente_txt.setVisible(true);
+      comboSexe.setVisible(false);
+      comboSexe.getSelectionModel().selectFirst();
+      //**********************************
+    combochoix.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                //liste2.refresh();
+                Recherche_vente_txt.setText("");
+                switch (combochoix.getSelectionModel().getSelectedIndex()) {
+                    case 0:
+                        Recherche_vente_txt.setVisible(true);
+                        comboSexe.setVisible(false);
+                        
+                        break;
+                    case 1:
+                        comboSexe.setVisible(true);
+                        Recherche_vente_txt.setVisible(false);
+                      
+                        break;
+                    case 2:
+                        Recherche_vente_txt.setVisible(true);
+                        comboSexe.setVisible(false);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+       Recherche_vente_txt.textProperty().addListener(new ChangeListener() {
             @Override
             public void changed(ObservableValue observable, Object oldValue, Object newValue) {
-
-                filtrerACCList((String) oldValue, (String) newValue);
-
+                filtrerVenteList((String) oldValue, (String) newValue);
             }
 
         });
+
+         
+              
+      //**********************************        
     }    
-
-    private void venteRetour(ActionEvent event) {
-          try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) venteRetourButton.getScene().getWindow();
-        stage.close();
-        
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
-
-    @FXML
-    private void affiche_mesannonce_vente(ActionEvent event) {
-         try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Propre_annonce_vente.fxml"));
-        Parent root =loader.load();
-        Stage stage=(Stage) afficher_mesannonce_vente.getScene().getWindow();
-        stage.close();
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
 
     @FXML
     private void forumRetour(ActionEvent event) {
-         try {
+          try {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
         Parent root =loader.load();
-        
         Stage stage=(Stage) acceuil.getScene().getWindow();
         stage.close();
-        
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
     
-    
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
+        
     }
 
     @FXML
-    private void Ajouter_annonce_vente(ActionEvent event) {
-         try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Ajout_vente.fxml"));
-        Parent root =loader.load();
-        Stage stage=(Stage) Ajouter_annonce_button2.getScene().getWindow();
-        stage.close();
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
-    
-    private void AfficherA() {
-        AnnonceService a= new AnnonceService();
-        tblclmTitre.setCellValueFactory(new PropertyValueFactory<>("titre_annonce"));
-        tblclmDesc.setCellValueFactory(new PropertyValueFactory<>("description"));
-        tblclmDate.setCellValueFactory(new PropertyValueFactory<>("date_annonce"));
-        tblclmPhoto.setCellValueFactory(new PropertyValueFactory<>("photo_annonce"));
-        tblclmTypead.setCellValueFactory(new PropertyValueFactory<>("type_annonce"));
-        tblclmNomA.setCellValueFactory(new PropertyValueFactory<>("nom_animal"));
-        tblclmAge.setCellValueFactory(new PropertyValueFactory<>("age_animal"));
-        tblclmTypeAnimal.setCellValueFactory(new PropertyValueFactory<>("type_animal"));
-        tblclmRace.setCellValueFactory(new PropertyValueFactory<>("race_animal"));
-        tblclmPoids.setCellValueFactory(new PropertyValueFactory<>("poids_animal"));
-        tblclmSexe.setCellValueFactory(new PropertyValueFactory<>("sexe"));
-        //flag.setCellValueFactory(new PropertyValueFactory<>("TEAM_FLAG"));
-        //logo.setCellValueFactory(new PropertyValueFactory<>("TEAM_LOGO"));
-        
-        //table.setItems(null);
-        tblVente.setItems(a.getAnnoncebyType("vente"));
-        //String imageFile = (s.findById(table.getSelectionModel().getSelectedItem().getTEAM_ID()).getPath());
-           // System.out.println(imageFile);
-    }
+    private void forumAnimal(ActionEvent event) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+           alert.setTitle("Confirmation D'ajout");
+           alert.setHeaderText("Avez vous déja un Animal que vous voulez le poster pour une annonce?");
+alert.setContentText("Choose your option.");
+
+ButtonType buttonTypeOne = new ButtonType("Oui");
+ButtonType buttonTypeTwo = new ButtonType("Non");
+
+ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonData.CANCEL_CLOSE);
+
+alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo,buttonTypeCancel);
+
+Optional<ButtonType> result = alert.showAndWait();
+if (result.get() == buttonTypeOne){
      
-      void filtrerACCList(String oldValue, String newValue) {
-     IAnnonceService ias=new AnnonceService();
-        
-        ObservableList<Annonce> filteredList = FXCollections.observableArrayList();
-        if (Recherche_Vente_txt.getText() == null || (newValue.length() < oldValue.length()) || newValue == null) {
-            tblVente.setItems(ias.getAnnoncebyType("Vente"));
-
-        } else {
-
-            newValue = newValue.toUpperCase();
-
-            for (Annonce adoption : tblVente.getItems()) {
-
-                String filterRaceAd = adoption.getRace_animal();
-
-               
-
-                if (filterRaceAd.toUpperCase().contains(newValue) ) {
-                    filteredList.add(adoption);
-
-                }
-
-            }
-            tblVente.setItems(filteredList);
-
-        }
-    }
-
-  /*  private void consulterprop(ActionEvent event) {
-        System.out.println("helmi");
-         try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilpropAnnonce.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) consulter.getScene().getWindow();
-        stage.close();
-        
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    
-        
-        /* tblVente.getSelectionModel().selectedItemProperty().
-                addListener((observable, oldValue, newValue) -> {
-                    ProfilpropAnnonceController p=new ProfilpropAnnonceController();
-                    p.redirection(newValue.getId_user());
-                });
-        
-          
-         
-    }*/
-
-   /* private void consultation(ActionEvent event) {
     try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("ProfilpropAnnonce.fxml"));
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Ajout_venteCC.fxml"));
         Parent root =loader.load();
-        Stage stage=(Stage) aaaa.getScene().getWindow();
+        Stage stage=(Stage) Ajouter_annonce_button1.getScene().getWindow();
         stage.close();
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
@@ -255,9 +180,286 @@ public class VenteController implements Initializable {
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
-   
-        
-    */
-
+    
+} else if (result.get() == buttonTypeTwo) {
+     try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Ajout_animalCC.fxml"));
+        Parent root =loader.load();
+        Stage stage=(Stage) Ajouter_annonce_button1.getScene().getWindow();
+        stage.close();
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+} 
+ else {
+    // ... user chose CANCEL or closed the dialog
     
 }
+        
+        //************************************
+       
+    
+    }   
+       private void AfficherA(){
+        
+        AnnonceService a= new AnnonceService();
+        AnimalService an=new AnimalService();
+      
+        liste2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+          ObservableList<Annonce> lp = a.getAllAnnonces();
+          
+          liste2.setCellFactory((ListView<Annonce> param) -> {
+              ListCell<Annonce> cell = new ListCell<Annonce>() {
+                  @Override
+                  protected void updateItem(Annonce p , boolean bl) {
+                      //System.out.println("ddddddd"+p);
+                      super.updateItem(p, bl);
+                      if(p!=null){
+                        //  System.out.println("ppp"+p);
+                         // System.out.println("bbb"+p.getId_animal());
+                          Animal b=null;
+                          
+                          b=an.getAnimalbyId(p.getId_animal2());
+                          
+                          
+                          Image img = new Image(p.getPhoto_annonce(), 200, 200, true, true, true) ;
+                          ImageView imgV = new ImageView(img) ;
+                                                
+                          setGraphic(imgV);
+                          
+     
+          setText("                   Titre de l'annonce: "+p.getTitre_annonce()+"\n \n                   Description : "
+                                  +p.getDescription()+"\n \n                   Date de l'annonce : "+p.getDate_annonce()+
+                                  "\n \n                   Type de l'annonce : "+p.getType_annonce()+"\n \n                   Nom de l'animal: "
+          +b.getNom_animal()+"\n \n                   Race de l'animal : "+b.getRace_animal()+"\n \n                   Poids de l'animal : "+
+             b.getPoids_animal()+"\n \n                   Sexe : " +b.getSexe()+"\n \n                   Type de l'animal : "  +b.getType_animal()+"\n \n                   Age de l'animal : "  +b.getAge_animal() );
+                      }}};
+              return cell;
+              });
+          liste2.setItems(lp);
+    }
+       
+  
+       
+//***************************************************************
+       
+       
+       
+       
+  
+        void filtrerVenteList(String oldValue, String newValue) {
+            
+        String choix = combochoix.getValue();
+        AnimalService an = new AnimalService();
+        AnnonceService a=new AnnonceService();
+    
+        if (choix.equals("RaceAnimal")) {
+            
+            ObservableList<Annonce> filteredList = FXCollections.observableArrayList();
+            if (Recherche_vente_txt.getText() == null || newValue == null) {
+                liste2.setItems(a.getAllAnnonces());
+            } else {
+                liste2.setItems(a.getAllAnnonces());
+                newValue = newValue.toUpperCase();
+
+                for (Annonce annonce : liste2.getItems()) {
+
+                    String filterRaceAnimal = annonce.getId_animal().getRace_animal();
+
+                    if (filterRaceAnimal.toUpperCase().contains(newValue)) {
+                        filteredList.add(annonce);
+                        System.out.println(annonce);
+
+                    }
+               }
+                liste2.setItems(filteredList);
+
+            } 
+        } else if (choix.equals("SexeAnimal")) {
+            
+
+            ObservableList<Annonce> filteredList = FXCollections.observableArrayList();
+            if (Recherche_vente_txt.getText()== null || newValue == null) {
+                liste2.setItems(a.getAllAnnonces());
+            } else {
+                liste2.setItems(a.getAllAnnonces());
+                newValue = newValue.toUpperCase();
+
+                for (Annonce annonce2 : liste2.getItems()) {
+
+                    String filterSexeAnimal = annonce2.getId_animal().getSexe();
+
+                    if (filterSexeAnimal.toUpperCase().contains(newValue)) {
+                        filteredList.add(annonce2);
+
+                    }
+
+                }
+                liste2.setItems(filteredList);
+
+            }
+
+        } else {
+            
+            ObservableList<Annonce> filteredList = FXCollections.observableArrayList();
+            if ( Recherche_vente_txt.getText()== null || newValue == "") {
+                liste2.setItems(a.getAllAnnonces());
+            } else {
+                liste2.setItems(a.getAllAnnonces());
+              
+
+                newValue = newValue.toUpperCase();
+
+                for (Annonce annonce3 : liste2.getItems()) {
+                   
+                    int filterAgeAnimal = annonce3.getId_animal().getAge_animal();
+
+                    if (filterAgeAnimal==Integer.valueOf(newValue)) {
+                        filteredList.add(annonce3);
+
+                    }
+
+                }
+                liste2.setItems(filteredList);
+
+            }
+        } }
+
+     
+       
+       
+       
+       
+       
+       
+//****************************************************************     
+    @FXML
+    private void onSelect(MouseEvent event) throws IOException {
+         if(event.getClickCount() == 2){
+          /*  ProfilpropAnnonceController.annonce = liste2.getSelectionModel().getSelectedItem();
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("ProfilpropAnnonce.fxml"));
+            */
+ Annonce an =  liste2.getSelectionModel().getSelectedItem();
+  //Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+       LoggedUser =new Animal();
+                       
+                       LoggedUser.setId_animal(an.getId_animal2());
+                       System.out.println(LoggedUser.getId_animal());
+//               LoggedAnimal.setId_animal(s.getId_animal2());
+                        
+                     //       System.out.println(s);
+     
+         anchor1.getChildren().clear();
+            Pane newLoadedPane = FXMLLoader.load(getClass().getResource("VendeurCC.fxml"));
+            anchor1.getChildren().add(newLoadedPane);
+
+          
+         }   
+        
+    }
+    
+  /*  
+    void filtrerVenteList(String oldValue, String newValue) {
+        String choix = combochoix.getValue();
+        AnimalService an = new AnimalService();
+        AnnonceService a=new AnnonceService();
+       // ************************
+  
+    //    ***********************
+    
+        if (choix.equals("RaceAnimal")) {
+            liste2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            ObservableList<Annonce> filteredList = FXCollections.observableArrayList();
+            if (Recherche_vente_txt.getText() == null || newValue == null) {
+                liste2.setItems(a.getAllAnnonces());
+            } else {
+                liste2.setItems(a.getAllAnnonces());
+                newValue = newValue.toUpperCase();
+
+                for (Annonce annonce : liste2.getItems()) {
+
+                    String filterRaceAnimal = annonce.getId_animal().getRace_animal();
+
+                    if (filterRaceAnimal.toUpperCase().contains(newValue)) {
+                        filteredList.add(annonce);
+
+                    }
+
+                }
+                liste2.setItems(filteredList);
+
+            }
+
+        } else if (choix.equals("SexeAnimal")) {
+            
+liste2.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+            ObservableList<Annonce> filteredList = FXCollections.observableArrayList();
+            if (Recherche_vente_txt.getText()== null || newValue == null) {
+                liste2.setItems(a.getAllAnnonces());
+            } else {
+                liste2.setItems(a.getAllAnnonces());
+                newValue = newValue.toUpperCase();
+
+                for (Annonce annonce2 : liste2.getItems()) {
+
+                    String filterSexeAnimal = annonce2.getId_animal().getSexe();
+
+                    if (filterSexeAnimal.toUpperCase().contains(newValue)) {
+                        filteredList.add(annonce2);
+
+                    }
+
+                }
+                liste2.setItems(filteredList);
+
+            }
+
+        } /*else {
+            
+            ObservableList<Annonce> filteredList = FXCollections.observableArrayList();
+            if ( Integer.parseInt(Recherche_vente_txt.getText())== 0 || newValue == null) {
+                liste2.setItems(a.getAllAnnonces());
+            } else {
+                liste2.setItems(a.getAllAnnonces());
+              
+
+                newValue = newValue.toUpperCase();
+
+                for (Annonce annonce3 : liste2.getItems()) {
+                   
+                    int filterAgeAnimal = annonce3.getId_animal().getAge_animal();
+
+                    if (filterAgeAnimal.) {
+                        filteredList.add(annonce3);
+
+                    }
+
+                }
+                liste2.setItems(filteredList);
+
+            }
+        }
+
+    }   */           
+    
+    @FXML
+    private void comboRechercheSexe(ActionEvent event) {
+        Recherche_vente_txt.setText(comboSexe.getValue());
+    }
+
+    
+    
+    
+    
+    
+    
+    
+
+}
+
+    
+

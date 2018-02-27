@@ -123,7 +123,7 @@ labeltime.setText(dateFormat.format(cal.getTime()));
                         imgview.setImage(image);
                         
 
-                        setText("Titre Annonce : "+e.getTitre_annonce()+ "\n" + " Description  :" + e.getDescription() + "\n" + " Date de dernier Mise a jour : " + e.getDate_annonce()  + "\n" + " Nom de L'animale  :" + e.getNom_animal() + "\n" + "type de l'animale  :"+e.getType_animal());
+                     //   setText("Titre Annonce : "+e.getTitre_annonce()+ "\n" + " Description  :" + e.getDescription() + "\n" + " Date de dernier Mise a jour : " + e.getDate_annonce()  + "\n" + " Nom de L'animale  :" + e.getNom_animal() + "\n" + "type de l'animale  :"+e.getType_animal());
 
                         setFont(Font.font("Berlin Sans FB Demi Bold", 12));
 

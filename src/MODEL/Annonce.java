@@ -12,7 +12,8 @@ import java.util.Objects;
 /**
  *
  * @author Admin
- */
+ */ 
+
 public class Annonce {
     
     private int id_annonce;
@@ -21,60 +22,56 @@ public class Annonce {
     private String date_annonce;
     private String photo_annonce;
     private String type_annonce;
-    private String nom_animal;
-    private int age_animal;
-    private String type_animal;
-    private String race_animal;
-    private float poids_animal;
-    private String sexe;
-    private int id_user;
+   
+    private Animal id_animal;
 
     public Annonce() {
     }
-
-    public Annonce(int id_annonce, String titre_annonce, String description, String date_annonce, String photo_annonce, String type_annonce, String nom_animal, int age_animal, String type_animal, String race_animal, float poids_animal, String sexe, int id_user) {
+     public Annonce(int id_annonce, String titre_annonce, String description, String date_annonce, String photo_annonce, String type_annonce, Animal id_animal) {
         this.id_annonce = id_annonce;
         this.titre_annonce = titre_annonce;
         this.description = description;
         this.date_annonce = date_annonce;
         this.photo_annonce = photo_annonce;
         this.type_annonce = type_annonce;
-        this.nom_animal = nom_animal;
-        this.age_animal = age_animal;
-        this.type_animal = type_animal;
-        this.race_animal = race_animal;
-        this.poids_animal = poids_animal;
-        this.sexe = sexe;
-        this.id_user = id_user;
+this.id_animal=id_animal;    //   this.id_animal = id_animal;
     }
 
-    public Annonce(String titre_annonce, String description, String date_annonce, String photo_annonce, String type_annonce, String nom_animal, int age_animal, String type_animal, String race_animal, float poids_animal, String sexe, int id_user) {
+    public Annonce(int id_annonce, String titre_annonce, String description, String date_annonce, String photo_annonce, String type_annonce, Animal id_animal,int id) {
+        this.id_annonce = id_annonce;
         this.titre_annonce = titre_annonce;
         this.description = description;
         this.date_annonce = date_annonce;
         this.photo_annonce = photo_annonce;
         this.type_annonce = type_annonce;
-        this.nom_animal = nom_animal;
-        this.age_animal = age_animal;
-        this.type_animal = type_animal;
-        this.race_animal = race_animal;
-        this.poids_animal = poids_animal;
-        this.sexe = sexe;
-        this.id_user = id_user;
+         this.id_animal = id_animal;
+this.id_animal.setId_animal(id);     //   this.id_animal = id_animal;
     }
-      public Annonce(String titre_annonce, String description, String date_annonce, String photo_annonce, String type_annonce, String nom_animal, int age_animal, String type_animal, String race_animal, float poids_animal, String sexe) {
+
+    public Annonce(String titre_annonce, String description, String date_annonce, String photo_annonce, String type_annonce, Animal id_animal) {
         this.titre_annonce = titre_annonce;
         this.description = description;
         this.date_annonce = date_annonce;
         this.photo_annonce = photo_annonce;
         this.type_annonce = type_annonce;
-        this.nom_animal = nom_animal;
-        this.age_animal = age_animal;
-        this.type_animal = type_animal;
-        this.race_animal = race_animal;
-        this.poids_animal = poids_animal;
-        this.sexe = sexe;
-      
+        this.id_animal = id_animal;
+    }
+
+    public Annonce(int id_annonce, String titre_annonce, String description, String date_annonce, String type_annonce, Animal id_animal) {
+        this.id_annonce = id_annonce;
+        this.titre_annonce = titre_annonce;
+        this.description = description;
+        this.date_annonce = date_annonce;
+        this.type_annonce = type_annonce;
+        this.id_animal = id_animal;
+    }
+
+    public Annonce(String titre_annonce, String description, String date_annonce, String type_annonce, Animal id_animal) {
+        this.titre_annonce = titre_annonce;
+        this.description = description;
+        this.date_annonce = date_annonce;
+        this.type_annonce = type_annonce;
+        this.id_animal = id_animal;
     }
 
     public int getId_annonce() {
@@ -125,78 +122,33 @@ public class Annonce {
         this.type_annonce = type_annonce;
     }
 
-    public String getNom_animal() {
-        return nom_animal;
+    public Animal getId_animal() {
+        return id_animal;
+    }
+   public int getId_animal2()
+   {
+   return id_animal.getId_animal();
+   }   
+
+    public void setId_animal(Animal id_animal) {
+        this.id_animal = id_animal;
     }
 
-    public void setNom_animal(String nom_animal) {
-        this.nom_animal = nom_animal;
-    }
-
-    public int getAge_animal() {
-        return age_animal;
-    }
-
-    public void setAge_animal(int age_animal) {
-        this.age_animal = age_animal;
-    }
-
-    public String getType_animal() {
-        return type_animal;
-    }
-
-    public void setType_animal(String type_animal) {
-        this.type_animal = type_animal;
-    }
-
-    public String getRace_animal() {
-        return race_animal;
-    }
-
-    public void setRace_animal(String race_animal) {
-        this.race_animal = race_animal;
-    }
-
-    public float getPoids_animal() {
-        return poids_animal;
-    }
-
-    public void setPoids_animal(float poids_animal) {
-        this.poids_animal = poids_animal;
-    }
-
-    public String getSexe() {
-        return sexe;
-    }
-
-    public void setSexe(String sexe) {
-        this.sexe = sexe;
-    }
-
-    public int getId_user() {
-        return id_user;
-    }
-
-    public void setId_user(int id_user) {
-        this.id_user = id_user;
+    @Override
+    public String toString() {
+        return "Annonce{" + "id_annonce=" + id_annonce + ", titre_annonce=" + titre_annonce + ", description=" + description + ", date_annonce=" + date_annonce + ", photo_annonce=" + photo_annonce + ", type_annonce=" + type_annonce + ", id_animal=" + id_animal + '}';
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + this.id_annonce;
-        hash = 59 * hash + Objects.hashCode(this.titre_annonce);
-        hash = 59 * hash + Objects.hashCode(this.description);
-        hash = 59 * hash + Objects.hashCode(this.date_annonce);
-        hash = 59 * hash + Objects.hashCode(this.photo_annonce);
-        hash = 59 * hash + Objects.hashCode(this.type_annonce);
-        hash = 59 * hash + Objects.hashCode(this.nom_animal);
-        hash = 59 * hash + this.age_animal;
-        hash = 59 * hash + Objects.hashCode(this.type_animal);
-        hash = 59 * hash + Objects.hashCode(this.race_animal);
-        hash = 59 * hash + Float.floatToIntBits(this.poids_animal);
-        hash = 59 * hash + Objects.hashCode(this.sexe);
-        hash = 59 * hash + this.id_user;
+        int hash = 5;
+        hash = 89 * hash + this.id_annonce;
+        hash = 89 * hash + Objects.hashCode(this.titre_annonce);
+        hash = 89 * hash + Objects.hashCode(this.description);
+        hash = 89 * hash + Objects.hashCode(this.date_annonce);
+        hash = 89 * hash + Objects.hashCode(this.photo_annonce);
+        hash = 89 * hash + Objects.hashCode(this.type_annonce);
+        hash = 89 * hash + Objects.hashCode(this.id_animal);
         return hash;
     }
 
@@ -215,50 +167,11 @@ public class Annonce {
         if (this.id_annonce != other.id_annonce) {
             return false;
         }
-        if (this.age_animal != other.age_animal) {
-            return false;
-        }
-        if (Float.floatToIntBits(this.poids_animal) != Float.floatToIntBits(other.poids_animal)) {
-            return false;
-        }
-        if (this.id_user != other.id_user) {
-            return false;
-        }
-        if (!Objects.equals(this.titre_annonce, other.titre_annonce)) {
-            return false;
-        }
-        if (!Objects.equals(this.description, other.description)) {
-            return false;
-        }
-        if (!Objects.equals(this.date_annonce, other.date_annonce)) {
-            return false;
-        }
-        if (!Objects.equals(this.photo_annonce, other.photo_annonce)) {
-            return false;
-        }
-        if (!Objects.equals(this.type_annonce, other.type_annonce)) {
-            return false;
-        }
-        if (!Objects.equals(this.nom_animal, other.nom_animal)) {
-            return false;
-        }
-        if (!Objects.equals(this.type_animal, other.type_animal)) {
-            return false;
-        }
-        if (!Objects.equals(this.race_animal, other.race_animal)) {
-            return false;
-        }
-        if (!Objects.equals(this.sexe, other.sexe)) {
-            return false;
-        }
         return true;
     }
 
     
-    @Override
-    public String toString() {
-        return "Annonce{" + "id_annonce=" + id_annonce + ", titre_annonce=" + titre_annonce + ", description=" + description + ", date_annonce=" + date_annonce + ", photo_annonce=" + photo_annonce + ", type_annonce=" + type_annonce + ", nom_animal=" + nom_animal + ", age_animal=" + age_animal + ", type_animal=" + type_animal + ", race_animal=" + race_animal + ", poids_animal=" + poids_animal + ", sexe=" + sexe + ", id_user=" + id_user + '}';
-    }
+    
     
      public java.sql.Date convert(String date) throws ParseException {
 

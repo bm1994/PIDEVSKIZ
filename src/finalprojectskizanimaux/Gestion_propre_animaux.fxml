@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="522.0" prefWidth="956.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.Gestion_propre_animauxController">
+   <children>
+      <AnchorPane prefHeight="404.0" prefWidth="203.0" style="-fx-background-color: #212221;">
+         <children>
+            <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="Retour1" layoutX="23.0" layoutY="617.0" mnemonicParsing="false" onAction="#RetourAcceuil" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: #212221;" text="Retourner" textFill="#f5f3f3" />
+            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="acceuil" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
+            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/bouton_accueil.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="39.0" layoutY="628.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/téléchargement.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="nomA_txt" layoutX="404.0" layoutY="225.0" />
+      <TextField fx:id="age_animal_txt" layoutX="404.0" layoutY="268.0" />
+      <TextField fx:id="type_animal_txt" layoutX="404.0" layoutY="307.0" />
+      <TextField fx:id="race_animal_txt" layoutX="748.0" layoutY="225.0" />
+      <TextField fx:id="poids_animal_txt" layoutX="748.0" layoutY="268.0" />
+      <ComboBox fx:id="sexe_animal_txt" layoutX="747.0" layoutY="307.0" prefWidth="150.0" />
+      <Label layoutX="311.0" layoutY="229.0" text="Nom_animal :" />
+      <Label layoutX="313.0" layoutY="272.0" text="Age_animal :" />
+      <Label layoutX="648.0" layoutY="311.0" text="Sexe_animal :" />
+      <Label layoutX="648.0" layoutY="272.0" text="Poids_animal :" />
+      <Label layoutX="650.0" layoutY="229.0" text="Race_animal :" />
+      <Label layoutX="311.0" layoutY="311.0" text="Type_animal :" />
+      <Button fx:id="ajouter_anim" layoutX="445.0" layoutY="364.0" mnemonicParsing="false" onAction="#ajouterAnim" prefHeight="27.0" prefWidth="238.0" style="-fx-background-color: #204428;" text="Veuillez ajouter le profil de votre animal" textFill="WHITE" />
+   </children>
+</AnchorPane>

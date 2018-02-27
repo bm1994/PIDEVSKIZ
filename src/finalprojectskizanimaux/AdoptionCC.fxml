@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="anochor2" prefHeight="578.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.AdoptionCCController">
+   <children>
+      <ListView fx:id="liste2" layoutX="241.0" layoutY="105.0" onMouseClicked="#onSelectAdoption" prefHeight="397.0" prefWidth="632.0" />
+      <AnchorPane prefHeight="578.0" prefWidth="206.0" style="-fx-background-color: #262438;">
+         <children>
+            <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Profile" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="acceuil" layoutX="17.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Acceuil" textFill="#eeeaea" />
+            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/bouton_accueil.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button fx:id="Ajouter_annonce_button3" layoutX="241.0" layoutY="518.0" mnemonicParsing="false" onAction="#PosterAnnonce1" prefHeight="34.0" prefWidth="168.0" style="-fx-background-color: #259F5E;" text="Poster votre Annonce" textFill="#f8f8f8" />
+      <ChoiceBox fx:id="combochoix" layoutX="345.0" layoutY="50.0" prefWidth="150.0" />
+      <TextField fx:id="Recherche_Adoption_txt" layoutX="694.0" layoutY="50.0" />
+      <ComboBox fx:id="comboSexe" layoutX="694.0" layoutY="50.0" onAction="#comboRechercheSexe" prefWidth="150.0" />
+   </children>
+</AnchorPane>
