@@ -58,6 +58,8 @@ import javafx.stage.Stage;
  */
 public class AdminController implements Initializable {
     private int idbm;
+    @FXML
+    private ImageView lolo;
 
     public int getIdbm() {
         return idbm;
@@ -177,6 +179,8 @@ public class AdminController implements Initializable {
        List.setVisible(false);
        annulerGuserimage.setVisible(false);
        supp112.setVisible(false);
+               lolo.setVisible(false);
+
        
         ObservableList<User> items = FXCollections.observableArrayList(listuser);
 
@@ -226,8 +230,12 @@ public class AdminController implements Initializable {
                             @Override
                             public void handle(MouseEvent event) {
                                  supp112.setVisible(false);
+                                 lolo.setVisible(false);
+
                                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                                    supp112.setVisible(true);
+                                   lolo.setVisible(true);
+
                                     User cov = List.getItems().get(List.getSelectionModel().getSelectedIndex());
                                     setIdbm(cov.getId_utilisateur());
                                     
@@ -558,12 +566,18 @@ ModifierButtonAdminn.setVisible(true);
     private void annulerGuseradmin(MouseEvent event) {
          List.setVisible(false);
         annulerGuserimage.setVisible(false);
+        lolo.setVisible(false);
     }
 
     @FXML
     private void suppuser12(MouseEvent event) {
         UserService usss=new UserService();
         usss.DeleteUser(idbm);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Attention ! ");
+                alert.setHeaderText(null);
+                alert.setContentText("L'utulisitaeur a ete supprime ");
+                alert.showAndWait();
         AnchorPane pane = new AnchorPane();
                                     try {
                                         pane = FXMLLoader.load(getClass().getResource("Admin.fxml"));

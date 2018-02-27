@@ -221,6 +221,7 @@ Connection connection;
     }
 
     @Override
+    
     public ObservableList<Annonce> getAnnoncebyType(String type) {
      ObservableList<Annonce> ListeAnnonce = FXCollections.observableArrayList();
             Annonce annonce = null;

@@ -5,7 +5,9 @@
  */
 package finalprojectskizanimaux;
 
+import MODEL.Animal;
 import MODEL.Annonce;
+import SERVICE.AnimalService;
 import SERVICE.AnnonceService;
 import SERVICE.UserService;
 import TECHNIQUE.Session;
@@ -30,6 +32,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -63,8 +66,8 @@ public class ProfilController implements Initializable {
     private Button DeleteProfilUserButton;
     @FXML
     private ListView<Annonce> List;
-    AnnonceService as=new AnnonceService();
-    List<Annonce> annonces= as.getAnnoncebyIdUser(Session.LoggedUser.getId_utilisateur());
+   // AnnonceService as=new AnnonceService();
+   // List<Annonce> annonces= as.getAnnoncebyIdUser(Session.LoggedUser.getId_utilisateur());
     @FXML
     private Label labeltime;
 
@@ -80,7 +83,47 @@ labelprofilbmusername.setText(Session.LoggedUser.getLogin());
 Calendar cal = Calendar.getInstance();
 labeltime.setText(dateFormat.format(cal.getTime()));
 
-        ObservableList<Annonce> items = FXCollections.observableArrayList(annonces);
+AnnonceService a= new AnnonceService();
+        AnimalService an=new AnimalService();
+      
+        List.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+          ObservableList<Annonce> lp = a.DisplayAllMyAnimalAnnonce();
+          
+          List.setCellFactory((ListView<Annonce> param) -> {
+              ListCell<Annonce> cell = new ListCell<Annonce>() {
+                  @Override
+                  protected void updateItem(Annonce p , boolean bl) {
+                      //System.out.println("ddddddd"+p);
+                      super.updateItem(p, bl);
+                      if(p!=null){
+                        //  System.out.println("ppp"+p);
+                         // System.out.println("bbb"+p.getId_animal());
+                          Animal b=null;
+                          
+                          b=an.getAnimalbyId(p.getId_animal2());
+                          
+                          
+                          Image img = new Image(p.getPhoto_annonce(), 200, 200, true, true, true) ;
+                          ImageView imgV = new ImageView(img) ;
+                                                
+                          setGraphic(imgV);
+                          
+     
+          setText("                             Titre de l'annonce: "+p.getTitre_annonce()+"\n \n                             Description : "
+                                  +p.getDescription()+"\n \n                             Date de l'annonce : "+p.getDate_annonce()+
+                                  "\n \n                             Type de l'annonce : "+p.getType_annonce()+"\n \n                             Nom de l'animal: "
+          +b.getNom_animal()+"\n \n                             Race de l'animal : "+b.getRace_animal()+"\n \n                             Poids de l'animal : "+
+             b.getPoids_animal()+"\n \n                             Sexe : " +b.getSexe()+"\n \n                             Type de l'animal : "  +b.getType_animal() );
+                      }}};
+              return cell;
+              });
+          
+          
+    
+         List.setItems(lp); 
+         
+
+     /*   ObservableList<Annonce> items = FXCollections.observableArrayList(annonces);
 
         List.setCellFactory((ListView<Annonce> arg0) -> {
             ListCell<Annonce> cell = new ListCell<Annonce>() {
@@ -136,7 +179,7 @@ labeltime.setText(dateFormat.format(cal.getTime()));
             return cell;
         });
         List.setItems(items);
-        
+        */
     }    
    
 
