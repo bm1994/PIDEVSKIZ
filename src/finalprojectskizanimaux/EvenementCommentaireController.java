@@ -62,8 +62,6 @@ public class EvenementCommentaireController implements Initializable{
     private Button buttonConfimer;
     @FXML
     private ListView<CommentaireEvenement> lvc;
-    private Evenement e1;
-
     private Evenement evenementt;
     private SCommentaireEvenement sce=new SCommentaireEvenement();
     private UserService us=new UserService();
@@ -281,7 +279,7 @@ public class EvenementCommentaireController implements Initializable{
             Alert a=new Alert(AlertType.INFORMATION,"Information",ButtonType.OK);
             a.setContentText("Commentaire modifié avec succés");
             a.showAndWait();
-                
+            initController(evenementt);
         }
         else
         {
