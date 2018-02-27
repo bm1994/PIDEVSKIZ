@@ -6,10 +6,14 @@
 package SERVICE;
 
 import ISERVICE.IAbonnement;
+import MODEL.Association;
+import MODEL.User;
 import TECHNIQUE.DataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -104,4 +108,29 @@ public class SAbonnement implements IAbonnement
         }
         return true;
     }
+
+    @Override
+    public List<Integer> ListAbonnes(int id_association) 
+    {   List<Integer> lu=new ArrayList<>();
+        String req="SELECT id_utilisateur FROM abonnement_association WHERE id_association=?";
+        try {
+            ps=s1.getConnection().prepareStatement(req);
+            ps.setInt(1, id_association);
+        } catch (SQLException ex) {
+            Logger.getLogger(SAbonnement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try
+      {
+          rs=ps.executeQuery();
+          while(rs.next())
+          {
+            lu.add(rs.getInt(1));
+          }
+      }
+      catch(SQLException ex)
+      {
+               Logger.getLogger(SAssociation.class.getName()).log(Level.SEVERE, null, ex);
+      }
+        return lu;
+   }
 }

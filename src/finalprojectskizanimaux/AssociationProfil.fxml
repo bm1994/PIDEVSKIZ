@@ -9,17 +9,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="1042.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.AssociationProfilController">
    <children>
-      <Button fx:id="buttonRetour" layoutX="14.0" layoutY="399.0" mnemonicParsing="false" onAction="#actionRetour" prefHeight="44.0" prefWidth="144.0" text="Retour" />
+      <Button fx:id="buttonRetour" layoutX="11.0" layoutY="559.0" mnemonicParsing="false" onAction="#actionRetour" prefHeight="44.0" prefWidth="144.0" text="Retour" />
       <Button fx:id="buttonAbonnement" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" onAction="#actionAbonnement" prefHeight="44.0" prefWidth="144.0" text="S'abonner" />
-      <TableView fx:id="tva" layoutX="167.0" layoutY="180.0" prefHeight="415.0" prefWidth="626.0">
-        <columns>
-          <TableColumn fx:id="tblclmtitree" prefWidth="112.0" text="Titre" />
-          <TableColumn fx:id="tblclmsujett" prefWidth="143.0" text="Sujet" />
-            <TableColumn fx:id="tblclmdatee" minWidth="0.0" prefWidth="165.0" text="Date" />
-            <TableColumn fx:id="tblclmlieuu" minWidth="0.0" prefWidth="106.0" text="Lieu" />
-            <TableColumn fx:id="tblclmparticipantss" prefWidth="99.0" text="Participants" />
-        </columns>
-      </TableView>
       <Label fx:id="lblnom" alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="68.0" prefWidth="381.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
@@ -30,5 +21,10 @@
             <Font size="15.0" />
          </font>
       </Label>
+      <Button fx:id="buttonDetails" layoutX="11.0" layoutY="309.0" mnemonicParsing="false" onAction="#actionDetails" prefHeight="44.0" prefWidth="144.0" text="Détails" />
+      <Button fx:id="buttonAjout" layoutX="11.0" layoutY="373.0" mnemonicParsing="false" onAction="#actionAjouter" prefHeight="44.0" prefWidth="144.0" text="Ajouter événement" />
+      <Button fx:id="buttonSupprimer" layoutX="11.0" layoutY="433.0" mnemonicParsing="false" onAction="#actionSupprimer" prefHeight="44.0" prefWidth="144.0" text="Supprimer événement" />
+      <Button fx:id="buttonModifier" layoutX="11.0" layoutY="496.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="44.0" prefWidth="144.0" text="Modifier événement" />
+      <ListView fx:id="lve" layoutX="162.0" layoutY="173.0" prefHeight="432.0" prefWidth="600.0" />
    </children>
 </AnchorPane>

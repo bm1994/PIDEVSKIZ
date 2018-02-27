@@ -5,6 +5,11 @@
  */
 package finalprojectskizanimaux;
 
+import MODEL.Notification;
+import SERVICE.SAbonnement;
+import SERVICE.SAssociation;
+import SERVICE.SEvenement;
+import SERVICE.SNotification;
 import SERVICE.UserService;
 import TECHNIQUE.DataSource;
 import TECHNIQUE.Session;
@@ -40,6 +45,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -48,10 +54,12 @@ import javafx.animation.ScaleTransition;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -67,6 +75,7 @@ import javafx.scene.media.MediaPlayer;
 
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -88,10 +97,15 @@ public class LoginController implements Initializable {
     @FXML
     private Button sinscrireButton;
     AudioClip note = new AudioClip(this.getClass().getResource("sound.mp3").toString());
+    
   // private Slider SliderVolumee;
     //private TextField vvvv;
     @FXML
     private Button CntFb;
+    private  SNotification sn=new SNotification();
+    private  SAssociation sa=new SAssociation();
+    private  SEvenement se=new SEvenement();
+    private  SAbonnement sab=new SAbonnement();
 
     private void handleButtonAction(ActionEvent event) {
         System.out.println("You clicked me!");
@@ -133,6 +147,16 @@ public class LoginController implements Initializable {
                 s.setScene(new Scene(root));
                 s.show();
                         }
+            else if ((b != null) && b.equals(passwordid.getText()) && arole == 2){
+                        Session.LoggedUser = userrser.findByLogin(loginid.getText());
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+                Parent root = loader.load();
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+                stage.close();
+                Stage s = new Stage();
+                s.setScene(new Scene(root));
+                s.show();
+                        }
             else if ((b != null) && b.equals(passwordid.getText()) && arole == 5){
                         Session.LoggedUser = userrser.findByLogin(loginid.getText());
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("VeterinaireUser.fxml"));
@@ -152,10 +176,11 @@ public class LoginController implements Initializable {
                 alert.showAndWait();
 
             }
-
+            Notify();
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+        
     }
 
     @FXML
@@ -170,7 +195,6 @@ public class LoginController implements Initializable {
             Stage s = new Stage();
             s.setScene(new Scene(root));
             s.show();
-
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -301,6 +325,96 @@ public class LoginController implements Initializable {
         }
     }
 
+private void Notify() throws IOException
+    {
+    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
+     if (!ln.isEmpty())
+     {  System.out.println(Session.LoggedUser.getId_utilisateur());
+         for(Notification n:ln)
+         {
+             System.out.println(n.getId_association());
+             if (n.getType()==1)
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Nouveau événement")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT).onAction(new EventHandler<ActionEvent>() {
 
+                     @Override
+                     public void handle(ActionEvent event) {
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
+                 Parent root;
+                         try {
+                             root = loader.load();
+                             Stage stage = (Stage) sinscrireButton.getScene().getWindow();
+                             stage.close();
+                             EvenementDetailsController edc=loader.getController();
+                             edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));
+                             Stage s = new Stage();
+                             s.setScene(new Scene(root));
+                             s.show();
+                         } catch (IOException ex) {
+                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+
+            
+                     }
+                 });
+                          notification.showConfirm();
+             
+             }
+             else if (n.getType()==2)
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Evénement annulé")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT);
+                          notification.showConfirm();
+             }
+             else
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Evénement annulé")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT).onAction(new EventHandler<ActionEvent>() {
+
+                    @Override
+                     public void handle(ActionEvent event) {
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
+                 Parent root;
+                         try {
+                             root = loader.load();
+                             Stage stage = (Stage) sinscrireButton.getScene().getWindow();
+                             stage.close();
+                             EvenementDetailsController edc=loader.getController();
+                             edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));
+                             Stage s = new Stage();
+                             s.setScene(new Scene(root));
+                             s.show();
+                         } catch (IOException ex) {
+                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+
+            
+                          
+             }
+                     
+                         });
+                                 
+                          notification.showConfirm();
+     }
+sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
+}
     
+}
+}
 }

@@ -6,18 +6,14 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="689.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementCommentaireController">
+<AnchorPane id="AnchorPane" fx:id="ecAnchor" prefHeight="689.0" prefWidth="919.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementCommentaireController">
    <children>
       <TextArea fx:id="tacommentaire" layoutX="279.0" layoutY="468.0" prefHeight="89.0" prefWidth="330.0" />
       <Button fx:id="buttonCommenter" layoutX="625.0" layoutY="521.0" mnemonicParsing="false" onAction="#actionCommenter" prefHeight="36.0" prefWidth="131.0" text="Commenter" />
       <Button fx:id="buttonRetour" layoutX="60.0" layoutY="476.0" mnemonicParsing="false" onAction="#actionRetour" prefHeight="36.0" prefWidth="140.0" text="Retour" />
       <Button fx:id="buttonEffacer" layoutX="62.0" layoutY="345.0" mnemonicParsing="false" onAction="#actionEffacer" prefHeight="36.0" prefWidth="140.0" text="Effacer " />
       <Button fx:id="buttonModifier" layoutX="65.0" layoutY="256.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="36.0" prefWidth="140.0" text="Modifier" />
-      <TableView fx:id="tvc" layoutX="236.0" layoutY="49.0" prefHeight="402.0" prefWidth="487.0">
-        <columns>
-          <TableColumn fx:id="tblclmdate" prefWidth="146.0" text="Date" />
-          <TableColumn fx:id="tblclmcontenu" prefWidth="339.0" text="Contenu" />
-        </columns>
-      </TableView>
+      <ListView fx:id="lvc" layoutX="218.0" layoutY="92.0" prefHeight="365.0" prefWidth="550.0" />
+      <Button fx:id="buttonConfimer" layoutX="625.0" layoutY="476.0" mnemonicParsing="false" onAction="#actionConfirmer" prefHeight="36.0" prefWidth="131.0" text="Confirmer" />
    </children>
 </AnchorPane>

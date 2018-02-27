@@ -16,6 +16,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -224,5 +226,55 @@ public class SEvenement implements IEvenement
             System.out.println(Arrays.toString(ex.getStackTrace()));
         }
     return le;
+    }
+
+    @Override
+    public Evenement ChercherEvenement(int id_evenement) 
+    {   
+        String req="SELECT * FROM evenement where id_evenement=?";
+        try
+        {
+        ps=s1.getConnection().prepareStatement(req);
+        ps.setInt(1, id_evenement);
+        }
+        catch(SQLException ex)
+        {
+            
+        }
+        try
+        {
+        rs=ps.executeQuery();
+        if (rs.next())
+        {
+            return new Evenement(rs.getInt(1),rs.getInt(7),rs.getString(5),rs.getString(2),rs.getDate(3),rs.getString(4));
+        }
+        }
+        catch(SQLException ex)
+        {
+            
+        }
+        return null;
+    }
+
+    @Override
+    public int idDernierEvenementAjoute(int id_association) 
+    {   String req="SELECT * FROM evenement WHERE id_utilisateur=?";
+        try {
+            ps=s1.getConnection().prepareStatement(req);
+            ps.setInt(1, id_association);
+        } catch (SQLException ex) {
+            Logger.getLogger(SEvenement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try
+        {
+            rs=ps.executeQuery();
+            rs.last();
+            return rs.getInt(1);
+        }
+        catch(SQLException ex)
+        {
+            
+        }
+        return 0;
     }
 }

@@ -10,18 +10,10 @@
 <AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementController">
    <children>
       <Button fx:id="evenementRetourButton" layoutX="17.0" layoutY="389.0" mnemonicParsing="false" onAction="#evenementRetour" prefHeight="48.0" prefWidth="116.0" text="Retour" />
-      <TableView fx:id="tve" layoutX="144.0" layoutY="27.0" prefHeight="527.0" prefWidth="622.0">
-        <columns>
-          <TableColumn fx:id="tblclmtitre" prefWidth="75.0" text="Titre" />
-          <TableColumn fx:id="tblclmsujet" prefWidth="180.0" text="Sujet" />
-            <TableColumn fx:id="tblclmdate" prefWidth="160.0" text="Date" />
-            <TableColumn fx:id="tblclmlieu" prefWidth="110.0" text="Lieu" />
-            <TableColumn fx:id="tblclmparticipants" prefWidth="95.0" text="Participants" />
-        </columns>
-      </TableView>
       <Button fx:id="detailsButton" layoutX="20.0" layoutY="327.0" mnemonicParsing="false" onAction="#evenementDetails" prefHeight="42.0" prefWidth="116.0" text="Détails" />
       <Button fx:id="buttonAjouter" layoutX="20.0" layoutY="192.0" mnemonicParsing="false" onAction="#actionAjouter" prefHeight="42.0" prefWidth="109.0" text="Ajouter Evénement" />
       <Button fx:id="buttonSupprimer" layoutX="23.0" layoutY="254.0" mnemonicParsing="false" onAction="#actionSupprimer" prefHeight="42.0" prefWidth="109.0" text="Supprimer" />
       <Button fx:id="buttonModifier" layoutX="23.0" layoutY="128.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="42.0" prefWidth="109.0" text="Modifier" />
+      <ListView fx:id="lve" layoutX="155.0" layoutY="113.0" prefHeight="441.0" prefWidth="578.0" />
    </children>
 </AnchorPane>

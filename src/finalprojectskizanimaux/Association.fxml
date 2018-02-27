@@ -9,15 +9,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="676.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.AssociationController">
    <children>
-      <TableView fx:id="tv" layoutX="163.0" layoutY="14.0" prefHeight="461.0" prefWidth="616.0">
-        <columns>
-          <TableColumn fx:id="tblclmnom" prefWidth="153.0" text="Nom" />
-          <TableColumn fx:id="tblclmtel" prefWidth="174.0" text="Téléphone" />
-            <TableColumn fx:id="tblclmemail" prefWidth="153.0" text="E-mail" />
-            <TableColumn fx:id="tblclmbutt" minWidth="0.0" prefWidth="76.0" />
-        </columns>
-      </TableView>
       <Button fx:id="evenementRetourButton" layoutX="2.0" layoutY="303.0" mnemonicParsing="false" onAction="#evenementRetour" prefHeight="47.0" prefWidth="157.0" text="Retour" />
       <Button fx:id="buttonProfil" layoutX="2.0" layoutY="179.0" mnemonicParsing="false" onAction="#actionProfil" prefHeight="47.0" prefWidth="157.0" text="Voir Profil" />
+      <ListView fx:id="lva" layoutX="160.0" layoutY="73.0" prefHeight="484.0" prefWidth="597.0" />
    </children>
 </AnchorPane>

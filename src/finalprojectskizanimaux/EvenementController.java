@@ -5,12 +5,26 @@
  */
 package finalprojectskizanimaux;
 
+ /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+import MODEL.Annonce;
 import MODEL.Evenement;
+import MODEL.Notification;
+import SERVICE.SAbonnement;
+import SERVICE.SAssociation;
 import SERVICE.SEvenement;
+import SERVICE.SNotification;
 import TECHNIQUE.Session;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,16 +32,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -35,20 +51,8 @@ import javafx.stage.Stage;
  * @author Ruskov
  */
 public class EvenementController implements Initializable {
-    @FXML
+       @FXML
     private Button evenementRetourButton;
-    @FXML
-    private TableView<Evenement> tve;
-    @FXML
-    private TableColumn<Evenement,String> tblclmtitre;
-    @FXML
-    private TableColumn<Evenement,String> tblclmsujet;
-    @FXML
-    private TableColumn<Evenement,Date> tblclmdate;
-    @FXML
-    private TableColumn<Evenement,String> tblclmlieu;
-    @FXML
-    private TableColumn<Evenement,Integer> tblclmparticipants;
     @FXML
     private Button detailsButton;
     @FXML
@@ -57,13 +61,18 @@ public class EvenementController implements Initializable {
     private Button buttonSupprimer;
     @FXML
     private Button buttonModifier;
+    @FXML
+    private ListView<Evenement> lve;
     
     /**
      * Initializes the controller class.
      */
-    
-    public SEvenement se =new SEvenement();
-    ObservableList<Evenement> obe=FXCollections.observableArrayList(se.ConsulterEvenement());
+    private final SNotification sn=new SNotification();
+    private final SAbonnement sab=new SAbonnement();
+    private final SEvenement se=new SEvenement();
+    private final SAssociation sa=new SAssociation();
+    private final ArrayList<Integer> ari=new ArrayList<>(sab.ListAbonnes(Session.LoggedUser.getId_utilisateur()));
+    private final ObservableList<Evenement> obe=FXCollections.observableArrayList(se.ConsulterEvenement());
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -73,19 +82,35 @@ public class EvenementController implements Initializable {
             buttonSupprimer.setVisible(false);
             buttonModifier.setVisible(false);
         }
-        tblclmtitre.setCellValueFactory(new PropertyValueFactory<>("titre_evenement"));
-        tblclmsujet.setCellValueFactory(new PropertyValueFactory<>("sujet_evenement"));
-        tblclmdate.setCellValueFactory(new PropertyValueFactory<>("date_evenement"));
-        tblclmlieu.setCellValueFactory(new PropertyValueFactory<>("lieu_evenement"));
-        tblclmparticipants.setCellValueFactory(new PropertyValueFactory<>("nombre_interesses"));
-        tve.setItems(obe);
+       lve.setCellFactory((ListView<Evenement> arg0) -> {
+            ListCell<Evenement> cell = new ListCell<Evenement>() {
+                @Override
+                protected void updateItem(Evenement e, boolean btl) {
+                    super.updateItem(e, btl);
+
+                    if (e != null) {
+                        
+
+                        setText("Titre : "+e.getTitre_evenement()+ "\n" + " Lieu : " + e.getLieu_evenement()+ "\n" + " Date : " + e.getDate_evenement()+ "\n" + " Sujet : " + e.getSujet_evenement()+ "\n" + "Participants  : "+e.getNombre_interesses());
+
+                        setFont(Font.font("Berlin Sans FB Demi Bold", 12));
+
+                        // setAlignment(Pos.CENTER);
+                    }
+
+                }
+
+            };
+            return cell;
+        });
+       lve.setItems(obe);
     }    
     
     @FXML
     private void evenementDetails(ActionEvent event)
     {   
     if (
-       tve.getSelectionModel().getSelectedItem()!=null)
+       lve.getSelectionModel().getSelectedItem()!=null)
         {
         try 
         {
@@ -95,7 +120,7 @@ public class EvenementController implements Initializable {
         Stage stage=(Stage) detailsButton.getScene().getWindow();
         stage.close();
         EvenementDetailsController edc=loader.getController();
-        edc.PassByEvenement(tve.getSelectionModel().getSelectedItem());
+        edc.PassByEvenement(lve.getSelectionModel().getSelectedItem());
         Stage s = new Stage ();
         s.setScene(new Scene (root));    
         s.show();
@@ -149,7 +174,7 @@ public class EvenementController implements Initializable {
     s.setScene(new Scene (root));    
     s.show();
     
-    
+            Notify();
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
@@ -158,26 +183,32 @@ public class EvenementController implements Initializable {
     @FXML
     private void actionSupprimer(ActionEvent event) 
     {
-        if (tve.getSelectionModel().getSelectedItem().getId_association()==Session.LoggedUser.getId_utilisateur())
+        if (lve.getSelectionModel().getSelectedItem().getId_association()==Session.LoggedUser.getId_utilisateur())
         {   try
             {
-            se.SupprimerEvenement(tve.getSelectionModel().getSelectedItem().getId_evenement());    
-            Alert a=new Alert(AlertType.WARNING,"Succés",ButtonType.FINISH);
-            ObservableList<Evenement>obe=FXCollections.observableArrayList(se.ConsulterEvenement());
-            tve.setItems(obe);
-            a.setContentText("l'évenement "+tve.getSelectionModel().getSelectedItem().getTitre_evenement()+"a été supprimé avec succés !");
+            for (int i=0;i<ari.size();++i)
+                {
+                    sn.ajouterNotification(ari.get(i),Session.LoggedUser.getId_utilisateur(),lve.getSelectionModel().getSelectedItem().getId_evenement(),2);
+                }
+            se.SupprimerEvenement(lve.getSelectionModel().getSelectedItem().getId_evenement());
+            Alert a=new Alert(Alert.AlertType.WARNING,"Succés",ButtonType.FINISH);
+            a.setContentText("l'évenement "+lve.getSelectionModel().getSelectedItem().getTitre_evenement()+"a été supprimé avec succés !");
             a.showAndWait();
-            }catch(Exception e)
+            ObservableList<Evenement>obe=FXCollections.observableArrayList(se.ConsulterEvenement());
+            lve.setItems(obe);
+            
+            }
+            catch(Exception e)
             {
-                Alert a=new Alert(AlertType.WARNING,"Erreur",ButtonType.FINISH);
-                a.setContentText("une erreur est survenue lors de la suppression de l'événement"+tve.getSelectionModel().getSelectedItem().getTitre_evenement());
+                Alert a=new Alert(Alert.AlertType.WARNING,"Erreur",ButtonType.FINISH);
+                a.setContentText("une erreur est survenue lors de la suppression de l'événement"+lve.getSelectionModel().getSelectedItem().getTitre_evenement());
                 a.showAndWait();
             }
             
         }
         else
         {
-             Alert b=new Alert(AlertType.WARNING,"Erreur",ButtonType.CANCEL);
+             Alert b=new Alert(Alert.AlertType.WARNING,"Erreur",ButtonType.CANCEL);
              b.setContentText("Action non autorisée !");
              b.showAndWait();
         }
@@ -186,9 +217,9 @@ public class EvenementController implements Initializable {
     @FXML
     private void actionModifier(ActionEvent event) 
     {
-        if (tve.getSelectionModel().getSelectedItem()!=null)
+        if (lve.getSelectionModel().getSelectedItem()!=null)
         {
-            if (tve.getSelectionModel().getSelectedItem().getId_association()==Session.LoggedUser.getId_utilisateur())
+            if (lve.getSelectionModel().getSelectedItem().getId_association()==Session.LoggedUser.getId_utilisateur())
             {
                 
             
@@ -200,7 +231,7 @@ public class EvenementController implements Initializable {
         Stage stage=(Stage) buttonModifier.getScene().getWindow();
         stage.close();
         EvenementModificationController emc=loader.getController();
-        emc.initController(tve.getSelectionModel().getSelectedItem());
+        emc.initController(lve.getSelectionModel().getSelectedItem());
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
@@ -212,10 +243,57 @@ public class EvenementController implements Initializable {
             }
             else
             {
-             Alert b=new Alert(AlertType.WARNING,"Erreur",ButtonType.CANCEL);
+             Alert b=new Alert(Alert.AlertType.WARNING,"Erreur",ButtonType.CANCEL);
              b.setContentText("Action non autorisée !");
              b.showAndWait();
             }
     }
 }
+      private void Notify()
+    {
+    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
+     if (!ln.isEmpty())
+     {
+         ln.stream().map((n) -> {
+             return n;
+                }).forEach((n) -> {
+                    if (n.getType()==1)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Nouveau événement")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showInformation();
+                    }
+                    else if (n.getType()==2)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement annulé")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showError();
+                    }
+                    else
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement Modifié")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showConfirm();
+                    }  });
+         sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
+    }
 }
+}
+
+    
+

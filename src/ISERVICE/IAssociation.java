@@ -16,6 +16,7 @@ import java.util.List;
 public interface IAssociation 
 {
     public List<Association> listerAssociation();
+    public Association chercherAssociation (int id_association);
     public Association chercherAssociation(String nom);
     
 }

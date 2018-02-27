@@ -17,7 +17,7 @@ public class Association
     private String telephone_association;
     private String email_association;
     private int nombre_abonnes;
-    private short role;
+    private int role;
 
 
     public Association() 
@@ -122,7 +122,7 @@ public class Association
     /**
      * @return the role
      */
-    public short getRole() 
+    public int getRole() 
     {
         return role;
     }
@@ -130,7 +130,8 @@ public class Association
     /**
      * @param role the role to set
      */
-    public void setRole(short role) 
+ 
+    public void setRole(int role) 
     {
         this.role = role;
     }

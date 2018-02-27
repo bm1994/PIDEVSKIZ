@@ -5,22 +5,30 @@
  */
 package finalprojectskizanimaux;
 
+import MODEL.Notification;
 import MODEL.Sujet;
+import SERVICE.SAssociation;
+import SERVICE.SEvenement;
+import SERVICE.SNotification;
 import SERVICE.SujetService;
 import TECHNIQUE.Session;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -45,7 +53,9 @@ public class AjoutSujetController implements Initializable {
     private Button ajouter;
     @FXML
     private Button profile;
-
+    public SNotification sn=new SNotification();
+    public SEvenement se=new SEvenement();
+    public SAssociation sa=new SAssociation();
     /**
      * Initializes the controller class.
      */
@@ -104,5 +114,48 @@ System.out.println("Ajouter");
         System.out.println(ex.getMessage());
     }
     }
-    
+      private void Notify()
+    {
+    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
+     if (!ln.isEmpty())
+     {
+         ln.stream().map((n) -> {
+             return n;
+                }).forEach((n) -> {
+                    if (n.getType()==1)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Nouveau événement")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showInformation();
+                    }
+                    else if (n.getType()==2)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement annulé")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showError();
+                    }
+                    else
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement Modifié")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showConfirm();
+                    }  });
+         sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
+    }
+}
 }

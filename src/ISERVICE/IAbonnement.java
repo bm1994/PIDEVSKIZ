@@ -5,6 +5,9 @@
  */
 package ISERVICE;
 
+
+import java.util.List;
+
 /**
  *
  * @author Ruskov
@@ -14,5 +17,6 @@ public interface IAbonnement
     public void AjouterAbonnement(int id_association,int id_utilisateur);
     public void SupprimerAbonnement(int id_association,int id_utilisateur);
     public int NombreAbonnes(int id_association);
+    public List<Integer> ListAbonnes(int id_association);
     public boolean VerifierAbonnement(int id_utilisateur,int id_association);
 }

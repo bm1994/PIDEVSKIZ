@@ -21,7 +21,8 @@ public interface IEvenement
  public List<Evenement> ConsulterEvenement();
  public List<Evenement> ConsulterEvenement(int idUtilisateur);
  public List<Evenement> ChercherEvenement(String TitreEvenement);
+ public Evenement ChercherEvenement(int id_evenement);
  public void IncrementNombreInteresses(int idEvenement);
  public void DecrementNombreInteresses(int idEvenement);
- 
+ public int idDernierEvenementAjoute(int id_association);
 }

@@ -31,31 +31,26 @@ public class SCommentaireEvenement implements ICommentaireEvenement
     @Override
     public void AjouterCommentaireEvenement(int id_evenement, int id_utilisateur, String contenu) 
     {
-        String req="INSERT INTO commentaireevenement (id_evenement,id_utilisateur,contenu,DateCommentaireEvenement) VALUES(?,?,?,?)";
+        try 
+        {
+            String req="INSERT INTO commentaireevenement (id_evenement,id_utilisateur,contenu,DateCommentaireEvenement) VALUES(?,?,?,?)";
         Calendar calendar = Calendar.getInstance();
         java.util.Date currentDate = calendar.getTime();
         java.sql.Date date = new java.sql.Date(currentDate.getTime());
-        try 
-        {
             ps=s1.getConnection().prepareStatement(req);
             ps.setInt(1, id_evenement);
             ps.setInt(2, id_utilisateur);
             ps.setString(3, contenu);
             ps.setDate(4, date);
-            
+            ps.executeUpdate();    
         } 
         catch (SQLException ex) 
         {
             ex.printStackTrace();
         }
-        try 
-        {
-            ps.executeUpdate();
-        } 
-        catch (SQLException ex) 
-        {
-           ex.printStackTrace();
-        }
+        
+        
+        
     }
 
     @Override
@@ -67,35 +62,25 @@ public class SCommentaireEvenement implements ICommentaireEvenement
         {
             ps=s1.getConnection().prepareStatement(req);
             ps.setInt(1, id_commentaire_evenement);
-           
-        } 
-        catch (SQLException ex) 
-        {
-            System.out.println(Arrays.toString(ex.getStackTrace()));
-        }
-        try 
-        {
             ps.executeUpdate();
         } 
         catch (SQLException ex) 
         {
             System.out.println(Arrays.toString(ex.getStackTrace()));
         }
+        
+      
     }
 
     @Override
     public void ModifierCommentaireEvenement(int id_commentaire_evenement, String contenu) 
     {
-        String req="UPDATE evenement SET contenu=?,DateCommentaireEvenement=? where id_commentaire_evenement=?";
+        String req="UPDATE commentaireevenement SET contenu=? where id_commentaire_evenement=?";
         try 
         {
-            Calendar calendar = Calendar.getInstance();
-            java.util.Date currentDate = calendar.getTime();
-            java.sql.Date date = new java.sql.Date(currentDate.getTime());
             ps=s1.getConnection().prepareStatement(req);
             ps.setString(1, contenu);
-            ps.setDate(2, date);
-            ps.setInt(3, id_commentaire_evenement);
+            ps.setInt(2, id_commentaire_evenement);
             
         } 
         catch (SQLException ex)
