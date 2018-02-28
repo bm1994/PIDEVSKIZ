@@ -30,6 +30,10 @@ public class User {
     public User() {
     }
 
+    public User(int id_utilisateur) {
+        this.id_utilisateur = id_utilisateur;
+    }
+
     public User(int id_utilisateur, String nom, String prenom, String adresse, int telephone, String email, int role, String login, String motDePasse) {
         this.id_utilisateur = id_utilisateur;
         this.nom = nom;

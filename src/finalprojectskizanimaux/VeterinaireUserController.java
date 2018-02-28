@@ -25,6 +25,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -75,6 +76,9 @@ public class VeterinaireUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        affiche();
+       veto_nom.setText(v.getNom_cabinet());
+       AdminModifierNumero.setText(Integer.toString(v.getNumero_cabinet()));
+       AdminModifierAdresse.setText(v.getAdresse_cabinet());
     }    
 
     
@@ -175,10 +179,48 @@ public class VeterinaireUserController implements Initializable {
     
     @FXML
     private void ModifierAdmin(ActionEvent event) {
+         if (AdminModifierNumero.getText().length()!=8 || AdminModifierAdresse.getText().equals("") || veto_nom.getText().equals("") ) {
+   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention !");
+            alert.setHeaderText(null);
+            alert.setContentText("Verifier les information ");
+            alert.showAndWait();
+              
+  }
+         else {
+         
+         VeterinaireService sv = new VeterinaireService();
+         Veterinaire veto = new Veterinaire(veto_nom.getText(),AdminModifierAdresse.getText(),Integer.parseInt(AdminModifierNumero.getText()),v.getId_utilisateur());
+         sv.UpdateUser(veto);
+         
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Modifier !");
+            alert.setHeaderText(null);
+            alert.setContentText("Modification avec succes ");
+            alert.showAndWait();
+         }
+         
+         
+         
     }
 
     @FXML
     private void deconnexionAdmin(ActionEvent event) {
+             try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) DeconnexionAdminbm.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
 
     @FXML

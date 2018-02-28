@@ -21,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -41,7 +42,7 @@ public class AjoutSujetController implements Initializable {
     @FXML
     private TextField objet;
     @FXML
-    private TextField date;
+    private DatePicker date;
     @FXML
     private TextArea contenu;
     @FXML
@@ -83,7 +84,7 @@ public class AjoutSujetController implements Initializable {
         
         
         
-  if (titre.getText().equals("") || date.getText().equals("") || contenu.getText().equals("") ) {
+  if (titre.getText().equals("") || date.getValue()==null || contenu.getText().equals("") ) {
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Attention !");
             alert.setHeaderText(null);
@@ -92,12 +93,13 @@ public class AjoutSujetController implements Initializable {
         
   }
         
-        
+  else{
         int su = Session.LoggedUser.getId_utilisateur();
-Sujet s = new Sujet(titre.getText(),objet.getText(),contenu.getText(),date.getText(),su);
+Sujet s = new Sujet(titre.getText(),objet.getText(),contenu.getText(),date.getValue().toString(),su);
 SujetService sv = new SujetService();
 sv.Ajouter_Sujet(s);
- Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+
+Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 alert.setTitle("Ajouter !");
             alert.setHeaderText(null);
             alert.setContentText("Voulez vous ajouter ");
@@ -140,7 +142,7 @@ if (result.get() == buttonTypeOne){
 
 
 
-
+  } 
 
             
     }

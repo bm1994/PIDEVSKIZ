@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -49,7 +50,7 @@ Veterinaire s ;
     @FXML
     private TextField objet;
     @FXML
-    private TextField date;
+    private DatePicker date;
     @FXML
     private TextArea contenu;
     @FXML
@@ -69,7 +70,7 @@ Veterinaire s ;
     @FXML
     private void submitClick(ActionEvent event) {
                
-  if (titre.getText().equals("") || date.getText().equals("") || contenu.getText().equals("") ) {
+  if (titre.getText().equals("") || date.getValue() == null || contenu.getText().equals("") ) {
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Attention !");
             alert.setHeaderText(null);
@@ -78,9 +79,9 @@ Veterinaire s ;
         
   }
         
-        
+  else{
         int su = Session.LoggedUser.getId_utilisateur();
-Sujet sujet = new Sujet(titre.getText(),objet.getText(),contenu.getText(),date.getText(),su);
+Sujet sujet = new Sujet(titre.getText(),objet.getText(),contenu.getText(),date.getValue().toString(),su);
 SujetService sv = new SujetService();
 VeterinaireService vt = new VeterinaireService();
 
@@ -131,11 +132,32 @@ if (result.get() == buttonTypeOne){
     }}
 
 
-
+  }
     }
 
     @FXML
     private void acceuil_button(ActionEvent event) {
+        
+           try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) acceuil.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
+        
+        
+        
+        
     }
     
 }

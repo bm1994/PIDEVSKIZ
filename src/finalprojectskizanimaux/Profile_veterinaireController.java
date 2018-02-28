@@ -184,18 +184,82 @@ tel.setText(""+s.getTelephone());
 
     @FXML
     private void afficher_sujet(ActionEvent event) {
+        
+          try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Forum.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) afficher_sujet.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
     }
 
     @FXML
     private void profile(ActionEvent event) {
+        
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Profil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) profile.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
     }
 
     @FXML
     private void Statistique(ActionEvent event) {
+             try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Statistique.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) acceuil.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
 
     @FXML
     private void forumRetour(ActionEvent event) {
+             try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) acceuil.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
 
     @FXML

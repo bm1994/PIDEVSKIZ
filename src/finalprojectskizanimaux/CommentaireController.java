@@ -190,7 +190,7 @@ public void ajouter(Sujet s) {
                              else{
    
         Service_Commentaire_sujet sv = new Service_Commentaire_sujet();
-   	Commentaire_sujet c = new Commentaire_sujet (Session.LoggedUser.getId_utilisateur(),sujet.getId_sujet(),contenu_commentaire.getText(),"12/1/7");
+   	Commentaire_sujet c = new Commentaire_sujet (Session.LoggedUser.getId_utilisateur(),sujet.getId_sujet(),contenu_commentaire.getText(),"2018/2/28");
  
         
    	sv.Ajouter_commentaire(c);

@@ -35,6 +35,13 @@ private List<Sujet>list_sujet = new ArrayList();
         this.list_user = list_user;
     }
 
+    public Veterinaire(String nom_cabinet, String adresse_cabinet, int numero_cabinet, int id_utilisateur) {
+        super(id_utilisateur);
+        this.nom_cabinet = nom_cabinet;
+        this.adresse_cabinet = adresse_cabinet;
+        this.numero_cabinet = numero_cabinet;
+    }
+
 
 
 

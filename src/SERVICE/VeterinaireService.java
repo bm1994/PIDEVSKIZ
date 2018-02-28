@@ -213,4 +213,31 @@ Connection cnx;
         }
     }
     
+    
+    
+    
+    
+       public void UpdateUser(Veterinaire u) {
+        String req = "update utilisateur set nom_cabinet=? , adresse_cabinet=? ,numero_cabinet=?  where id_utilisateur=?";
+        PreparedStatement preparedStatement;
+        try {
+            
+            preparedStatement = connection.prepareStatement(req);
+          
+            preparedStatement.setString(1,u.getNom_cabinet());
+            preparedStatement.setString(2,u.getAdresse_cabinet());
+            preparedStatement.setInt(3,u.getNumero_cabinet());
+
+            preparedStatement.setInt(4,u.getId_utilisateur());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    
+       }
+    
+    
+    
+    
 }

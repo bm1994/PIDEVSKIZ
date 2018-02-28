@@ -67,6 +67,23 @@ affiche();
 
     @FXML
     private void forumRetour(ActionEvent event) {
+         
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) profile.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
     }
     
     
@@ -136,6 +153,9 @@ affiche();
          pc.veteo(v.getAdresse_cabinet());
          pc.veteo_all(v);
            System.out.println(v.getAdresse_cabinet());
+           Stage stage=(Stage) profile.getScene().getWindow();
+        stage.close();
+        
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
@@ -195,10 +215,42 @@ affiche();
 
     @FXML
     private void afficher_sujet(ActionEvent event) {
+           try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Forum.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) afficher_sujet.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
 
     @FXML
     private void profil(ActionEvent event) {
+         
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Profil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) profile.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
     }
     
   
