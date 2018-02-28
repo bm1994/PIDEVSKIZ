@@ -205,6 +205,24 @@ public class User {
         this.email = email;
         this.login = login;
     }
+
+    public User(int id_utilisateur, String nom, String adresse, int telephone, String email) {
+        this.id_utilisateur = id_utilisateur;
+        this.nom = nom;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+    }
+
+    public User(String nom, String adresse, int telephone, String email, int role, String login, String motDePasse) {
+        this.nom = nom;
+        this.adresse = adresse;
+        this.telephone = telephone;
+        this.email = email;
+        this.role = role;
+        this.login = login;
+        this.motDePasse = motDePasse;
+    }
     
     
     

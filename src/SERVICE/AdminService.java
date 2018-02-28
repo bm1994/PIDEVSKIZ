@@ -50,5 +50,27 @@ public class AdminService  implements IAdmin{
         }
         return listuser; 
     }
+
+    @Override
+    public List<User> getAllAssociation() {
+        ObservableList<User> listuser=FXCollections.observableArrayList();
+
+        String req = "select * from utilisateur where role=? ";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            preparedStatement.setInt(1,2);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User(resultSet.getInt(7), resultSet.getString(2),resultSet.getString(3),resultSet.getInt(4),resultSet.getString(5));
+
+                listuser.add(user);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listuser; 
+    }
+    }
     
-}
+

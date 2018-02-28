@@ -15,5 +15,6 @@ import java.util.List;
  */
 public interface IAdmin {
     public List<User> getAllUSER();
+    public List<User> getAllAssociation();
     
 }

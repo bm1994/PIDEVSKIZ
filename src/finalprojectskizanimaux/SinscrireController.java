@@ -90,6 +90,8 @@ public class SinscrireController implements Initializable {
     private RadioButton usersinscrire11;
     @FXML
     private RadioButton usersinscrire12;
+    @FXML
+    private RadioButton boutique1125;
 
     /**
      * Initializes the controller class.
@@ -175,14 +177,44 @@ public class SinscrireController implements Initializable {
             User usera = new User(utulisateurnom.getText(), utilisateurprenom.getText(), utilisateuradresse.getText(), Integer.parseInt(utilisateurtelephone.getText()), utilisateurmail.getText(), 3, utilisateurlogin.getText(), utlisateurmdp.getText());
             UserService userservice = new UserService();
             userservice.AjouterUser(usera);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            
+            Mail ma = new Mail();
+        ma.send(usera.getEmail(),"Votre Compte SkiizAnimaux à été crée avec succée","Bienvenue \n  coordonnées de Votre Compte Skiizanimaux \n Nom:"+usera.getNom()+"\n Prenom:"+usera.getPrenom()+"\n Adresse :"+usera.getAdresse()+"\n Telephone :"+usera.getTelephone()+"\n Login :"+usera.getLogin(),"SkiizAnimaux@gmail.com","hammouda1994");
+          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Felicitation");
+            alert.setHeaderText(null);
+            alert.setContentText("votre compte a été cree avec succes . Redirection vers page d'acceuil ");
+            alert.showAndWait();  
+        try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+                Parent root = loader.load();
+
+                Stage stage = (Stage) sinscrireRetourButton.getScene().getWindow();
+                stage.close();
+
+                Stage s = new Stage();
+                s.setScene(new Scene(root));
+                s.show();
+
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+        }
+        else if(boutique1125.isSelected()) {
+            User usera = new User(utulisateurnom.getText(), utilisateurprenom.getText(), utilisateuradresse.getText(), Integer.parseInt(utilisateurtelephone.getText()), utilisateurmail.getText(), 4, utilisateurlogin.getText(), utlisateurmdp.getText());
+            UserService userservice = new UserService();
+            userservice.AjouterUser(usera);
+            
+            Mail ma = new Mail();
+        ma.send(usera.getEmail(),"Votre Compte SkiizAnimaux à été crée avec succée","Bienvenue \n  coordonnées de Votre Compte Skiizanimaux Boutique \n Nom:"+usera.getNom()+"\n Prenom:"+usera.getPrenom()+"\n Adresse :"+usera.getAdresse()+"\n Telephone :"+usera.getTelephone()+"\n Login :"+usera.getLogin(),"SkiizAnimaux@gmail.com","hammouda1994");
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Felicitation");
             alert.setHeaderText(null);
             alert.setContentText("votre compte a été cree avec succes . Redirection vers page d'acceuil ");
             alert.showAndWait();
-            Mail ma = new Mail();
-        ma.send(usera.getEmail(),"Votre Compte SkiizAnimaux à été crée avec succée","Bienvenue \n  coordonnées de Votre Compte Skiizanimaux \n Nom:"+usera.getNom()+"\n Prenom:"+usera.getPrenom()+"\n Adresse :"+usera.getAdresse()+"\n Telephone :"+usera.getTelephone()+"\n Login :"+usera.getLogin(),"SkiizAnimaux@gmail.com","hammouda1994");
-            try {
+        
+        try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
                 Parent root = loader.load();
 
@@ -217,14 +249,15 @@ public class SinscrireController implements Initializable {
             Veterinaire vetoa=new Veterinaire(Nomdecabinetsinscrire1.getText(),adressecabinetsinscrire1.getText(),Integer.parseInt(numerocabinetsinscrire1.getText()),utulisateurnom.getText(), utilisateurprenom.getText(), utilisateuradresse.getText(), Integer.parseInt(utilisateurtelephone.getText()), utilisateurmail.getText(), 5, utilisateurlogin.getText(), utlisateurmdp.getText());
             VeterinaireService vvv=new VeterinaireService();
             vvv.AjouterVeterinaire(vetoa);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+           
+            Mail ma = new Mail();
+        ma.send(vetoa.getEmail(),"Votre compte SkiizANIMAUX à été crée avec succée ","Bienvenue \n Coordonnées de Votre Compte Skiizanimaux \n Type De Compte : Veterinaire \n Nom:"+vetoa.getNom()+"\n Prenom:"+vetoa.getPrenom()+"\n Adresse:"+vetoa.getAdresse()+"\n Login:"+vetoa.getLogin()+"\n Nom du Cabinet:"+vetoa.getNom_cabinet()+"\n Adresse de Cabinet :"+vetoa.getAdresse_cabinet()+"\n Numero de Cabinet :"+vetoa.getNumero_cabinet(),"SkiizAnimaux@gmail.com","hammouda1994");
+             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Felicitation");
             alert.setHeaderText(null);
             alert.setContentText("votre compte a été cree avec succes . Redirection vers page d'acceuil ");
             alert.showAndWait();
-            Mail ma = new Mail();
-        ma.send(vetoa.getEmail(),"Votre compte SkiizANIMAUX à été crée avec succée ","Bienvenue \n Coordonnées de Votre Compte Skiizanimaux \n Type De Compte : Veterinaire \n Nom:"+vetoa.getNom()+"\n Prenom:"+vetoa.getPrenom()+"\n Adresse:"+vetoa.getAdresse()+"\n Login:"+vetoa.getLogin()+"\n Nom du Cabinet:"+vetoa.getNom_cabinet()+"\n Adresse de Cabinet :"+vetoa.getAdresse_cabinet()+"\n Numero de Cabinet :"+vetoa.getNumero_cabinet(),"SkiizAnimaux@gmail.com","hammouda1994");
-            try {
+        try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
                 Parent root = loader.load();
 
@@ -246,13 +279,13 @@ public class SinscrireController implements Initializable {
 
     @FXML
     private void Boutiqueon(MouseEvent event) {
-         nomdeboutiquetext.setVisible(true);
-            NomdeBoutiquesinscrire.setVisible(true);
-            adresseboutiquesinscrire.setVisible(true);
-            adresseboutiquetext.setVisible(true);
-            numeroboutiquesinscrire.setVisible(true);
-            numeroboutiquetext.setVisible(true);
-            paneboutiquesinscrire.setVisible(true);
+         nomdeboutiquetext.setVisible(false);
+            NomdeBoutiquesinscrire.setVisible(false);
+            adresseboutiquesinscrire.setVisible(false);
+            adresseboutiquetext.setVisible(false);
+            numeroboutiquesinscrire.setVisible(false);
+            numeroboutiquetext.setVisible(false);
+            paneboutiquesinscrire.setVisible(false);
              Nomdecabinetsinscrire1.setVisible(false);
             nomdecabinettext1.setVisible(false);
             adressecabinettext1.setVisible(false);

@@ -13,6 +13,7 @@ import SERVICE.UserService;
 import TECHNIQUE.Session;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -43,6 +44,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -70,12 +72,17 @@ public class ProfilController implements Initializable {
    // List<Annonce> annonces= as.getAnnoncebyIdUser(Session.LoggedUser.getId_utilisateur());
     @FXML
     private Label labeltime;
+    @FXML
+    private ImageView imageprofil11;
+    @FXML
+    private Button Parcourirphoto;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Parcourirphoto.setVisible(false);
 labelprofilbmnom.setText(Session.LoggedUser.getNom()); 
  labelprofilbmmail.setText(Session.LoggedUser.getEmail());  
 labelprofilbmusername.setText(Session.LoggedUser.getLogin());  
@@ -256,6 +263,44 @@ Calendar cal = Calendar.getInstance();
        
       
 labeltime.setText(dateFormat.format(cal.getTime()));
+    }
+
+    @FXML
+    private void parcourirphotoprofile(ActionEvent event) throws MalformedURLException {
+        Parcourirphoto.setVisible(false);
+               String imageFile;
+        FileChooser fc = new FileChooser();
+        File selectedFile = fc.showOpenDialog(null);
+        if (selectedFile != null) {
+            //    getImageUrl = selectedFile.getAbsolutePath();
+            // System.out.println(getImageUrl);
+            // Image value = new Image(getImageUrl);
+            //  img.setImage(value);
+            imageFile = selectedFile.toURI().toURL().toString();
+            System.out.println(imageFile);
+
+            Image image1 = new Image(imageFile);
+
+            imageprofil11.setImage(image1);
+            //////a changer static
+
+            //////////
+          //  photo_annonce1_txt.setText(imageFile);
+
+            /////
+        } else {
+            System.out.println("file doesn't exist");
+        }
+    }
+
+    @FXML
+    private void affichparcour(MouseEvent event) {
+        Parcourirphoto.setVisible(true);
+    }
+
+    @FXML
+    private void hideparcour(MouseEvent event) {
+       // profilRetourButton.setVisible(false);
     }
     
   
