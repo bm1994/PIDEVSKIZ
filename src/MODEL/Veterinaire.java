@@ -5,6 +5,9 @@
  */
 package MODEL;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author asus
@@ -13,6 +16,34 @@ public class Veterinaire extends User{
     private String nom_cabinet;
     private String adresse_cabinet;
     private int numero_cabinet;
+private List<User>list_user = new ArrayList();
+private List<Sujet>list_sujet = new ArrayList();
+
+    public List<Sujet> getList_sujet() {
+        return list_sujet;
+    }
+
+    public void setList_sujet(List<Sujet> list_sujet) {
+        this.list_sujet = list_sujet;
+    }
+
+    public List<User> getList_user() {
+        return list_user;
+    }
+
+    public void setList_user(List<User> list_user) {
+        this.list_user = list_user;
+    }
+
+
+
+
+
+
+
+
+
+
 
     public Veterinaire(String nom_cabinet, String adresse_cabinet, int numero_cabinet) {
         this.nom_cabinet = nom_cabinet;
@@ -32,6 +63,10 @@ public class Veterinaire extends User{
         this.nom_cabinet = nom_cabinet;
         this.adresse_cabinet = adresse_cabinet;
         this.numero_cabinet = numero_cabinet;
+    }
+
+    public Veterinaire() {
+        
     }
 
     public String getNom_cabinet() {

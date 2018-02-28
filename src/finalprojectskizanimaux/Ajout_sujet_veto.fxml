@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.Ajout_sujet_vetoController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <AnchorPane layoutX="-6.0" prefHeight="574.0" prefWidth="200.0" style="-fx-background-color: #212221;">
+               <children>
+                  <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
+                     <font>
+                        <Font name="Comic Sans MS Bold" size="18.0" />
+                     </font>
+                  </Label>
+                
+                  <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../Images/bouton_accueil.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="titre" layoutX="323.0" layoutY="85.0" />
+            <TextField fx:id="objet" layoutX="323.0" layoutY="173.0" />
+            <TextField fx:id="date" layoutX="323.0" layoutY="494.0" />
+            <TextArea fx:id="contenu" layoutX="323.0" layoutY="245.0" prefHeight="200.0" prefWidth="200.0" />
+            <Label layoutX="247.0" layoutY="41.0" prefHeight="25.0" prefWidth="54.0" text="Titre">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="246.0" layoutY="142.0" text="Objet">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="247.0" layoutY="219.0" text="Contenu">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="246.0" layoutY="477.0" text="Date">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="ajouter" layoutX="482.0" layoutY="528.0" mnemonicParsing="false" onAction="#submitClick" prefHeight="27.0" prefWidth="91.0" style="-fx-background-color: #204428;" text="Ajouter" textFill="WHITE" />
+            <Label fx:id="l1" layoutX="559.0" layoutY="5.0" prefHeight="17.0" prefWidth="38.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="-8.0" prefHeight="584.0" prefWidth="215.0" style="-fx-background-color: #212221;">
+         <children>
+            <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="acceuil" layoutX="14.0" layoutY="145.0" mnemonicParsing="false" onAction="#acceuil_button" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
+            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/bouton_accueil.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="14.0" layoutY="226.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="39.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="52.0" layoutY="308.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #212221;" text="Afficher les Sujet" textFill="#f5f3f3" />
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="24.0" layoutY="304.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.jpg" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

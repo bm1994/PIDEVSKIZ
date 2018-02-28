@@ -5,15 +5,15 @@
  */
 package finalprojectskizanimaux;
 
+import MODEL.Commentaire_sujet;
 import MODEL.Sujet;
 import MODEL.User;
 import MODEL.Veterinaire;
+import SERVICE.Service_Commentaire_sujet;
 import SERVICE.VeterinaireService;
-import TECHNIQUE.Session;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +28,6 @@ import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,52 +42,49 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author asus
+ * @author habib
  */
-public class VeterinaireUserController implements Initializable {
-  
-    
-            VeterinaireService sv =new VeterinaireService();
-
-            Veterinaire v =sv.veto_byid(Session.LoggedUser.getId_utilisateur());
-          
-            
+public class Afficher_vetoController implements Initializable {
 
     @FXML
-    private TextField veto_nom;
+    private Button acceuil;
+ 
     @FXML
-    private TextField AdminModifierNumero;
+    private ListView<Veterinaire> list_utilisateur;
     @FXML
-    private TextField AdminModifierAdresse;
+    private Button afficher_sujet;
     @FXML
-    private Button ModifierButtonAdminn;
-    @FXML
-    private ListView<Sujet> List;
-    @FXML
-    private Button DeconnexionAdminbm;
-    @FXML
-    private Button Supprimer_demmande;
+    private Button profile;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       affiche();
+affiche();
     }    
 
-    
-    public void affiche(){    
-        ObservableList<Sujet> items = FXCollections.observableArrayList(sv.list_Sujet(Session.LoggedUser.getId_utilisateur()));
 
-        List.setCellFactory((ListView<Sujet> arg0) -> {
-            ListCell<Sujet> cell = new ListCell<Sujet>() {
+    @FXML
+    private void forumRetour(ActionEvent event) {
+    }
+    
+    
+    
+      public void affiche () {
+
+        VeterinaireService sv =new VeterinaireService();
+	    
+                  ObservableList<Veterinaire> items = FXCollections.observableArrayList(sv.Affichervetousr_veto());
+
+        list_utilisateur.setCellFactory((ListView<Veterinaire> arg0) -> {
+            ListCell<Veterinaire> cell = new ListCell<Veterinaire>() {
                 @Override
-                protected void updateItem(Sujet e, boolean btl) {
+                protected void updateItem(Veterinaire e, boolean btl) {
                     super.updateItem(e, btl);
 
                     if (e != null) {
-                        File file = new File("src\\images\\aaz.png");
+                        File file = new File("src\\images\\images (1).jpg");
                         file.getParentFile().mkdirs();
                         Image IMAGE_RUBY = new Image(file.toURI().toString());
                         //   Image IMAGE_RUBY = new Image(ps.findById(e.getPassager().getId()).getAvatar());
@@ -97,8 +93,8 @@ public class VeterinaireUserController implements Initializable {
 
                         setGraphic(imgview);
 
-                        imgview.setFitHeight(100);
-                        imgview.setFitWidth(100);
+                        imgview.setFitHeight(50);
+                        imgview.setFitWidth(50);
                         Rectangle clip = new Rectangle(
                                 imgview.getFitWidth(), imgview.getFitHeight()
                         );
@@ -121,39 +117,45 @@ public class VeterinaireUserController implements Initializable {
                         // store the rounded image in the imageView.
                         imgview.setImage(image);
                         
-                        List.setOnMouseClicked(new EventHandler<MouseEvent>() {
+     list_utilisateur.setOnMouseClicked(new EventHandler<MouseEvent>() {
                             
 
                             @Override
                             public void handle(MouseEvent event) {
+                           
                                 if (event.getButton() == MouseButton.PRIMARY && event.getClickCount() == 2) {
                                   
-                               try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire_Sujet.fxml"));
+                                                        try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile_veterinaire.fxml"));
+                                              
         Parent root =loader.load();
-   CommentaireController sec =  loader.getController();
-    sec.get( List.getSelectionModel().getSelectedItem());
-    sec.affiche(List.getSelectionModel().getSelectedItem());
-    sec.ajouter(List.getSelectionModel().getSelectedItem());
-            System.out.println(List.getSelectionModel().getSelectedItem());
-   
-            Stage s = new Stage ();
+        Profile_veterinaireController pc = loader.getController();
+
+ Veterinaire v=  (list_utilisateur.getSelectionModel().getSelectedItem());
+       
+         pc.veteo(v.getAdresse_cabinet());
+         pc.veteo_all(v);
+           System.out.println(v.getAdresse_cabinet());
+        Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
+    
+    
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
+                            
                                     
 
 
-                                    //System.out.println(e.getId_utilisateur());
+                                
                                     
                                 }
                             }
 
                         });
                                    // System.out.println(e.getId_utilisateur());
-                        setText("Nom:    "+e.getContenu()+ "\n" + "Prenom      :" + e.getObjet()+ "\n" + "Adresse     :" + e.getDate() + "\n" );
+                        setText("Nom:    "+e.getNom()+ "\n" + "Prénom      :" + e.getPrenom() + "\n" + "Email    :" + e.getEmail()+ "\n" +"Click ici pour voir plus" );
 
                         setFont(Font.font("Berlin Sans FB Demi Bold", 12));
 
@@ -165,26 +167,40 @@ public class VeterinaireUserController implements Initializable {
             };
             return cell;
         });
-        List.setItems(items);
+        list_utilisateur.setItems(items);
         
   
-}
+
+       
+        // TODO
+    }    
+
+
+    private void afficherlist_veto(ActionEvent event) {
+                                    try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Profile_veterinaire.fxml"));
+            
+        Parent root =loader.load(); 
+                   
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
     
     
-    
-    
-    @FXML
-    private void ModifierAdmin(ActionEvent event) {
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+          
     }
 
     @FXML
-    private void deconnexionAdmin(ActionEvent event) {
+    private void afficher_sujet(ActionEvent event) {
     }
 
     @FXML
-    private void suppuser12(MouseEvent event) {
-                                    List.getItems().remove(List.getSelectionModel().getSelectedItem());
-
+    private void profil(ActionEvent event) {
     }
+    
+  
     
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.lynden.gmapsfx.GoogleMapView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.Profile_veterinaireController">
+   <children>
+      <AnchorPane layoutX="-19.0" layoutY="-13.0" prefHeight="588.0" prefWidth="200.0" style="-fx-background-color: #212221;">
+         <children>
+            <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
+               <font>
+                  <Font name="Comic Sans MS Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="afficher_sujet" layoutX="59.0" layoutY="275.0" mnemonicParsing="false" onAction="#afficher_sujet" prefHeight="25.0" prefWidth="139.0" style="-fx-background-color: #212221;" text="Afficher les Sujet" textFill="#f5f3f3" />
+            <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
+            <Button fx:id="profile" layoutX="9.0" layoutY="191.0" mnemonicParsing="false" onAction="#profile" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="32.0" fitWidth="32.0" layoutX="31.0" layoutY="271.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/images.jpg" />
+               </image>
+            </ImageView>
+            <Button fx:id="stat_btn" layoutX="-2.0" layoutY="372.0" mnemonicParsing="false" onAction="#Statistique" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #212221;" text="Statistique" textFill="WHITE" />
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="35.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/relatorio-contente.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="acceuil" layoutX="9.0" layoutY="127.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
+            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="41.0" layoutY="124.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/bouton_accueil.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="nom_caninet" layoutX="274.0" layoutY="262.0" />
+      <TextField fx:id="adresse" layoutX="389.0" layoutY="369.0" />
+      <TextField fx:id="tel" layoutX="571.0" layoutY="461.0" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="472.0" layoutY="258.0" text="Nom_Cabinet" textFill="#1aba80">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="196.0" layoutY="366.0" text="Adresse Cabinet" textFill="#1aba80">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="431.0" layoutY="458.0" text="Téléphone" textFill="#1aba80">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Button fx:id="contacter" layoutX="308.0" layoutY="549.0" mnemonicParsing="false" onAction="#contacter" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: #297544;" text="Cantacter">
+         <textFill>
+            <LinearGradient endX="1.0" endY="1.0">
+               <stops>
+                  <Stop color="#8eb28f" />
+                  <Stop color="WHITE" offset="1.0" />
+               </stops>
+            </LinearGradient>
+         </textFill>
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Button>
+      <GoogleMapView fx:id="mapView" layoutX="182.0" prefHeight="190.0" prefWidth="564.0" />
+   </children>
+</AnchorPane>

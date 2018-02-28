@@ -7,17 +7,12 @@ package finalprojectskizanimaux;
 
 import MODEL.Annonce;
 import MODEL.Commentaire_sujet;
-import MODEL.Notification;
 import MODEL.Sujet;
-import SERVICE.SAssociation;
-import SERVICE.SEvenement;
-import SERVICE.SNotification;
 import SERVICE.Service_Commentaire_sujet;
 import TECHNIQUE.Session;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,10 +20,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -44,8 +39,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -62,6 +55,8 @@ public class CommentaireController implements Initializable {
     private AnchorPane rootpane;
     @FXML
     private Button profile;
+    @FXML
+    private Button Delete;
 	   public Sujet getSujet() {
 			return sujet;
 		}
@@ -82,9 +77,7 @@ public class CommentaireController implements Initializable {
     private TextArea contenu_commentaire;
     @FXML
     private Button Commenter;
-    public SNotification sn=new SNotification();
-    public SEvenement se=new SEvenement();
-    public SAssociation sa=new SAssociation();
+
     /**
      * Initializes the controller class.
      */
@@ -140,7 +133,8 @@ contenu.setText(sujet.getContenu());
                         imgview.setImage(image);
                         
 
-                        setText("Commentaire : "+e.getContenu_commentaire());
+                        setText(
+                                " Commentaire : "+e.getContenu_commentaire());
 
                         setFont(Font.font("Berlin Sans FB Demi Bold", 12));
 
@@ -158,6 +152,21 @@ contenu.setText(sujet.getContenu());
 
     @FXML
     private void forumRetour(ActionEvent event) {
+           try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) acceuil.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
     }
     public void get (Sujet s){
           this.sujet = s ;}
@@ -169,14 +178,27 @@ public void ajouter(Sujet s) {
    
     @FXML
     private void commenter(ActionEvent event) throws IOException {
+       
+                  	     if (contenu_commentaire.getText().equals("")  ) {
+   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention !");
+            alert.setHeaderText(null);
+            alert.setContentText("Il Ajouter un commentaire ");
+            alert.showAndWait();
+        
+  }
+                             else{
+   
         Service_Commentaire_sujet sv = new Service_Commentaire_sujet();
    	Commentaire_sujet c = new Commentaire_sujet (Session.LoggedUser.getId_utilisateur(),sujet.getId_sujet(),contenu_commentaire.getText(),"12/1/7");
-   	
+ 
+        
    	sv.Ajouter_commentaire(c);
-        AnchorPane pane = new AnchorPane() ;
-  
+
            affiche(sujet);
            contenu_commentaire.setText("");
+
+                             }
  
         
     }
@@ -192,11 +214,13 @@ public void ajouter(Sujet s) {
           if (list_commentaire.getSelectionModel().getSelectedItem().getId_utilisateur()!=Session.LoggedUser.getId_utilisateur())
                    {modif.setVisible(false);
                    modif1.setVisible(false);
+                   Delete.setVisible(false);
                    
                    
                    }  
           else {modif.setVisible(true);
-          modif1.setVisible(true);}
+          modif1.setVisible(true);
+          Delete.setVisible(true);}
     }
 
     @FXML
@@ -245,48 +269,36 @@ public void ajouter(Sujet s) {
         System.out.println(ex.getMessage());
     }
     }
-      private void Notify()
-    {
-    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
-     if (!ln.isEmpty())
-     {
-         ln.stream().map((n) -> {
-             return n;
-                }).forEach((n) -> {
-                    if (n.getType()==1)
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Nouveau événement")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showInformation();
-                    }
-                    else if (n.getType()==2)
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Evénement annulé")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showError();
-                    }
-                    else
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Evénement Modifié")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showConfirm();
-                    }  });
-         sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
+
+    @FXML
+    private void Supprimer(ActionEvent event) {
+        
+        
+                  	     if (list_commentaire.getSelectionModel().getSelectedItem() ==null ) {
+   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention !");
+            alert.setHeaderText(null);
+            alert.setContentText("Il Faut Sélectionner un commentaire ");
+            alert.showAndWait();
+        
+  }
+                             else{
+   
+        Service_Commentaire_sujet sv = new Service_Commentaire_sujet();
+   	Commentaire_sujet c = new Commentaire_sujet (list_commentaire.getSelectionModel().getSelectedItem().getId_commentaire_sujet(),list_commentaire.getSelectionModel().getSelectedItem().getContenu_commentaire() );
+ 
+        
+   	sv.Supprimer_commentaire(c);
+
+           affiche(sujet);
+           contenu_commentaire.setText("");
+
+                             }
+ 
+        
     }
-}
+
+
+    
+    
 }

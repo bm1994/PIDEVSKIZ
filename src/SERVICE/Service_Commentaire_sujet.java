@@ -63,7 +63,10 @@ public class Service_Commentaire_sujet {
 
 	public void Supprimer_commentaire(Commentaire_sujet c) {
 		try {
-			String req = "delete from commentairesujet where id="+c.getId_commentaire_sujet()+"";
+                    
+
+                    
+			String req = "delete from commentairesujet where  id_commentaire_sujet="+c.getId_commentaire_sujet()+"";
             ste.executeUpdate(req);
         } catch (SQLException ex) {
             Logger.getLogger( Service_Commentaire_sujet.class.getName()).log(Level.SEVERE, null, ex);

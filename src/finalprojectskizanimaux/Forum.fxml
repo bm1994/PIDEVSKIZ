@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" onKeyReleased="#Search" prefHeight="574.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ForumController">
+<AnchorPane id="AnchorPane" fx:id="rootpane" onKeyReleased="#Search" prefHeight="574.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ForumController">
    <children>
-      <TableView fx:id="list" layoutX="273.0" layoutY="117.0" prefHeight="306.0" prefWidth="436.0">
+      <TableView fx:id="list" layoutX="273.0" layoutY="117.0" onMouseClicked="#Test" prefHeight="306.0" prefWidth="436.0">
         <columns>
           <TableColumn fx:id="col_titre" prefWidth="75.0" text="Titre" />
           <TableColumn fx:id="cal_objet" prefWidth="75.0" text="Objet" />
@@ -52,7 +52,7 @@
       <AnchorPane layoutY="563.0" prefHeight="78.0" prefWidth="747.0" style="-fx-background-color: #212221;">
          <children>
             <Button fx:id="del" layoutX="390.0" layoutY="23.0" mnemonicParsing="false" onAction="#delete" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #9C2727;" text="Delete" textFill="WHITE" />
-            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="502.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="del_img" fitHeight="25.0" fitWidth="32.0" layoutX="502.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/erro.png" />
                </image>
@@ -69,9 +69,15 @@
                   <Image url="@../Images/confirmar.png" />
                </image>
             </ImageView>
+            <Button fx:id="modif" layoutX="22.0" layoutY="22.0" mnemonicParsing="false" onAction="#Modifier_sujet" prefHeight="34.0" prefWidth="149.0" style="-fx-background-color: #BF910F;" text="Modifier" textFill="WHITE" />
+            <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="139.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/editar.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="78.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="acceuil" layoutX="6.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
       <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="32.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
          <image>

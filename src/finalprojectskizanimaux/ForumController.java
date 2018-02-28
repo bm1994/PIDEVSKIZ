@@ -5,11 +5,7 @@
  */
 package finalprojectskizanimaux;
 
-import MODEL.Notification;
 import MODEL.Sujet;
-import SERVICE.SAssociation;
-import SERVICE.SEvenement;
-import SERVICE.SNotification;
 import SERVICE.SujetService;
 import TECHNIQUE.Session;
 import java.io.File;
@@ -29,10 +25,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -52,8 +48,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -86,9 +80,13 @@ public class ForumController implements Initializable {
     private Button stat_btn;
     @FXML
     private Button profile;
-    public SNotification sn=new SNotification();
-    public SEvenement se=new SEvenement();
-    public SAssociation sa=new SAssociation();
+    @FXML
+    private AnchorPane rootpane;
+    @FXML
+    private ImageView del_img;
+    @FXML
+    private Button modif;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -193,7 +191,18 @@ list.setItems(tab);
     private void delete(ActionEvent event) {
            SujetService sv= new  SujetService();
 		    sv.Supprimer_Sujet(list.getSelectionModel().getSelectedItem());  
-        
+        AnchorPane pane = new AnchorPane();
+                
+                /*c.setNbrPlaces(c.getNbrPlaces() - result.get());
+                cs.update(c);*/
+
+                try {
+                    pane = FXMLLoader.load(getClass().getResource("Forum.fxml"));
+                } catch (IOException ex) {
+                    Logger.getLogger(ForumController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                rootpane.getChildren().setAll(pane);
+
         
         
     }
@@ -201,6 +210,18 @@ list.setItems(tab);
 
     @FXML
     private void Commentaire(ActionEvent event) {
+        
+                  	     if (list.getSelectionModel().getSelectedItem() ==null ) {
+   Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention !");
+            alert.setHeaderText(null);
+            alert.setContentText("Il Faut Sélectionner un Sujet ");
+            alert.showAndWait();
+        
+  }
+        else
+                             {
+        
         try {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("Commentaire_Sujet.fxml"));
         Parent root =loader.load();
@@ -218,7 +239,7 @@ list.setItems(tab);
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
     }
-}
+}}
 
     @FXML
     private void Statistique(ActionEvent event) {
@@ -285,50 +306,28 @@ list.setItems(tab);
         
         
     }
-      private void Notify()
-    {
-    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
-     if (!ln.isEmpty())
-     {
-         ln.stream().map((n) -> {
-             return n;
-                }).forEach((n) -> {
-                    if (n.getType()==1)
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Nouveau événement")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showInformation();
-                    }
-                    else if (n.getType()==2)
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Evénement annulé")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showError();
-                    }
-                    else
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Evénement Modifié")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showConfirm();
-                    }  });
-         sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
-    }
+
+    @FXML
+    private void Test(MouseEvent event) {
+          if (list.getSelectionModel().getSelectedItem().getId_user()!=Session.LoggedUser.getId_utilisateur())
+                   {del.setVisible(false);
+                 del_img.setVisible(false);
+                   modif.setVisible(false);
+                   }  
+          else {del.setVisible(true);
+          del_img.setVisible(true);
+            modif.setVisible(true);
 }
+    }
+
+    @FXML
+    private void Modifier_sujet(ActionEvent event) {
+        
+        
+        
+        
+        
+    }
     }
 
     

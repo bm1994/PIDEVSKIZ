@@ -6,7 +6,9 @@
 package finalprojectskizanimaux;
 
 import MODEL.Sujet;
+import MODEL.Veterinaire;
 import SERVICE.SujetService;
+import SERVICE.VeterinaireService;
 import TECHNIQUE.Session;
 import java.io.IOException;
 import java.net.URL;
@@ -21,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -30,10 +33,15 @@ import javafx.stage.Stage;
  *
  * @author habib
  */
-public class AjoutSujetController implements Initializable {
+public class Ajout_sujet_vetoController implements Initializable {
+Veterinaire s ;
+ 
+ public void veteo_all(Veterinaire v){
+           this.s=v;
 
-    @FXML
-    private Button afficher_sujet;
+    } 
+   @FXML
+    private Label l1;
     @FXML
     private Button acceuil;
     @FXML
@@ -46,43 +54,21 @@ public class AjoutSujetController implements Initializable {
     private TextArea contenu;
     @FXML
     private Button ajouter;
-    @FXML
-    private Button profile;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+ }    
+ 
+   
 
-    @FXML
-    private void forumRetour(ActionEvent event) {
-           try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) acceuil.getScene().getWindow();
-        stage.close();
-        
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
+
 
     @FXML
     private void submitClick(ActionEvent event) {
-        
-        
-        
-        
-        
+               
   if (titre.getText().equals("") || date.getText().equals("") || contenu.getText().equals("") ) {
    Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Attention !");
@@ -94,10 +80,16 @@ public class AjoutSujetController implements Initializable {
         
         
         int su = Session.LoggedUser.getId_utilisateur();
-Sujet s = new Sujet(titre.getText(),objet.getText(),contenu.getText(),date.getText(),su);
+Sujet sujet = new Sujet(titre.getText(),objet.getText(),contenu.getText(),date.getText(),su);
 SujetService sv = new SujetService();
-sv.Ajouter_Sujet(s);
- Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+VeterinaireService vt = new VeterinaireService();
+
+vt.ajouter_un_Sujet(s.getId_utilisateur(), sujet);
+sv.Ajouter_Sujet(sujet);
+int h=sv.retour_last(su);
+sv.Ajouter_user_veto(su,s.getId_utilisateur(), h);
+
+Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 alert.setTitle("Ajouter !");
             alert.setHeaderText(null);
             alert.setContentText("Voulez vous ajouter ");
@@ -140,47 +132,10 @@ if (result.get() == buttonTypeOne){
 
 
 
-
-
-            
     }
 
     @FXML
-    private void afficher_sujet(ActionEvent event) {
-         try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Forum.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) afficher_sujet.getScene().getWindow();
-        stage.close();
-        
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
-
-    @FXML
-    private void profil(ActionEvent event) {
-         try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Profil.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) profile.getScene().getWindow();
-        stage.close();
-        
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
+    private void acceuil_button(ActionEvent event) {
     }
     
 }

@@ -49,6 +49,8 @@ public class AccueilController implements Initializable {
     private Button PropreAnnoncebutton;
     @FXML
     private Button PropreAnimaux1;
+    @FXML
+    private Button affiche_veto;
 
 
     /**
@@ -254,6 +256,28 @@ public class AccueilController implements Initializable {
         System.out.println(ex.getMessage());
     }
         
+    }
+
+    @FXML
+    private void affiche_veto(ActionEvent event) {
+        
+             try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Afficher_veto.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) affiche_veto.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+
+
     }
     
 }

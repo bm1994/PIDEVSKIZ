@@ -83,6 +83,20 @@ int c = 0 ;
     return c;
 
 }
+                
+                
+
+	public void Ajouter_user_veto(int id_user,int id_veto,int id_sujet) {
+		try {
+            String req = "insert into user_veto  values ("+id_user+","+id_veto+","+id_sujet+")";
+            ste.executeUpdate(req);
+        } catch (SQLException ex) {
+            Logger.getLogger( SujetService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		
+	}
+                
+                
         public int  Afficher_list_allsujet() {
 int c = 0 ;
         try {
@@ -101,6 +115,27 @@ int c = 0 ;
 
 }
         
+        
+        
+        
+        public int retour_last(int id){
+        try {
+      String req = "select * from sujet where id_utilisateur = "+id;
+            rs = ste.executeQuery(req);
+            if (rs.next())
+            {
+                rs.last();
+                return rs.getInt(1);
+            }
+        }
+        
+         catch (SQLException ex) {
+        Logger.getLogger(SujetService.class.getName()).log(Level.SEVERE, null, ex);
+    }
+       
+        return -1 ;
+        
+        }
         
         
 

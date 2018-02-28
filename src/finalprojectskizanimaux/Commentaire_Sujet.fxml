@@ -50,6 +50,7 @@
                   <Image url="@../Images/add-item.png" />
                </image>
             </ImageView>
+            <Button fx:id="Delete" layoutX="-4.0" layoutY="490.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="25.0" prefWidth="223.0" style="-fx-background-color: #990303;" text="Delete" textFill="WHITE" />
          </children>
       </AnchorPane>
       <ListView fx:id="list_commentaire" layoutX="240.0" layoutY="111.0" onMouseClicked="#test" prefHeight="370.0" prefWidth="320.0" />
