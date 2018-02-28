@@ -11,19 +11,19 @@
 
 <AnchorPane id="AnchorPane" prefHeight="559.0" prefWidth="793.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.Ajout_animalCCController">
    <children>
-      <TextField fx:id="nomA_txt" layoutX="301.0" layoutY="118.0" />
-      <TextField fx:id="age_animal_txt" layoutX="301.0" layoutY="161.0" />
-      <TextField fx:id="type_animal_txt" layoutX="301.0" layoutY="200.0" />
-      <TextField fx:id="race_animal_txt" layoutX="615.0" layoutY="118.0" />
-      <TextField fx:id="poids_animal_txt" layoutX="615.0" layoutY="161.0" />
-      <ComboBox fx:id="sexe_animal_txt" layoutX="615.0" layoutY="200.0" prefWidth="150.0" />
-      <Label layoutX="215.0" layoutY="122.0" text="Nom_animal :" />
-      <Label layoutX="217.0" layoutY="165.0" text="Age_animal :" />
-      <Label layoutX="215.0" layoutY="204.0" text="Type_animal :" />
-      <Button fx:id="ajouter_anim" layoutX="404.0" layoutY="266.0" mnemonicParsing="false" onAction="#ajouterAnim" prefHeight="27.0" prefWidth="238.0" style="-fx-background-color: #204428;" text="Veuillez ajouter le profil de votre animal" textFill="WHITE" />
-      <Label layoutX="523.0" layoutY="204.0" text="Sexe_animal :" />
-      <Label layoutX="521.0" layoutY="165.0" text="Poids_animal :" />
-      <Label layoutX="523.0" layoutY="122.0" text="Race_animal :" />
+      <TextField fx:id="nomA_txt" layoutX="301.0" layoutY="226.0" />
+      <TextField fx:id="age_animal_txt" layoutX="301.0" layoutY="282.0" />
+      <TextField fx:id="type_animal_txt" layoutX="301.0" layoutY="333.0" />
+      <TextField fx:id="race_animal_txt" layoutX="615.0" layoutY="226.0" />
+      <TextField fx:id="poids_animal_txt" layoutX="615.0" layoutY="282.0" />
+      <ComboBox fx:id="sexe_animal_txt" layoutX="615.0" layoutY="333.0" prefWidth="150.0" />
+      <Label layoutX="215.0" layoutY="230.0" text="Nom_animal :" />
+      <Label layoutX="217.0" layoutY="286.0" text="Age_animal :" />
+      <Label layoutX="215.0" layoutY="337.0" text="Type_animal :" />
+      <Button fx:id="ajouter_anim" layoutX="337.0" layoutY="409.0" mnemonicParsing="false" onAction="#ajouterAnim" prefHeight="46.0" prefWidth="297.0" style="-fx-background-color: #259F5E;" text="Veuillez ajouter le profil de votre animal" textFill="WHITE" />
+      <Label layoutX="524.0" layoutY="337.0" text="Sexe_animal :" />
+      <Label layoutX="522.0" layoutY="286.0" text="Poids_animal :" />
+      <Label layoutX="523.0" layoutY="230.0" text="Race_animal :" />
       <AnchorPane prefHeight="559.0" prefWidth="203.0" style="-fx-background-color: #212221;">
          <children>
             <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
@@ -34,15 +34,15 @@
             <Button fx:id="Retour1" layoutX="34.0" layoutY="487.0" mnemonicParsing="false" onAction="#RetourVente" prefHeight="46.0" prefWidth="139.0" style="-fx-background-color: #212221;" text="Retourner" textFill="#f5f3f3" />
             <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
             <Button layoutX="9.0" layoutY="237.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
-            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="27.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/images.png" />
+                  <Image url="@../Images/visitas-h.png" />
                </image>
             </ImageView>
             <Button fx:id="acceuil" layoutX="9.0" layoutY="196.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
             <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="30.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/bouton_accueil.png" />
+                  <Image url="@../Images/colecao-h.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="40.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
@@ -52,5 +52,15 @@
             </ImageView>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="411.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/animal-enseigne-de-l-39-hotel-avec-un-chien-et-un-chat-sous-une-ligne-de-toit_318-51335.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="46.0" fitWidth="42.0" layoutX="337.0" layoutY="411.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/add.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

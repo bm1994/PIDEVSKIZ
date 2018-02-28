@@ -22,27 +22,37 @@
             <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/images.png" />
+                  <Image url="@../Images/visitas-h.png" />
                </image>
             </ImageView>
             <Button fx:id="acceuil3" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour3" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
             <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/bouton_accueil.png" />
+                  <Image url="@../Images/colecao-h.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="SupprimerAnimal" layoutX="11.0" layoutY="467.0" mnemonicParsing="false" onAction="#SupprimerAnimal1" prefHeight="50.0" prefWidth="175.0" style="-fx-background-color: #212221;" text="Supprimer" textFill="#fffefe" />
+            <ImageView fitHeight="34.0" fitWidth="40.0" layoutX="26.0" layoutY="475.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Images/deletar-h.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <TableView fx:id="tableAnimal" layoutX="214.0" layoutY="97.0" prefHeight="241.0" prefWidth="496.0">
+      <TableView fx:id="tableAnimal" layoutX="203.0" layoutY="172.0" prefHeight="277.0" prefWidth="528.0">
         <columns>
           <TableColumn fx:id="NomA" prefWidth="85.0" text="Nom_animal" />
           <TableColumn fx:id="AgeA" prefWidth="58.0" text="Age " />
             <TableColumn fx:id="TypeA" prefWidth="95.0" text="Type" />
             <TableColumn fx:id="RaceA" prefWidth="116.0" text="Race" />
             <TableColumn fx:id="poidsA" prefWidth="64.0" text="Poids" />
-            <TableColumn fx:id="sexeA" prefWidth="77.0" text="Sexe" />
+            <TableColumn fx:id="sexeA" prefWidth="100.0" text="Sexe" />
         </columns>
       </TableView>
-      <Button fx:id="SupprimerAnimal" layoutX="321.0" layoutY="387.0" mnemonicParsing="false" onAction="#SupprimerAnimal1" text="Supprimer" />
+      <ImageView fitHeight="172.0" fitWidth="528.0" layoutX="203.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/pattes-chien_miniature.jpeg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

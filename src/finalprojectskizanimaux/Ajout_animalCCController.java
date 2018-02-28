@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -66,6 +68,16 @@ public class Ajout_animalCCController implements Initializable {
         sexe_animal_txt.setItems(comboListsexe);
     }    
 
+    public boolean Numero(String num) {
+        String masque = "[0-9]$";
+        Pattern pattern = Pattern.compile(masque);
+        Matcher controler = pattern.matcher(num);
+        if (controler.matches()) {
+            return true;
+        }
+        return false;
+    }
+    
     @FXML
     private void ajouterAnim(ActionEvent event) {
         if(nomA_txt.getText().equals("")||age_animal_txt.getText().equals("") || type_animal_txt.getText().equals("")|| race_animal_txt.getText().equals("") || poids_animal_txt.getText().equals("") || sexe_animal_txt.getValue().equals("") ){
@@ -73,6 +85,13 @@ public class Ajout_animalCCController implements Initializable {
              Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                             alert.setTitle("Ajout refusé ");
                                             alert.setHeaderText("Veuillez remplir tous les champs");
+                                            Optional<ButtonType> result = alert.showAndWait();
+            
+        }
+        else if(!Numero(age_animal_txt.getText())){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Ajout refusé ");
+                                            alert.setHeaderText("Age invalide");
                                             Optional<ButtonType> result = alert.showAndWait();
             
         }

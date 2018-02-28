@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="570.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ProfilpropAnnonceAdoptionController">
+<AnchorPane id="AnchorPane" prefHeight="578.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ProfilpropAnnonceAdoptionController">
    <children>
       <AnchorPane prefHeight="594.0" prefWidth="203.0" style="-fx-background-color: #212221;">
          <children>
@@ -21,13 +21,13 @@
             <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/images.png" />
+                  <Image url="@../Images/visitas-h.png" />
                </image>
             </ImageView>
             <Button fx:id="acceuil" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
             <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/bouton_accueil.png" />
+                  <Image url="@../Images/colecao-h.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="22.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
@@ -37,16 +37,41 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <Label fx:id="prenom" layoutX="365.0" layoutY="108.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
-      <Label fx:id="nom" layoutX="365.0" layoutY="158.0" prefHeight="32.0" prefWidth="124.0" text="Label" />
-      <Label fx:id="adresse" layoutX="365.0" layoutY="205.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
-      <Label fx:id="email" layoutX="365.0" layoutY="250.0" prefHeight="25.0" prefWidth="114.0" text="Label" />
-      <Label fx:id="num_tel" layoutX="365.0" layoutY="293.0" prefHeight="34.0" prefWidth="103.0" text="Label" />
-      <Label layoutX="251.0" layoutY="108.0" prefHeight="32.0" prefWidth="114.0" text="prenom :" />
-      <Label layoutX="258.0" layoutY="165.0" text="nom :" />
-      <Label layoutX="258.0" layoutY="212.0" text="Adresse :" />
-      <Label layoutX="260.0" layoutY="254.0" text="Email :" />
-      <Label layoutX="258.0" layoutY="301.0" text="Numero_tel :" />
-      <Button fx:id="contacter" layoutX="444.0" layoutY="501.0" mnemonicParsing="false" onAction="#ContacterparSms" prefHeight="46.0" prefWidth="139.0" text="Contacter par Sms" />
+      <Label fx:id="prenom" layoutX="552.0" layoutY="235.0" prefHeight="32.0" prefWidth="182.0" text="Label" />
+      <Label fx:id="nom" layoutX="552.0" layoutY="281.0" prefHeight="32.0" prefWidth="182.0" text="Label" />
+      <Label fx:id="adresse" layoutX="552.0" layoutY="329.0" prefHeight="32.0" prefWidth="182.0" text="Label" />
+      <Label fx:id="email" layoutX="552.0" layoutY="378.0" prefHeight="32.0" prefWidth="182.0" text="Label" />
+      <Label fx:id="num_tel" layoutX="552.0" layoutY="429.0" prefHeight="34.0" prefWidth="160.0" text="Label" />
+      <Label layoutX="416.0" layoutY="235.0" prefHeight="32.0" prefWidth="114.0" text="Prenom :">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="441.0" layoutY="285.0" text="Nom :">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="419.0" layoutY="332.0" text="Adresse :">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="439.0" layoutY="381.0" text="Email :">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Label layoutX="399.0" layoutY="433.0" text="Numero_tel :">
+         <font>
+            <Font size="16.0" />
+         </font></Label>
+      <Button fx:id="contacter" layoutX="800.0" layoutY="334.0" mnemonicParsing="false" onAction="#ContacterparSms" prefHeight="46.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Contacter par Sms" textFill="#fcf7f7" />
+      <ImageView fitHeight="167.0" fitWidth="787.0" layoutX="202.0" layoutY="-3.0" pickOnBounds="true">
+         <image>
+            <Image url="@../Images/dog-shepherd-forest-autumn-nature-leaves-hd-wallpaper.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="32.0" layoutX="807.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Messages-Android-R.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

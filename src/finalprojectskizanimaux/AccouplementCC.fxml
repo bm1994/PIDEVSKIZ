@@ -13,7 +13,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="Anchor3" prefHeight="578.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.AccouplementCCController">
    <children>
-      <AnchorPane prefHeight="578.0" prefWidth="206.0" style="-fx-background-color: #262438;">
+      <AnchorPane prefHeight="578.0" prefWidth="206.0" style="-fx-background-color: #212221;">
          <children>
             <Label layoutX="46.0" layoutY="29.0" text="SkiizAnimaux" textFill="#fcfafa">
                <font>
@@ -21,24 +21,26 @@
                </font>
             </Label>
             <ImageView fitHeight="34.0" fitWidth="54.0" layoutX="7.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" />
-            <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Profile" textFill="WHITE" />
+            <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/images.png" />
+                  <Image url="@../Images/visitas-h.png" />
                </image>
             </ImageView>
-            <Button fx:id="acceuil" layoutX="17.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #262438;" text="Acceuil" textFill="#eeeaea" />
+            <Button fx:id="acceuil" layoutX="17.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
             <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/bouton_accueil.png" />
+                  <Image url="@../Images/colecao-h.png" />
                </image>
             </ImageView>
+            <Button fx:id="Ajouter_annonce_button2" layoutX="-4.0" layoutY="390.0" mnemonicParsing="false" onAction="#PosterAnnonce" prefHeight="34.0" prefWidth="206.0" style="-fx-background-color: #259F5E;" text="Poster votre Annonce" textFill="#f8f8f8" />
          </children>
       </AnchorPane>
-      <ListView fx:id="liste2" layoutX="256.0" layoutY="106.0" onMouseClicked="#onSelectAccouplement" prefHeight="397.0" prefWidth="632.0" />
-      <Button fx:id="Ajouter_annonce_button2" layoutX="256.0" layoutY="522.0" mnemonicParsing="false" onAction="#PosterAnnonce" prefHeight="34.0" prefWidth="168.0" style="-fx-background-color: #259F5E;" text="Poster votre Annonce" textFill="#f8f8f8" />
-      <ChoiceBox fx:id="combochoix" layoutX="307.0" layoutY="51.0" prefWidth="150.0" />
-      <TextField fx:id="Recherche_accouplement_txt" layoutX="666.0" layoutY="51.0" />
-      <ComboBox fx:id="comboSexe" layoutX="666.0" layoutY="51.0" onAction="#comboRechercheSexe" prefWidth="150.0" />
+      <ListView fx:id="liste2" layoutX="206.0" layoutY="106.0" onMouseClicked="#onSelectAccouplement" prefHeight="473.0" prefWidth="783.0" stylesheets="@Style.css" />
+      <ChoiceBox fx:id="combochoix" layoutX="351.0" layoutY="51.0" prefWidth="150.0" />
+      <TextField fx:id="Recherche_accouplement_txt" layoutX="724.0" layoutY="51.0" />
+      <ComboBox fx:id="comboSexe" layoutX="724.0" layoutY="51.0" onAction="#comboRechercheSexe" prefWidth="150.0" />
+      <Label layoutX="251.0" layoutY="51.0" prefHeight="25.0" prefWidth="86.0" text="Filtrer par :" />
+      <Label layoutX="619.0" layoutY="51.0" prefHeight="25.0" prefWidth="86.0" text="Filtrer :" />
    </children>
 </AnchorPane>

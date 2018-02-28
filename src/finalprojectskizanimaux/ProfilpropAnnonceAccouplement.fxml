@@ -7,32 +7,32 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="705.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ProfilpropAnnonceAccouplementController">
+<AnchorPane id="AnchorPane" prefHeight="587.0" prefWidth="989.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.ProfilpropAnnonceAccouplementController">
    <children>
-      <Label fx:id="prenom" layoutX="443.0" layoutY="191.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
-      <Label fx:id="nom" layoutX="443.0" layoutY="239.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
-      <Label fx:id="adresse" layoutX="443.0" layoutY="291.0" prefHeight="32.0" prefWidth="168.0" text="Label" />
-      <Label fx:id="email" layoutX="443.0" layoutY="355.0" prefHeight="32.0" prefWidth="179.0" text="Label" />
-      <Label fx:id="num_tel" layoutX="443.0" layoutY="427.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
-      <Label layoutX="296.0" layoutY="189.0" prefHeight="32.0" prefWidth="114.0" text="Prenom :" textFill="#bc0000">
+      <Label fx:id="prenom" layoutX="600.0" layoutY="207.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
+      <Label fx:id="nom" layoutX="600.0" layoutY="257.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
+      <Label fx:id="adresse" layoutX="600.0" layoutY="318.0" prefHeight="32.0" prefWidth="168.0" text="Label" />
+      <Label fx:id="email" layoutX="600.0" layoutY="373.0" prefHeight="32.0" prefWidth="179.0" text="Label" />
+      <Label fx:id="num_tel" layoutX="600.0" layoutY="445.0" prefHeight="32.0" prefWidth="114.0" text="Label" />
+      <Label layoutX="437.0" layoutY="207.0" prefHeight="32.0" prefWidth="114.0" text="Prenom :">
          <font>
-            <Font name="System Bold Italic" size="24.0" />
+            <Font size="16.0" />
          </font></Label>
-      <Label layoutX="296.0" layoutY="239.0" prefHeight="32.0" prefWidth="114.0" text="nom :" textFill="#bc0000">
+      <Label layoutX="437.0" layoutY="257.0" prefHeight="32.0" prefWidth="114.0" text="nom :" textFill="#030303">
          <font>
-            <Font name="System Bold Italic" size="21.0" />
+            <Font size="16.0" />
          </font></Label>
-      <Label layoutX="296.0" layoutY="291.0" prefHeight="32.0" prefWidth="114.0" text="Adresse :" textFill="#bc0000">
+      <Label layoutX="437.0" layoutY="309.0" prefHeight="32.0" prefWidth="114.0" text="Adresse :">
          <font>
-            <Font name="System Bold Italic" size="21.0" />
+            <Font size="16.0" />
          </font></Label>
-      <Label layoutX="296.0" layoutY="355.0" prefHeight="32.0" prefWidth="114.0" text="Email :" textFill="#bc0000">
+      <Label layoutX="437.0" layoutY="373.0" prefHeight="32.0" prefWidth="114.0" text="Email :" textFill="#030303">
          <font>
-            <Font name="System Bold Italic" size="21.0" />
+            <Font size="16.0" />
          </font></Label>
-      <Label layoutX="296.0" layoutY="420.0" prefHeight="46.0" prefWidth="130.0" text="Numero_tel :" textFill="#bc0000">
+      <Label layoutX="437.0" layoutY="438.0" prefHeight="46.0" prefWidth="130.0" text="Numero_tel :">
          <font>
-            <Font name="System Bold Italic" size="21.0" />
+            <Font size="16.0" />
          </font></Label>
       <AnchorPane layoutY="-7.0" prefHeight="594.0" prefWidth="203.0" style="-fx-background-color: #212221;">
          <children>
@@ -46,13 +46,13 @@
             <Button layoutX="9.0" layoutY="191.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Profile" textFill="WHITE" />
             <ImageView fitHeight="25.0" fitWidth="32.0" layoutX="34.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/images.png" />
+                  <Image url="@../Images/visitas-h.png" />
                </image>
             </ImageView>
             <Button fx:id="acceuil" layoutX="14.0" layoutY="120.0" mnemonicParsing="false" onAction="#forumRetour" prefHeight="25.0" prefWidth="189.0" style="-fx-background-color: #212221;" text="Acceuil" textFill="#eeeaea" />
             <ImageView fitHeight="34.0" fitWidth="32.0" layoutX="31.0" layoutY="117.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/bouton_accueil.png" />
+                  <Image url="@../Images/colecao-h.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="25.0" fitWidth="27.0" layoutX="22.0" layoutY="546.0" pickOnBounds="true" preserveRatio="true">
@@ -62,11 +62,16 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ImageView fitHeight="108.0" fitWidth="130.0" layoutX="372.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="161.0" fitWidth="787.0" layoutX="202.0" pickOnBounds="true">
          <image>
-            <Image url="@../Images/admin-man-profile-administrator-people-person-male-human-member-account-employee-user-icon.png" />
+            <Image url="@../Images/dog-shepherd-forest-autumn-nature-leaves-hd-wallpaper.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="contacter" layoutX="500.0" layoutY="511.0" mnemonicParsing="false" onAction="#contacterparSms" prefHeight="46.0" prefWidth="168.0" text="Contacter par Sms" />
+      <Button fx:id="contacter" layoutX="786.0" layoutY="363.0" mnemonicParsing="false" onAction="#contacterparSms" prefHeight="53.0" prefWidth="203.0" style="-fx-background-color: #212221;" text="Contacter par Sms" textFill="#fefffe" />
+      <ImageView fitHeight="32.0" fitWidth="45.0" layoutX="793.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/Messages-Android-R.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

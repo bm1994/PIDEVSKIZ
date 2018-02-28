@@ -73,3 +73,55 @@
 #CntFb{
  
 }
+
+.list2-view {
+    -fx-background-color:#787746
+;
+
+}
+
+.list2-view .list-cell:hover {
+    -fx-background-color: #434343;
+}
+
+.list2-view .list-cell:selected {
+    -fx-background-color:  #119974;
+}
+
+.list2-view .list-cell {
+    -fx-background-color:#787746
+;
+
+    -fx-text-fill: white;
+}
+
+.list2-view .label {
+    -fx-text-fill: white;
+}
+
+
+.listAnimaux-view {
+    -fx-background-color:#787746
+;
+
+}
+
+.listAnimaux-view .list-cell:hover {
+    -fx-background-color: #434343;
+}
+
+.listAnimaux-view .list-cell:selected {
+    -fx-background-color:  #119974;
+}
+
+.listAnimaux-view .list-cell {
+    -fx-background-color:#787746
+;
+
+    -fx-text-fill: white;
+}
+
+.listAnimaux-view .label {
+    -fx-text-fill: white;
+}
+

@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,7 +23,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
@@ -84,9 +87,29 @@ public class Ajout_venteCCController implements Initializable {
 
     @FXML
     private void ajouterAnnonce1(ActionEvent event) {
+     if(TitreA1_txt.getText().equals("")||DescriptionA1_txt.getText().equals("")||dateA1_txt.getEditor().getText().equals("")||photo_annonce1_txt.getText().equals("")||monAnnonceCombo.getValue().equals("")||monanimalCombo.getValue().equals("")){
+       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Ajout refusé ");
+                                            alert.setHeaderText("Veuillez remplir tous les champs");
+                                            Optional<ButtonType> result = alert.showAndWait();   
+     }   
         
-        
-        
+     else if(TitreA1_txt.getText().length()<8){
+         
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Ajout refusé ");
+                                            alert.setHeaderText("Le titre que vous voulez ajouter doit contenir au minimum 8lettres");
+                                            Optional<ButtonType> result = alert.showAndWait(); 
+         
+     }
+     else if(DescriptionA1_txt.getText().length()<12){
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                            alert.setTitle("Ajout refusé ");
+                                            alert.setHeaderText("Longeur du Description invalide");
+                                            Optional<ButtonType> result = alert.showAndWait(); 
+     }
+     
+     else{   
         AnnonceService ias = new AnnonceService();
       Annonce a=new Annonce();
       AnimalService animalService=new AnimalService();
@@ -102,7 +125,7 @@ public class Ajout_venteCCController implements Initializable {
         tray.setTitle("Votre Annonce est ajoutée");
         tray.setMessage(a.getTitre_annonce());
         tray.showAndDismiss(Duration.seconds(4));
-      
+     }
     }
 
     @FXML
