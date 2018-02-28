@@ -5,7 +5,12 @@
  */
 package finalprojectskizanimaux;
 
+import MODEL.Notification;
 import MODEL.Sujet;
+import SERVICE.SAbonnement;
+import SERVICE.SAssociation;
+import SERVICE.SEvenement;
+import SERVICE.SNotification;
 import SERVICE.SujetService;
 import TECHNIQUE.Session;
 import java.io.File;
@@ -25,6 +30,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
@@ -48,6 +54,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -86,7 +94,10 @@ public class ForumController implements Initializable {
     private ImageView del_img;
     @FXML
     private Button modif;
-
+     private SAssociation sa=new SAssociation();
+    private SEvenement se=new SEvenement();
+    private SAbonnement sab=new SAbonnement();
+    private SNotification sn=new SNotification();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -328,6 +339,50 @@ list.setItems(tab);
         
         
     }
+        private void Notify()
+    {
+    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
+     if (!ln.isEmpty())
+     {
+         ln.stream().map((n) -> {
+             return n;
+                }).forEach((n) -> {
+                    if (n.getType()==1)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Nouveau événement")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showInformation();
+                    }
+                    else if (n.getType()==2)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement annulé")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showError();
+                    }
+                    else
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement Modifié")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showConfirm();
+                    }  });
+         sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
+    }
+}
     }
 
     

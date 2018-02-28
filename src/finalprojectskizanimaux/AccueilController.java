@@ -5,20 +5,32 @@
  */
 package finalprojectskizanimaux;
 
+import MODEL.Notification;
+import SERVICE.SAbonnement;
+import SERVICE.SAssociation;
+import SERVICE.SEvenement;
+import SERVICE.SNotification;
 import TECHNIQUE.Session;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -51,7 +63,10 @@ public class AccueilController implements Initializable {
     private Button PropreAnimaux1;
     @FXML
     private Button affiche_veto;
-
+    private SAssociation sa=new SAssociation();
+    private SEvenement se=new SEvenement();
+    private SNotification sn=new SNotification();
+    private SAbonnement sab=new SAbonnement();
 
     /**
      * Initializes the controller class.
@@ -73,7 +88,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -93,7 +108,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -113,7 +128,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -132,7 +147,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -151,7 +166,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -170,7 +185,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-  
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -190,7 +205,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -210,7 +225,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -229,7 +244,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -250,7 +265,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -271,7 +286,7 @@ public class AccueilController implements Initializable {
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -279,5 +294,97 @@ public class AccueilController implements Initializable {
 
 
     }
+    private void Notify() throws IOException
+    {
+    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
+     if (!ln.isEmpty())
+     {  System.out.println(Session.LoggedUser.getId_utilisateur());
+         for(Notification n:ln)
+         {
+             System.out.println(n.getId_association());
+             if (n.getType()==1)
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Nouveau événement")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT).onAction(new EventHandler<ActionEvent>() {
+
+                     @Override
+                     public void handle(ActionEvent event) {
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
+                 Parent root;
+                         try {
+                             root = loader.load();
+                             Stage stage = (Stage) associationButton.getScene().getWindow();
+                             stage.close();
+                             EvenementDetailsController edc=loader.getController();
+                             edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));
+                             Stage s = new Stage();
+                             s.setScene(new Scene(root));
+                             s.show();
+                         } catch (IOException ex) {
+                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+
+            
+                     }
+                 });
+                          notification.showConfirm();
+             
+             }
+             else if (n.getType()==2)
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Evénement annulé")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT);
+                          notification.showConfirm();
+             }
+             else
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Evénement annulé")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT).onAction(new EventHandler<ActionEvent>() {
+
+                    @Override
+                     public void handle(ActionEvent event) {
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
+                     Parent root;
+                         try {
+                             root = loader.load();
+                             Stage stage = (Stage) associationButton.getScene().getWindow();
+                             stage.close();
+                             EvenementDetailsController edc=loader.getController();
+                             edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));
+                             Stage s = new Stage();
+                             s.setScene(new Scene(root));
+                             s.show();
+                         } catch (IOException ex) {
+                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+
+            
+                          
+             }
+                     
+                         });
+                                 
+                          notification.showConfirm();
+     }
+sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
+}
+    
+}
+}
     
 }

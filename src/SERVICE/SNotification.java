@@ -51,6 +51,30 @@ public class SNotification implements INotification
             Logger.getLogger(SNotification.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    @Override
+    public void supprimerNotification(int id_utilisateur,int id_evenement,int type) 
+    {
+        String req="DELETE FROM notification WHERE id_utilisateur=? and id_evenement=? and type=?";
+        try
+        {
+            ps=s1.getConnection().prepareStatement(req);        
+            ps.setInt(1, id_utilisateur);
+            ps.setInt(2, id_evenement);
+            ps.setInt(3, type);
+            
+        }
+        catch(SQLException ex)
+        {
+                 Logger.getLogger(SNotification.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            ps.executeUpdate();
+        } 
+        catch (SQLException ex) 
+        {
+            Logger.getLogger(SNotification.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     @Override
     public List<Notification> chercherNotification(int id_utilisateur) {

@@ -7,34 +7,50 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="585.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementCRUDController">
+<AnchorPane id="AnchorPane" prefHeight="671.0" prefWidth="916.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementCRUDController">
    <children>
-      <TextField fx:id="tftitre" layoutX="206.0" layoutY="91.0" prefHeight="25.0" prefWidth="211.0" />
-      <TextField fx:id="tflieu" layoutX="206.0" layoutY="152.0" prefHeight="25.0" prefWidth="211.0" />
-      <DatePicker fx:id="tfdate" layoutX="210.0" layoutY="211.0" prefHeight="25.0" prefWidth="211.0" />
-      <TextArea fx:id="tfsujet" layoutX="212.0" layoutY="277.0" prefHeight="200.0" prefWidth="211.0" />
-      <Button fx:id="buttonRetourr" layoutX="14.0" layoutY="429.0" mnemonicParsing="false" onAction="#actionRetourr" prefHeight="36.0" prefWidth="114.0" text="Retour" />
-      <Label layoutX="108.0" layoutY="95.0" text="Titre :">
+      <TextField fx:id="tftitre" layoutX="387.0" layoutY="93.0" prefHeight="25.0" prefWidth="211.0" />
+      <TextField fx:id="tflieu" layoutX="387.0" layoutY="152.0" prefHeight="25.0" prefWidth="211.0" />
+      <DatePicker fx:id="tfdate" layoutX="387.0" layoutY="211.0" prefHeight="25.0" prefWidth="211.0" />
+      <TextArea fx:id="tfsujet" layoutX="387.0" layoutY="277.0" prefHeight="200.0" prefWidth="211.0" />
+      <Label layoutX="291.0" layoutY="95.0" text="Titre :">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="108.0" layoutY="154.0" text="Lieu :">
+      <Label layoutX="297.0" layoutY="154.0" text="Lieu :">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="108.0" layoutY="213.0" text="Date :">
+      <Label layoutX="295.0" layoutY="213.0" text="Date :">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="108.0" layoutY="277.0" text="Sujet :">
+      <Label layoutX="294.0" layoutY="277.0" text="Sujet :">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="buttonEnvoyer" layoutX="187.0" layoutY="511.0" mnemonicParsing="false" onAction="#actionEnvoi" prefHeight="25.0" prefWidth="125.0" text="Envoyer" />
-      <Button fx:id="buttonAnnuler" layoutX="335.0" layoutY="511.0" mnemonicParsing="false" onAction="#actionAnnulation" prefHeight="25.0" prefWidth="125.0" text="Annuler" />
+      <Button fx:id="buttonEnvoyer" layoutX="357.0" layoutY="524.0" mnemonicParsing="false" onAction="#actionEnvoi" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #212221;" text="Envoyer" textFill="#fffefe" />
+      <Button fx:id="buttonAnnuler" layoutX="493.0" layoutY="524.0" mnemonicParsing="false" onAction="#actionAnnulation" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: #212221;" text="Annuler" textFill="WHITE" />
+      <AnchorPane prefHeight="719.0" prefWidth="188.0" style="-fx-background-color: #212221;">
+         <children>
+            <Button fx:id="deconnexionButton" layoutX="-2.0" layoutY="636.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #B40404;" text="Deconnextion" textFill="WHITE" />
+            <Text fill="#c7dc2a" layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SkiiZanimaux" wrappingWidth="149.30859375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="PropreAnnoncebutton" layoutX="30.0" layoutY="604.0" mnemonicParsing="false" onAction="#GestionAnnonces" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #212221;" text="Mes Annonces" textFill="WHITE" />
+            <Button fx:id="PropreAnimaux1" layoutX="24.0" layoutY="569.0" mnemonicParsing="false" onAction="#GestionAnimaux" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #212221;" text="Mes Animaux" textFill="WHITE" />
+            <Button fx:id="buttonRetourr" layoutY="484.0" mnemonicParsing="false" onAction="#actionRetourr" prefHeight="36.0" prefWidth="207.0" style="-fx-background-color: #212221;" text="Retour" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

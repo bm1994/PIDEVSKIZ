@@ -58,9 +58,15 @@ public class EvenementCRUDController implements Initializable {
     private final SNotification sn=new SNotification();
     private final SAbonnement sab=new SAbonnement();
     private final SAssociation  sa=new SAssociation();
-    @FXML
-    private Button buttonModifier;
     private final ArrayList<Integer> ari=new ArrayList<>(sab.ListAbonnes(Session.LoggedUser.getId_utilisateur()));
+    @FXML
+    private Button buttonEnvoyer;
+    @FXML
+    private Button deconnexionButton;
+    @FXML
+    private Button PropreAnnoncebutton;
+    @FXML
+    private Button PropreAnimaux1;
         
     /**
      * Initializes the controller class.
@@ -92,7 +98,7 @@ public class EvenementCRUDController implements Initializable {
     @FXML
     private void actionEnvoi(ActionEvent event) 
     {
-        if (tftitre.getText().length()<5 || tflieu.getText().length()<5 || tfsujet.getText().length()<5  )
+        if (tftitre.getText().length()<5 || tflieu.getText().length()<5 || tfsujet.getText().length()<5 || tfdate.getValue()==null )
         {
             Alert a=new Alert(Alert.AlertType.WARNING,"Erreur",ButtonType.OK);
             a.setContentText("Veuillez bien saisir les champs.");
@@ -104,7 +110,10 @@ public class EvenementCRUDController implements Initializable {
         {
             sn.ajouterNotification(ari.get(i),Session.LoggedUser.getId_utilisateur(),sev.idDernierEvenementAjoute(Session.LoggedUser.getId_utilisateur()),1);
         }
-        sev.AjouterEvenement(Session.LoggedUser.getId_utilisateur(),tfsujet.getText(),Date.valueOf(tfdate.getValue()), tftitre.getText(), tflieu.getText());
+         sev.AjouterEvenement(Session.LoggedUser.getId_utilisateur(),tfsujet.getText(),Date.valueOf(tfdate.getValue()), tftitre.getText(), tflieu.getText());
+         Alert a=new Alert(Alert.AlertType.WARNING,"Succés",ButtonType.OK);
+         a.setContentText("Evénement ajouté.");
+         a.showAndWait();
         tftitre.setText("");
         tfsujet.setText("");
         tflieu.setText("");
@@ -115,12 +124,13 @@ public class EvenementCRUDController implements Initializable {
 
     @FXML
     private void actionAnnulation(ActionEvent event) 
-    {
+       {
         tftitre.setText("");
         tfsujet.setText("");
         tflieu.setText("");
         tfdate.setValue(null);
     }
+    
       private void Notify()
     {
     List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
@@ -165,4 +175,62 @@ public class EvenementCRUDController implements Initializable {
          sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
     }
 }
+
+     @FXML
+    private void deconnecter(ActionEvent event) {
+        try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) deconnexionButton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnnonces(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Propre_annoncesCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage)  PropreAnnoncebutton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnimaux(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("MesAnimauxCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) PropreAnimaux1.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
 }

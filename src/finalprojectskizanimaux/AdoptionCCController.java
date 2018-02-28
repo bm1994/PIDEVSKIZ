@@ -7,11 +7,18 @@ package finalprojectskizanimaux;
 
 import MODEL.Animal;
 import MODEL.Annonce;
+import MODEL.Notification;
 import SERVICE.AnimalService;
 import SERVICE.AnnonceService;
+import SERVICE.SAbonnement;
+import SERVICE.SAssociation;
+import SERVICE.SEvenement;
+import SERVICE.SNotification;
+import TECHNIQUE.Session;
 import static TECHNIQUE.Session.LoggedUser;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.value.ChangeListener;
@@ -22,6 +29,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -41,6 +49,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -66,7 +76,10 @@ public class AdoptionCCController implements Initializable {
     @FXML
     private ComboBox<String> comboSexe;
     ObservableList<String> comboListsexe = FXCollections.observableArrayList("Male","Femelle");
-
+    private SAssociation sa=new SAssociation();
+    private SEvenement se=new SEvenement();
+    private SAbonnement sab=new SAbonnement();
+    private SNotification sn=new SNotification();
     /**
      * Initializes the controller class.
      */
@@ -335,9 +348,51 @@ if (result.get() == buttonTypeOne){
         } }
 
      
-       
-       
-       
+         private void Notify()
+    {
+    List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
+     if (!ln.isEmpty())
+     {
+         ln.stream().map((n) -> {
+             return n;
+                }).forEach((n) -> {
+                    if (n.getType()==1)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Nouveau événement")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showInformation();
+                    }
+                    else if (n.getType()==2)
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement annulé")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showError();
+                    }
+                    else
+                    {
+                        Notifications notification=Notifications.create()
+                                .title("Evénement Modifié")
+                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
+                                .graphic(null)
+                                .darkStyle()
+                                .hideAfter(Duration.seconds(5))
+                                .position(Pos.TOP_RIGHT);
+                        notification.showConfirm();
+                    }  });
+         sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
+    }
+}
+   
        
        
        

@@ -70,6 +70,12 @@ public class EvenementDetailsController implements Initializable {
     private Label lblparticipants;
     @FXML
     private Button buttonCommentaire;
+    @FXML
+    private Button deconnexionButton;
+    @FXML
+    private Button PropreAnnoncebutton;
+    @FXML
+    private Button PropreAnimaux1;
     
     public void PassByEvenement(Evenement e)
     {   evenement=e;
@@ -202,6 +208,64 @@ public class EvenementDetailsController implements Initializable {
          sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
     }
 }
+
+     @FXML
+    private void deconnecter(ActionEvent event) {
+        try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) deconnexionButton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnnonces(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Propre_annoncesCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage)  PropreAnnoncebutton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnimaux(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("MesAnimauxCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) PropreAnimaux1.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
    
 } 
 

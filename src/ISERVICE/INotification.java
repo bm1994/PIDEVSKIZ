@@ -20,4 +20,5 @@ public interface INotification
     public List<Notification> chercherNotification(int id_utilisateur);
     public void ajouterNotification(int id_utilisateur, int id_association,int evenement,int type);
     public void supprimerNotification(int id_utilisateur);
+    public void supprimerNotification(int id_utilisateur,int id_evenement,int type);
 }

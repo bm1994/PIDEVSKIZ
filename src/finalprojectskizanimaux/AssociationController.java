@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -51,6 +53,16 @@ public class AssociationController implements Initializable{
    public SEvenement se=new SEvenement();
    
    ObservableList<Association> obs=FXCollections.observableArrayList(sa.listerAssociation());
+    @FXML
+    private Button profilButton;
+    @FXML
+    private Button deconnexionButton;
+    @FXML
+    private Button PropreAnnoncebutton;
+    @FXML
+    private Button PropreAnimaux1;
+    @FXML
+    private Button buttonAccueil;
     
    
     
@@ -68,7 +80,7 @@ public class AssociationController implements Initializable{
                     {
 
                         setText("Nom : "+a.getNom_association()+ "\n" + " E-mail : " + a.getEmail_association()+ "\n" + " Téléphone : " + a.getTelephone_association()+ "\n" + " Abonnés : " + a.getNombre_abonnes());
-                        setFont(Font.font("Berlin Sans FB Demi Bold", 12));
+                        setFont(Font.font("Berlin Sans FB Demi Bold", 15));
 
                         // setAlignment(Pos.CENTER);
                     }
@@ -175,5 +187,100 @@ public class AssociationController implements Initializable{
          sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
     }
 }
+
+    @FXML
+    private void afficherProfil(ActionEvent event) {
+        try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Profil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) profilButton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+  
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void deconnecter(ActionEvent event) {
+        try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) deconnexionButton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnnonces(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Propre_annoncesCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage)  PropreAnnoncebutton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnimaux(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("MesAnimauxCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) PropreAnimaux1.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void actionAccueil(ActionEvent event) {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("Sinscrire.fxml"));
+                    Parent root;
+        try {
+            root = loader.load();
+                    Stage stage = (Stage) buttonAccueil.getScene().getWindow();
+                    stage.close();
+
+                    Stage s = new Stage();
+                    s.setScene(new Scene(root));
+                    s.show();
+        } catch (IOException ex) {
+            Logger.getLogger(AssociationController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+                    
+    }
     
 }

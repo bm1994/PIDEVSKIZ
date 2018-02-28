@@ -26,9 +26,12 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -51,16 +54,9 @@ import org.controlsfx.control.Notifications;
  * @author Ruskov
  */
 public class EvenementController implements Initializable {
-       @FXML
-    private Button evenementRetourButton;
-    @FXML
-    private Button detailsButton;
-    @FXML
-    private Button buttonAjouter;
+  
     @FXML
     private Button buttonSupprimer;
-    @FXML
-    private Button buttonModifier;
     @FXML
     private ListView<Evenement> lve;
     
@@ -72,15 +68,29 @@ public class EvenementController implements Initializable {
     private final SEvenement se=new SEvenement();
     private final SAssociation sa=new SAssociation();
     private final ArrayList<Integer> ari=new ArrayList<>(sab.ListAbonnes(Session.LoggedUser.getId_utilisateur()));
-    private final ObservableList<Evenement> obe=FXCollections.observableArrayList(se.ConsulterEvenement());
+    private  ObservableList<Evenement> obe=FXCollections.observableArrayList(se.ConsulterEvenement());
+    @FXML
+    private Button deconnexionButton;
+    @FXML
+    private Button PropreAnnoncebutton;
+    @FXML
+    private Button PropreAnimaux1;
+    @FXML
+    private Button buttonModifier1;
+    @FXML
+    private Button buttonDetails;
+    @FXML
+    private Button buttonAjout;
+    @FXML
+    private Button buttonRetour;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         if(Session.LoggedUser.getRole()!=2)
         {
-            buttonAjouter.setVisible(false);
+            buttonAjout.setVisible(false);
             buttonSupprimer.setVisible(false);
-            buttonModifier.setVisible(false);
+            buttonModifier1.setVisible(false);
         }
        lve.setCellFactory((ListView<Evenement> arg0) -> {
             ListCell<Evenement> cell = new ListCell<Evenement>() {
@@ -106,59 +116,33 @@ public class EvenementController implements Initializable {
        lve.setItems(obe);
     }    
     
-    @FXML
-    private void evenementDetails(ActionEvent event)
-    {   
-    if (
-       lve.getSelectionModel().getSelectedItem()!=null)
-        {
-        try 
-        {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) detailsButton.getScene().getWindow();
-        stage.close();
-        EvenementDetailsController edc=loader.getController();
-        edc.PassByEvenement(lve.getSelectionModel().getSelectedItem());
-        Stage s = new Stage ();
-        s.setScene(new Scene (root));    
-        s.show();
-    
-    
-        } 
-        catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }
-    else
+   
+    private void initilaze()
     {
-        Alert a=new Alert(Alert.AlertType.INFORMATION,"Aucun événement séléctionné",ButtonType.CLOSE);
-        a.setTitle("Alerte !");
-        a.setContentText("Vous devez selectionner un événement de la liste pour accéder à la rubrique Détails.");
-        a.showAndWait();
+    lve.setCellFactory((ListView<Evenement> arg0) -> {
+            ListCell<Evenement> cell = new ListCell<Evenement>() {
+                @Override
+                protected void updateItem(Evenement e, boolean btl) {
+                    super.updateItem(e, btl);
+
+                    if (e != null) {
+                        
+
+                        setText("Titre : "+e.getTitre_evenement()+ "\n" + " Lieu : " + e.getLieu_evenement()+ "\n" + " Date : " + e.getDate_evenement()+ "\n" + " Sujet : " + e.getSujet_evenement()+ "\n" + "Participants  : "+e.getNombre_interesses());
+
+                        setFont(Font.font("Berlin Sans FB Demi Bold", 12));
+
+                        // setAlignment(Pos.CENTER);
+                    }
+
+                }
+
+            };
+            return cell;
+        });
+       lve.setItems(obe);
     }
-        
-    }
-    @FXML
-    private void evenementRetour(ActionEvent event) 
-    {
-         try {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
-        Parent root =loader.load();
-        
-        Stage stage=(Stage) evenementRetourButton.getScene().getWindow();
-        stage.close();
-        
-        Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
-    
-    
-    } catch (IOException ex) {
-        System.out.println(ex.getMessage());
-    }
-    }   // TODO
+// TODO
       
     @FXML 
     private void actionAjouter(ActionEvent event)
@@ -167,12 +151,12 @@ public class EvenementController implements Initializable {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementAjout.fxml"));
         Parent root =loader.load();
         
-        Stage stage=(Stage) buttonAjouter.getScene().getWindow();
+        Stage stage=(Stage) buttonAjout.getScene().getWindow();
         stage.close();
         
         Stage s = new Stage ();
-    s.setScene(new Scene (root));    
-    s.show();
+        s.setScene(new Scene (root));    
+        s.show();
     
             Notify();
     } catch (IOException ex) {
@@ -187,15 +171,30 @@ public class EvenementController implements Initializable {
         {   try
             {
             for (int i=0;i<ari.size();++i)
-                {
+                {        
+                    sn.supprimerNotification(i,lve.getSelectionModel().getSelectedItem().getId_evenement(),1);
                     sn.ajouterNotification(ari.get(i),Session.LoggedUser.getId_utilisateur(),lve.getSelectionModel().getSelectedItem().getId_evenement(),2);
                 }
             se.SupprimerEvenement(lve.getSelectionModel().getSelectedItem().getId_evenement());
             Alert a=new Alert(Alert.AlertType.WARNING,"Succés",ButtonType.FINISH);
             a.setContentText("l'évenement "+lve.getSelectionModel().getSelectedItem().getTitre_evenement()+"a été supprimé avec succés !");
             a.showAndWait();
-            ObservableList<Evenement>obe=FXCollections.observableArrayList(se.ConsulterEvenement());
-            lve.setItems(obe);
+            Notify();
+            try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Evenement.fxml"));
+            Parent root =loader.load();
+        
+            Stage stage=(Stage) buttonSupprimer.getScene().getWindow();
+            stage.close();
+        
+            Stage s = new Stage ();
+            s.setScene(new Scene (root));    
+            s.show();
+            Notify();
+            
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
             
             }
             catch(Exception e)
@@ -228,14 +227,14 @@ public class EvenementController implements Initializable {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementModification.fxml"));
         Parent root =loader.load();
         
-        Stage stage=(Stage) buttonModifier.getScene().getWindow();
+        Stage stage=(Stage) buttonModifier1.getScene().getWindow();
         stage.close();
         EvenementModificationController emc=loader.getController();
         emc.initController(lve.getSelectionModel().getSelectedItem());
         Stage s = new Stage ();
     s.setScene(new Scene (root));    
     s.show();
-    
+    Notify();
     
     } catch (IOException ex) {
         System.out.println(ex.getMessage());
@@ -249,50 +248,212 @@ public class EvenementController implements Initializable {
             }
     }
 }
-      private void Notify()
+   private void Notify() throws IOException
     {
     List<Notification> ln=sn.chercherNotification(Session.LoggedUser.getId_utilisateur());
      if (!ln.isEmpty())
-     {
-         ln.stream().map((n) -> {
-             return n;
-                }).forEach((n) -> {
-                    if (n.getType()==1)
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Nouveau événement")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showInformation();
-                    }
-                    else if (n.getType()==2)
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Evénement annulé")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showError();
-                    }
-                    else
-                    {
-                        Notifications notification=Notifications.create()
-                                .title("Evénement Modifié")
-                                .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement"+se.ChercherEvenement(n.getId_evenement()).getTitre_evenement())
-                                .graphic(null)
-                                .darkStyle()
-                                .hideAfter(Duration.seconds(5))
-                                .position(Pos.TOP_RIGHT);
-                        notification.showConfirm();
-                    }  });
-         sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
-    }
+     {  System.out.println(Session.LoggedUser.getId_utilisateur());
+         for(Notification n:ln)
+         {
+             System.out.println(n.getId_association());
+             if (n.getType()==1)
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Nouveau événement")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a ajouté un nouvel événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT).onAction(new EventHandler<ActionEvent>() {
+
+                     @Override
+                     public void handle(ActionEvent event) {
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
+                 Parent root;
+                         try {
+                             root = loader.load();
+                             Stage stage = (Stage) buttonSupprimer.getScene().getWindow();
+                             stage.close();
+                             EvenementDetailsController edc=loader.getController();
+                             edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));
+                             Stage s = new Stage();
+                             s.setScene(new Scene(root));
+                             s.show();
+                         } catch (IOException ex) {
+                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+
+            
+                     }
+                 });
+                          notification.showConfirm();
+             
+             }
+             else if (n.getType()==2)
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Evénement annulé")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a annulé un événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT);
+                          notification.showConfirm();
+             }
+             else
+             {
+                 Notifications notification=Notifications.create()
+                         .title("Evénement annulé")
+                         .text("L'association "+sa.chercherAssociation(n.getId_association()).getNom_association()+" a modifié un événement")
+                         .graphic(null)
+                         .darkStyle()
+                         .hideAfter(Duration.seconds(5))
+                         .position(Pos.TOP_RIGHT).onAction(new EventHandler<ActionEvent>() {
+
+                    @Override
+                     public void handle(ActionEvent event) {
+                     FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
+                 Parent root;
+                         try {
+                             root = loader.load();
+                             Stage stage = (Stage) buttonSupprimer.getScene().getWindow();
+                             stage.close();
+                             EvenementDetailsController edc=loader.getController();
+                             edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));
+                             Stage s = new Stage();
+                             s.setScene(new Scene(root));
+                             s.show();
+                         } catch (IOException ex) {
+                             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+
+            
+                          
+             }
+                     
+                         });
+                                 
+                          notification.showConfirm();
+     }
+sn.supprimerNotification(Session.LoggedUser.getId_utilisateur());
 }
+    
+}
+}
+
+
+   @FXML
+    private void deconnecter(ActionEvent event) {
+       
+     try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) deconnexionButton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnnonces(ActionEvent event) {
+          try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Propre_annoncesCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage)  PropreAnnoncebutton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    Notify();
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+
+        
+    }
+
+    @FXML
+    private void GestionAnimaux(ActionEvent event) {
+     try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("MesAnimauxCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) PropreAnimaux1.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    Notify();
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
+    }
+    @FXML
+    private void actionDetails(ActionEvent event) {
+        if (
+       lve.getSelectionModel().getSelectedItem()!=null)
+        {
+        try 
+        {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("EvenementDetails.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) buttonDetails.getScene().getWindow();
+        stage.close();
+        EvenementDetailsController edc=loader.getController();
+        edc.PassByEvenement(lve.getSelectionModel().getSelectedItem());
+        Stage s = new Stage ();
+        s.setScene(new Scene (root));    
+        s.show();
+        Notify();
+    
+        } 
+        catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+    else
+    {
+        Alert a=new Alert(Alert.AlertType.WARNING,"Aucun événement séléctionné",ButtonType.CLOSE);
+        a.setTitle("Alerte !");
+        a.setContentText("Vous devez selectionner un événement de la liste pour accéder à la rubrique Détails.");
+        a.showAndWait();
+    }
+      
+    }
+
+    @FXML
+    private void actionRetour(ActionEvent event) {
+         try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Accueil.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) buttonRetour.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
 }
 
     

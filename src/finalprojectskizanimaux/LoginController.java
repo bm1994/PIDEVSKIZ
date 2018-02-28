@@ -349,7 +349,7 @@ private void Notify() throws IOException
                  Parent root;
                          try {
                              root = loader.load();
-                             Stage stage = (Stage) sinscrireButton.getScene().getWindow();
+                             Stage stage = (Stage) loginButton.getScene().getWindow();
                              stage.close();
                              EvenementDetailsController edc=loader.getController();
                              edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));
@@ -393,7 +393,7 @@ private void Notify() throws IOException
                  Parent root;
                          try {
                              root = loader.load();
-                             Stage stage = (Stage) sinscrireButton.getScene().getWindow();
+                             Stage stage = (Stage) loginButton.getScene().getWindow();
                              stage.close();
                              EvenementDetailsController edc=loader.getController();
                              edc.PassByEvenement(se.ChercherEvenement(n.getId_evenement()));

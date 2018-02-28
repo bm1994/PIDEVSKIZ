@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
@@ -7,13 +8,29 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="816.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementController">
+<AnchorPane id="AnchorPane" prefHeight="639.0" prefWidth="816.0" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.EvenementController">
    <children>
-      <Button fx:id="evenementRetourButton" layoutX="17.0" layoutY="389.0" mnemonicParsing="false" onAction="#evenementRetour" prefHeight="48.0" prefWidth="116.0" text="Retour" />
-      <Button fx:id="detailsButton" layoutX="20.0" layoutY="327.0" mnemonicParsing="false" onAction="#evenementDetails" prefHeight="42.0" prefWidth="116.0" text="Détails" />
-      <Button fx:id="buttonAjouter" layoutX="20.0" layoutY="192.0" mnemonicParsing="false" onAction="#actionAjouter" prefHeight="42.0" prefWidth="109.0" text="Ajouter Evénement" />
-      <Button fx:id="buttonSupprimer" layoutX="23.0" layoutY="254.0" mnemonicParsing="false" onAction="#actionSupprimer" prefHeight="42.0" prefWidth="109.0" text="Supprimer" />
-      <Button fx:id="buttonModifier" layoutX="23.0" layoutY="128.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="42.0" prefWidth="109.0" text="Modifier" />
-      <ListView fx:id="lve" layoutX="155.0" layoutY="113.0" prefHeight="441.0" prefWidth="578.0" />
+      <ListView fx:id="lve" layoutX="188.0" layoutY="81.0" prefHeight="633.0" prefWidth="636.0" />
+      <AnchorPane prefHeight="714.0" prefWidth="188.0" style="-fx-background-color: #212221;">
+         <children>
+            <Button fx:id="deconnexionButton" layoutX="6.0" layoutY="658.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #B40404;" text="Deconnextion" textFill="WHITE" />
+            <Text fill="#c7dc2a" layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SkiiZanimaux" wrappingWidth="149.30859375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="PropreAnnoncebutton" layoutX="31.0" layoutY="618.0" mnemonicParsing="false" onAction="#GestionAnnonces" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #212221;" text="Mes Annonces" textFill="WHITE" />
+            <Button fx:id="PropreAnimaux1" layoutX="27.0" layoutY="581.0" mnemonicParsing="false" onAction="#GestionAnimaux" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #212221;" text="Mes Animaux" textFill="WHITE" />
+            <Button fx:id="buttonModifier1" layoutX="-1.0" layoutY="334.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #212221;" text="Modifier événement" textFill="WHITE" />
+            <Button fx:id="buttonDetails" layoutX="1.0" layoutY="203.0" mnemonicParsing="false" onAction="#actionDetails" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #212221;" text="Détails" textFill="WHITE" />
+            <Button fx:id="buttonAjout" layoutX="-5.0" layoutY="262.0" mnemonicParsing="false" onAction="#actionAjouter" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #212221;" text="Ajouter événement" textFill="WHITE" />
+            <Button fx:id="buttonRetour" layoutX="5.0" layoutY="505.0" mnemonicParsing="false" onAction="#actionRetour" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #212221;" text="Retour" textFill="#fcf5f5">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="buttonSupprimer" layoutX="1.0" layoutY="406.0" mnemonicParsing="false" onAction="#actionSupprimer" prefHeight="42.0" prefWidth="186.0" style="-fx-background-color: #212221;" text="Supprimer événement" textFill="#f5f5f5" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

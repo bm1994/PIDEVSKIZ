@@ -72,6 +72,12 @@ public class EvenementCommentaireController implements Initializable{
     @FXML
     private AnchorPane ecAnchor;
     public ObservableList<CommentaireEvenement> oce;
+    @FXML
+    private Button deconnexionButton;
+    @FXML
+    private Button PropreAnnoncebutton;
+    @FXML
+    private Button PropreAnimaux1;
         
     public void initController(Evenement e)
     {
@@ -287,6 +293,67 @@ public class EvenementCommentaireController implements Initializable{
             a.setContentText("Commentaire vide");
             a.showAndWait();
         }
+    }
+
+   @FXML
+    private void deconnecter(ActionEvent event) {
+       
+     try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) deconnexionButton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+    }
+
+    @FXML
+    private void GestionAnnonces(ActionEvent event) {
+          try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("Propre_annoncesCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage)  PropreAnnoncebutton.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+
+        
+    }
+
+    @FXML
+    private void GestionAnimaux(ActionEvent event) {
+     try {
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("MesAnimauxCC.fxml"));
+        Parent root =loader.load();
+        
+        Stage stage=(Stage) PropreAnimaux1.getScene().getWindow();
+        stage.close();
+        
+        Stage s = new Stage ();
+    s.setScene(new Scene (root));    
+    s.show();
+    
+    
+    } catch (IOException ex) {
+        System.out.println(ex.getMessage());
+    }
+        
     }
     
 }

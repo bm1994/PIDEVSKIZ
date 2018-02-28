@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,24 +8,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="1042.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.AssociationProfilController">
+<AnchorPane id="AnchorPane" prefHeight="667.0" prefWidth="1042.0" style="-fx-background-color: ;" stylesheets="@Style.css" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectskizanimaux.AssociationProfilController">
    <children>
-      <Button fx:id="buttonRetour" layoutX="11.0" layoutY="559.0" mnemonicParsing="false" onAction="#actionRetour" prefHeight="44.0" prefWidth="144.0" text="Retour" />
-      <Button fx:id="buttonAbonnement" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" onAction="#actionAbonnement" prefHeight="44.0" prefWidth="144.0" text="S'abonner" />
-      <Label fx:id="lblnom" alignment="CENTER" contentDisplay="CENTER" layoutX="188.0" layoutY="14.0" prefHeight="68.0" prefWidth="381.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="lblnom" alignment="CENTER" contentDisplay="CENTER" layoutX="250.0" layoutY="14.0" prefHeight="68.0" prefWidth="381.0" text="Label" textAlignment="CENTER">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
       <Label fx:id="lblabonnes" layoutX="678.0" layoutY="91.0" prefHeight="44.0" prefWidth="161.0" text="Label">
          <font>
-            <Font size="15.0" />
+            <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="buttonDetails" layoutX="11.0" layoutY="309.0" mnemonicParsing="false" onAction="#actionDetails" prefHeight="44.0" prefWidth="144.0" text="Détails" />
-      <Button fx:id="buttonAjout" layoutX="11.0" layoutY="373.0" mnemonicParsing="false" onAction="#actionAjouter" prefHeight="44.0" prefWidth="144.0" text="Ajouter événement" />
-      <Button fx:id="buttonSupprimer" layoutX="11.0" layoutY="433.0" mnemonicParsing="false" onAction="#actionSupprimer" prefHeight="44.0" prefWidth="144.0" text="Supprimer événement" />
-      <Button fx:id="buttonModifier" layoutX="11.0" layoutY="496.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="44.0" prefWidth="144.0" text="Modifier événement" />
-      <ListView fx:id="lve" layoutX="162.0" layoutY="173.0" prefHeight="432.0" prefWidth="600.0" />
+      <ListView fx:id="lve" layoutX="179.0" layoutY="151.0" prefHeight="555.0" prefWidth="734.0" />
+      <AnchorPane prefHeight="706.0" prefWidth="181.0" style="-fx-background-color: #212221;">
+         <children>
+            <Button fx:id="deconnexionButton" layoutX="-2.0" layoutY="636.0" mnemonicParsing="false" onAction="#deconnecter" prefHeight="25.0" prefWidth="166.0" style="-fx-background-color: #B40404;" text="Deconnextion" textFill="WHITE" />
+            <Text fill="#c7dc2a" layoutX="14.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SkiiZanimaux" wrappingWidth="149.30859375">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button fx:id="PropreAnnoncebutton" layoutX="30.0" layoutY="604.0" mnemonicParsing="false" onAction="#GestionAnnonces" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: #212221;" text="Mes Annonces" textFill="WHITE" />
+            <Button fx:id="PropreAnimaux1" layoutX="24.0" layoutY="569.0" mnemonicParsing="false" onAction="#GestionAnimaux" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: #212221;" text="Mes Animaux" textFill="WHITE" />
+            <Button fx:id="buttonModifier" layoutY="368.0" mnemonicParsing="false" onAction="#actionModifier" prefHeight="44.0" prefWidth="180.0" style="-fx-background-color: #212221;" text="Modifier événement" textFill="WHITE" />
+            <Button fx:id="buttonAbonnement" layoutY="156.0" mnemonicParsing="false" onAction="#actionAbonnement" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #212221;" text="S'abonner" textFill="#f8f8f8" />
+            <Button fx:id="buttonDetails" layoutX="-5.0" layoutY="231.0" mnemonicParsing="false" onAction="#actionDetails" prefHeight="44.0" prefWidth="186.0" style="-fx-background-color: #212221;" text="Détails" textFill="WHITE" />
+            <Button fx:id="buttonSupprimer" layoutY="435.0" mnemonicParsing="false" onAction="#actionSupprimer" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #212221;" text="Supprimer événement" textFill="WHITE" />
+            <Button fx:id="buttonAjout" layoutY="299.0" mnemonicParsing="false" onAction="#actionAjouter" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #212221;" text="Ajouter événement" textFill="WHITE" />
+            <Button fx:id="buttonRetour" layoutY="513.0" mnemonicParsing="false" onAction="#actionRetour" prefHeight="44.0" prefWidth="178.0" style="-fx-background-color: #212221;" text="Retour" textFill="#fcf5f5">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
